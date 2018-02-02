@@ -1,0 +1,121 @@
+extends ./sidebar.jade
+block content
+
+  .page
+    // navbar
+    header.header
+      nav.navbar
+        .container-fluid
+          .navbar-holder.d-flex.align-items-center.justify-content-between
+            .navbar-header
+              a#toggle-btn.menu-btn(href='#')
+                i.icon-bars  
+              a.navbar-brand(href='index.html')
+                .brand-text.d-none.d-md-inline-block
+                  span Hello_HDBlms 
+            ul.nav-menu.list-unstyled.d-flex.flex-md-row.align-items-md-center
+              li.nav-item.dropdown
+                a#notifications.nav-link(rel='nofollow', data-target='#', href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                  | Nottifications
+                  span.badge.badge-warning 12
+                ul.dropdown-menu(aria-labelledby='notifications')
+                  li
+                    a.dropdown-item(rel='nofollow', href='#')
+                      .notification.d-flex.justify-content-between
+                        .notification-content
+                          i.fa.fa-envelope
+                          | You have 6 new messages
+                        .notification-time
+                          small 4 minutes ago
+                  li
+                    a.dropdown-item(rel='nofollow', href='#')
+                      .notification.d-flex.justify-content-between
+                        .notification-content
+                          i.fa.fa-twitter
+                          | You have 2 followers
+                        .notification-time
+                          small 4 minutes ago
+                  li
+                    a.dropdown-item(rel='nofollow', href='#')
+                      .notification.d-flex.justify-content-between
+                        .notification-content
+                          i.fa.fa-upload
+                          | Server Rebooted
+                        .notification-time
+                          small 4 minutes ago
+                  li
+                    a.dropdown-item(rel='nofollow', href='#')
+                      .notification.d-flex.justify-content-between
+                        .notification-content
+                          i.fa.fa-twitter
+                          | You have 2 followers
+                        .notification-time
+                          small 10 minutes ago
+                  li
+                    a.dropdown-item.all-notifications.text-center(rel='nofollow', href='#')
+                      strong
+                        i.fa.fa-bell
+                        | view all notifications
+              li.nav-item
+                a.nav-link.logout(href='login.html')
+                  | Logout
+                  i.fa.fa-sign-out
+    // Counts Section
+    section.dashboard-counts
+      header
+        .boxdisplay.largetitle Explore
+      .container-fluid
+        .row
+          // Count item widget
+          .col-xl-2.col-md-4.col-6
+            .wrapper.count-title.d-flex
+              i.fa.fa-search(aria-hidden='true')
+              .name
+                a(href='/explorefilter')
+                  strong.text-uppercase.searchButton  Filter Search
+          // Count item widget
+          .col-xl-2.col-md-4.col-6
+            .wrapper.count-title.d-flex
+              i.fa.fa-search(aria-hidden='true')
+              .name
+                strong.text-uppercase.searchButton  SQL Search
+    header
+    .container-fluid
+      .row
+        // Count item widget
+        .col-md-6
+          .subheader.boxdisplay-6 Recent
+          .wrapper.count-title.d-flex
+            .list-group.w-100
+              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Dapibus ac facilisis in
+              a.list-group-item.list-group-item-action(href='#') Dapibus ac facilisis in
+              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Cras sit amet nibh libero
+        // Count item widget
+        .col-md-6
+          .subheader.boxdisplay-6 Favorite
+          .wrapper.count-title.d-flex
+            .list-group.w-100
+              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Dapibus ac facilisis in
+              a.list-group-item.list-group-item-action(href='#') Dapibus ac facilisis in
+              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Cras sit amet nibh libero
+    header
+      .boxdisplay.subheader Dashboard
+    // Statistics Section
+    section.statistics
+      .container-fluid
+        .row.d-flex
+          .col-lg-4
+            // Income
+            .card.income.text-center.dashboardplusbox
+              .icon.iconplus
+                i.fa.fa-plus(aria-hidden='true')
+          .col-lg-4
+            // Income
+            .card.income.text-center.dashboardplusbox
+              .icon.iconplus
+                i.fa.fa-plus(aria-hidden='true')
+          .col-lg-4
+            // Income
+            .card.income.text-center.dashboardplusbox
+              .icon.iconplus
+                i.fa.fa-plus(aria-hidden='true')
