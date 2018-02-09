@@ -1,0 +1,37 @@
+extends ./layout
+
+block link
+  -var selected = 'Logs';
+block content
+    script(src="scripts/logs.js")
+    style.
+        .tile{
+            padding-top:25px;
+            padding-bottom:25px;
+
+        }
+    // End navigation
+    // Main content
+    section.content
+        .container-fluid
+            input#logs(type="hidden" value="#{logs}")
+            .row
+                .col-md-10-offset-2
+                    .panel.panel-filled
+                        .panel-heading
+                            .panel-tools
+                            | Logs
+                        .panel-body
+                            .table-responsive
+                                #logsTable_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+
+                                    table#logsTable.table.table-striped.table-hover.dataTable.no-footer(role='grid', aria-describedby='logsTable_info')
+
+                                        thead
+                                            tr(role='row')
+                                                th.sorting(tabindex='0', aria-controls='logsTable', rowspan='1', colspan='1', aria-sort='ascending', aria-label='level: activate to sort column descending', style='width: 102px;') level
+                                                th.sorting(tabindex='0', aria-controls='logsTable', rowspan='1', colspan='1', aria-label='message: activate to sort column ascending', style='width: 170px;') message
+                                                th.sorting_desc(tabindex='0', aria-controls='logsTable', rowspan='1', colspan='1', aria-label='timestamp: activate to sort column ascending', style='width: 70px;') timestamp
+                                        tbody#logs_body
+
+

@@ -1,44 +1,78 @@
 
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var path = require('path');
-
-
-
+const express = require('express')
+    , app = express()
+    , bodyParser = require('body-parser')
+    , path = require('path')
+    , favicon = require('express-favicon')
+    , passport = require('passport')
+    , LocalStrategy = require('passport-local').Strategy
+    , session = require('express-session')
+    , hdb_callout = require('./utility/harperDBCallout');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'resources')));
 app.set('views', path.join(__dirname + '/pages'));
 app.set('view engine', 'jade')
-
-// app.get('/main', function (req,res) {
-//     res.render('main', {youAreUsingJade:true});
-// });
-
-// app.get('/explore', function (req,res) {
-//     res.render('explore');
-// });
-
-// app.get('/explorefilter', function (req,res) {
-//     res.render('explorefilter');
-// });
-
-// app.get('/', function (req,res) {
-//     res.render('index');
-// });
+app.use(favicon("https://s3.amazonaws.com/hdb-marketing/harperdb__flavicon_4Cw_icon.ico"));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // route
 var main = require('./routes/main')
     , login = require('./routes/login')
     , security = require('./routes/security')
-    , explore = require('./routes/explore');
+    , explore = require('./routes/explore')
+    , logs = require('./routes/logs')
+    , logout = require('./routes/logout');
 
 app.use('/main', main);
-app.use('/', login);
+app.use('/login', login);
 app.use('/security', security);
 app.use('/explore', explore);
+app.use('/logs', logs);
+app.use('/logout', logout);
+app.use('/', explore);
+//authen
+passport.use(new LocalStrategy({passReqToCallback: true},
+    function (req, username, password, done) {
+        var call_object = {
+            username: username,
+            password: password,
+            endpoint_url: req.body.endpoint_url,
+            endpoint_port: req.body.endpoint_port
+
+        };
+
+        var operation = {operation: 'user_info'};
+        hdb_callout.callHarperDB(call_object, operation, function(err ,user){
+            if(err){
+                return done(null, false, {message: err});
+            }
+            
+            if(user && user.active){
+                user.password = password;
+                user.endpoint_url = req.body.endpoint_url;
+                user.endpoint_port = req.body.endpoint_port;
+                return done(null, user);
+            }else{
+                return done(null, false, {message: 'Invalid credentials'});
+            }
+
+        });
+
+
+
+    }
+));
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
 
 app.listen(61183, function () {
     console.log('Example app listening on port 61183!')
