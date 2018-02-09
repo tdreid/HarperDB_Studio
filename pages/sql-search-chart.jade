@@ -1,0 +1,310 @@
+extends ./layout
+
+block link
+  -var selected = 'Explore';
+block content
+    .breadcrumb-holder
+        .container-fluid
+            ul.breadcrumb
+                li.breadcrumb-item
+                    a(href='/explore') Explore Home
+                li.breadcrumb-item.active Filter Search 
+    // Counts Section
+    section.dashboard-counts
+        div
+            .row
+                .col-3
+                    .contentbackground.p-3(style='overflow:auto;')
+                        .secondheader
+                            .midtitle.text-white
+                                | Data Model
+                        .wrapper.count-title.d-flex
+                            i.fa.fa-search(aria-hidden='true')
+                            .name.ml-3
+                                input(type='text')
+                        .form-group
+                            ul.tree
+                                li
+                                    input#c1(type='checkbox', checked='checked')
+                                    label.tree_label(for='c1')
+                                        i.fa.fa-caret-down
+                                        |  Schema
+                                    ul
+                                        li
+                                            input#c2(type='checkbox', checked='checked')
+                                            label.tree_label(for='c2')
+                                                i.fa.fa-caret-down
+                                                |  Table
+                                            ul
+                                                li
+                                                    span.tree_label Attribute
+                                                li
+                                                    span.tree_label Attribute
+                                        li
+                                            input#c3(type='checkbox', checked='checked')
+                                            label.tree_label(for='c3')
+                                                i.fa.fa-caret-down
+                                                |  Table
+                                            ul
+                                                li
+                                                    span.tree_label Attribute
+                                                li
+                                                    span.tree_label Attribute
+                                li
+                                    input#c4(type='checkbox', checked='checked')
+                                    label.tree_label(for='c4')
+                                        i.fa.fa-caret-down
+                                        |  Schema
+                                    ul
+                                        li
+                                            input#c5(type='checkbox', checked='checked')
+                                            label.tree_label(for='c5')
+                                                i.fa.fa-caret-down
+                                                |  Table
+                                            ul
+                                                li
+                                                    span.tree_label Attribute
+                                                li
+                                                    span.tree_label Attribute
+                                        li
+                                            input#c6(type='checkbox', checked='checked')
+                                            label.tree_label(for='c6')
+                                                i.fa.fa-caret-down
+                                                |  Table
+                                            ul
+                                                li
+                                                    span.tree_label Attribute
+                                                li
+                                                    span.tree_label Attribute
+                                li
+                                    input#c7(type='checkbox', checked='checked')
+                                    label.tree_label(for='c7')
+                                        i.fa.fa-caret-down
+                                        |  Schema
+                                    ul
+                                        li
+                                            input#c8(type='checkbox', checked='checked')
+                                            label.tree_label(for='c8')
+                                                i.fa.fa-caret-down
+                                                |  Table
+                                            ul
+                                                li
+                                                    span.tree_label Attribute
+                                                li
+                                                    span.tree_label Attribute
+                                        li
+                                            input#c9(type='checkbox', checked='checked')
+                                            label.tree_label(for='c9')
+                                                i.fa.fa-caret-down
+                                                |  Table
+                                            ul
+                                                li
+                                                    span.tree_label Attribute
+                                                li
+                                                    span.tree_label Attribute
+                .col-6.p-0
+                    .contentbackground.p-3(style='overflow:auto;')
+                        .secondheader
+                            .midtitle.text-white
+                                | SQL Search
+                                a.btn.btn-main.minwidthcombobox.pull-right(href='/explore/filter-search') Filter Search
+                        .form-group
+                            textarea#exampleTextarea.form-control(placeholder='Type sql here', rows='3')
+                        div
+                            button.btn.btn-main.pull-right.min-100(type='button', aria-expanded='false') Run
+                    .contentbackground.text-white.p-3
+                        .secondheader
+                            .midtitle
+                                | Results
+                                .pull-right
+                                    i.fa.fa-sign-out
+                                .pull-right
+                                    i.fa.fa-save(data-target='#saveModalCenter', data-toggle='modal', style='margin-right:10px;')
+                                .pull-right
+                                    i.fa.fa-refresh(style='margin-right:10px;')
+                        // Modal
+                        #saveModalCenter.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
+                            .modal-dialog.modal-dialog-centered(role='document')
+                                .modal-content
+                                    .modal-header
+                                        #exampleModalLongTitle.modal-title Save Search
+                                        button.close(data-dismiss='modal', type='button', aria-label='Close')
+                                            i.fa.fa-times.text-red
+                                    .modal-body
+                                        .row.filterrow.p-3
+                                            // Count item widget
+                                            .row.w-100
+                                                .col-md-4.wtitle
+                                                    .boxdisplay-6.text-right Name
+                                                .col-md-8
+                                                    input.form-control.minwidthtextbox(type='text', style='float:left; max-width:250px; margin-right:5px;')
+                                            .row.w-100
+                                                .col-md-4.wtitle
+                                                    .boxdisplay-6.text-right Live Resualts URL
+                                                .col-md-8
+                                                    input.form-control.minwidthtextbox(type='text', style='float:left;  max-width:250px; margin-right:5px;')
+                                                    button.btn.btn-main.pull-left(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Copy
+                                            .row.w-100
+                                                .col-md-4.wtitle
+                                                    .boxdisplay-6.text-right Notes
+                                                .col-md-8
+                                                    input.form-control.minwidthtextbox.w-100(type='text', style='float:left; margin-right:5px;')
+                                    .modal-footer
+                                        .col-md-12
+                                            button.btn.btn-mainadd.pull-right(data-dismiss='modal', data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true', style='min-width:150px;')
+                                                | Save
+                        div
+                            .row
+                                .col-md-12
+                                    table.table.table-striped
+                                        thead
+                                            tr
+                                                th(scope='col') Column 1
+                                                th(scope='col') Column 2
+                                                th(scope='col') Column 3
+                                                th(scope='col') Column 4
+                                        tbody
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                            tr
+                                                th(scope='row') -
+                                                td -
+                                                td -
+                                                td -
+                                    #usersTable_length.dataTables_length.pull-left
+                                        label
+                                            | Show
+                                            select.form-control.input-sm.selectinput(name='usersTable_length', aria-controls='usersTable')
+                                                option(value='10') 10
+                                                option(value='50') 50
+                                                option(value='100') 100
+                                                option(value='-1') All
+                                            |  entries
+                                    #usersTable_paginate.dataTables_paginate.paging_simple_numbers.pull-right
+                                        ul.pagination
+                                            li#usersTable_previous.paginate_button.previous.disabled
+                                                a(data-dt-idx='0', href='#', aria-controls='usersTable', tabindex='0') Previous
+                                            li.paginate_button.active
+                                                a(data-dt-idx='1', href='#', aria-controls='usersTable', tabindex='0') 1
+                                            li#usersTable_next.paginate_button.next.disabled
+                                                a(data-dt-idx='2', href='#', aria-controls='usersTable', tabindex='0') Next
+                .col-3(style='overflow:auto;')
+                    .contentbackground.pb-3(style='overflow:auto;')
+                        ul.nav.nav-tabs(role='tablist')
+                            li.nav-item
+                                a.nav-link.active(data-toggle='tab', href='#functions', role='tab') Functions
+                            li.nav-item
+                                a.nav-link(data-toggle='tab', href='#buzz', role='tab') Charts
+                        // Tab panes
+                        .tab-content.p-3.text-white.-md-6
+                            #functions.tab-pane.row.active(role='tabpanel')
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ABS
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') CONCAT
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') EXP
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') IF
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') IFNULL
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') INSTR
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') LEN
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') LOWER
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') LTRIM
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') RTRIM
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') MAX
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') MIN
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') SUBSTRING
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') REGEXP_LIKE
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ISNULL
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') RANDOM
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ROUND
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') CEIL
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') FLOOR
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ROWNUM
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') SQRT
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') TRIM
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') UPPER
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') CONCAT_WS
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') MEDIAN
+                                .col-md-6.btnfunction
+                                    button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') QUART
+                            #buzz.tab-pane.fade(role='tabpanel')
+                                div Format your chart
+                                .btn-group
+                                    button.btn.dropdown-toggle.minwidthcombobox(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Area
+                                    .dropdown-menu
+                                        a.dropdown-item(href='#') Line
+                                        a.dropdown-item(href='#') Bar
+                                        a.dropdown-item(href='#') Number Overlay
+                                        a.dropdown-item(href='#') Pie
+                                        a.dropdown-item(href='#') Cohot Grd
+                                        a.dropdown-item(href='#') Map
+                                        a.dropdown-item(href='#') Sparkline
+                                        a.dropdown-item(href='#') Scatter
+                                        a.dropdown-item(href='#') Bubble
+                                        a.dropdown-item(href='#') Image
+                                .pt-3 Chart Title
+                                input(type='text')
+                                .pt-3 Axis
+                                .pl-4
+                                    .pt-3 X Axis Label
+                                    input(type='text')
+                                    .pt-3 Y Axis Label
+                                    input(type='text')
+                                .pt-3 Footer
+                                input(type='text')

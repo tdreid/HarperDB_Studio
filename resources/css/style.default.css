@@ -2508,6 +2508,15 @@ mark,
   font-size: 2rem;
 }
 
+.midtitle{
+  font-size: 1.5rem;
+}
+
+.secondheader{
+  margin-bottom: 20px;
+}
+
+
 .dashboardplusbox{
   min-height: 250px;
   background-color: #D7D7D7 !important;
@@ -2545,6 +2554,65 @@ a.text-primary:focus, a.text-primary:hover {
   color: #288b46 !important;
 }
 
+
+
+/* ————————————————————–
+  Tree core styles
+*/
+.tree { margin: 0.5em;     margin-left: -55px; margin-top: 20px; list-style: none; }
+
+.tree input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  }
+
+.tree input ~ ul { display: none; }
+
+.tree input:checked ~ ul { display: block; }
+
+/* ————————————————————–
+  Tree rows
+*/
+
+.tree ul
+{list-style: none;
+}
+.tree li {
+  line-height: 1.2;
+  position: relative;
+  padding: 0 0 1em 1em;
+  }
+
+.tree ul li { padding: 0.5em 0 0 1em; }
+
+.tree > li:last-child { padding-bottom: 0; }
+
+/* ————————————————————–
+  Tree labels
+*/
+.tree_label {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  }
+
+label.tree_label { cursor: pointer; }
+
+label.tree_label:hover { color: #666; }
+
+/* ————————————————————–
+  Tree expanded icon
+*/
+/* ————————————————————–
+  Tree branches
+*/
+
+.tree_custom {
+  display: block;
+  background: #eee;
+  padding: 1em;
+  border-radius: 0.3em;
+}
 /*
  * 4. PAGINATION
  */
@@ -2558,10 +2626,19 @@ a.text-primary:focus, a.text-primary:hover {
   border-bottom-right-radius: 0;
 }
 
+.min-100{
+  width:100px;
+}
+
 .page-item.active .page-link {
   color: #fff;
   background-color: #6967B8;
   border-color: #6967B8;
+}
+
+.contentbackground{
+  background-color: #4A4C54;
+  margin-bottom:10px;
 }
 
 .page-item.disabled .page-link {
@@ -2627,12 +2704,12 @@ a.text-primary:focus, a.text-primary:hover {
   border-bottom-right-radius: 0.2rem;
 }
 
-
-.spinner {
-  width: 100px;
-}
 .spinner input {
   text-align: right;
+  padding: 0px 10px;
+  max-width:50px;
+  background-color: #31343D;
+  color: #71788C;
 }
 .input-group-btn-vertical {
   position: relative;
@@ -2987,10 +3064,24 @@ a > code {
   margin-bottom: -1px;
 }
 
+.btn-b-10{
+  margin-bottom: 10px;
+}
+
+.btnfunction{
+  float:left;
+}
+
+.nav-tabs {
+  border-bottom: none;
+}
+
 .nav-tabs .nav-link {
-  border: 1px solid transparent;
+  border: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  color: #495057;
+  background-color: #fff;
 }
 
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
@@ -3003,8 +3094,10 @@ a > code {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
-  background-color: #fff;
+  color: #fff;
+  background-color: #3E3F87;
+  border: none;
+
 }
 
 .nav-tabs .dropdown-menu {
@@ -3019,6 +3112,44 @@ a > code {
 .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #6967B8;
+}
+/* Modal */
+
+.modal-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #3C3F47;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: .3rem;
+  outline: 0;
+}
+
+.modal-header {
+
+  border-bottom: none;
+
+}
+
+.modal-footer {
+
+  border-top: none;
+}
+
+.wtitle{ width:150px;}
+
+.close
+{
+  color:#f00;
+  font-size: 20px;
 }
 
 /*
@@ -3051,6 +3182,8 @@ a > code {
 .card-subtitle {
   margin-top: -0.5rem;
 }
+
+.clear{ clear: both}
 
 .card-link + .card-link {
   margin-left: 1.25rem;
@@ -3128,4 +3261,236 @@ a > code {
     margin-right: 15px;
     margin-left: 15px;
   }
+
+
 }
+
+@media (max-width: 767px) {
+  .boxdisplay{
+    padding: 0.5rem 1rem;
+  }
+
+  .largetitle{
+    font-size:1.5rem;
+  }
+
+  .minfiltertitle{
+    width:100%;
+  }
+
+  .minwidthtextbox{
+    margin-top:5px;
+  }
+}
+.modal-title{
+  font-size: 1.5rem !important;
+}
+
+@media (min-width: 576px)
+{
+.modal-dialog {
+    max-width: 600px;
+}
+}
+
+
+
+/*icon */
+.pe-7s-users:before {
+	content: "\e693";
+}
+.pe-7s-angle-left:before {
+	content: "\e686";
+}
+.pe-7s-user-female:before {
+	content: "\e694";
+}
+
+.usericon{font-size: 32px; color: #8F959B }
+
+
+
+/*slect */
+@media (min-width: 768px)
+{
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+select.input-sm {
+    height: 30px;
+    line-height: 30px;
+}
+.form-control {
+    color: #949ba2;
+    border: none;
+    border-radius: 4px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+    background-color: #494b54;
+}
+.input-sm {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+
+option {
+  font-weight: normal;
+  display: block;
+  white-space: pre;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
+}
+select.input-sm {
+  height: 30px;
+  line-height: 30px;
+}
+.form-control {
+  color: #949ba2;
+  border: none;
+  border-radius: 4px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+  background-color: #494b54;
+}
+.selectinput{    margin: -5px 10px;}
+
+
+/* switch */
+.switchery {
+  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  position: relative;
+  vertical-align: middle;
+  width: 50px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: content-box;
+  background-clip: content-box;
+}
+
+.switchery>small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  height: 30px;
+  position: absolute;
+  top: 0;
+  width: 30px;
+}
+small, .small {
+  font-size: 85%;
+}
+
+small {
+  font-size: 80%;
+}
+
+
+/* paging */
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 0px 0;
+  border-radius: 4px;
+}
+
+.pagination > li {
+  display: inline;
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+
+.pagination > li:last-child > a, .pagination > li:last-child > span {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+  color: #949ba2 !important;
+  background-color: transparent !important;
+  border-color: #4a4f5d !important;
+}
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.pagination > li > a, .pagination > li > span {
+  color: #949ba2 !important;
+  background-color: transparent !important;
+  border: 1px solid #585d6e !important;
+}
+.pagination > li > a, .pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+
+label {
+  color: #ffffff;
+  font-weight: 500; 
+}
+label {
+  display: flex;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
+
+
