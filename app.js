@@ -15,8 +15,11 @@ app.use(express.static(path.join(__dirname, 'resources')));
 app.set('views', path.join(__dirname + '/pages'));
 app.set('view engine', 'jade')
 app.use(favicon("https://s3.amazonaws.com/hdb-marketing/harperdb__flavicon_4Cw_icon.ico"));
+app.use(session({ secret: 'keyboard cat', resave: true,
+    saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // route
 var main = require('./routes/main')
@@ -24,7 +27,9 @@ var main = require('./routes/main')
     , security = require('./routes/security')
     , explore = require('./routes/explore')
     , logs = require('./routes/logs')
-    , logout = require('./routes/logout');
+    , logout = require('./routes/logout')
+    , user_detail = require('./routes/user_detail')
+    , schema = require('./routes/schema');
 
 app.use('/main', main);
 app.use('/login', login);
@@ -32,7 +37,10 @@ app.use('/security', security);
 app.use('/explore', explore);
 app.use('/logs', logs);
 app.use('/logout', logout);
+app.use('/user_detail', user_detail);
+app.use('/schema', schema);
 app.use('/', explore);
+
 //authen
 passport.use(new LocalStrategy({passReqToCallback: true},
     function (req, username, password, done) {

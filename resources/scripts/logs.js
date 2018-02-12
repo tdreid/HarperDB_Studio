@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     var logs = JSON.parse(document.getElementById("logs").value)
+    console.log(logs);
     var odd = false;
     var tbody = document.getElementById("logs_body");
     tbody.innerHTML = "";

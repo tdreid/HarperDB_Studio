@@ -1,0 +1,113 @@
+extends ./layout
+
+
+block content
+    // End navigation
+    // Main content
+    section.content
+        .container-fluid
+            .row
+                .col-lg-12
+                    .view-header
+                        .pull-right.text-right(style='line-height: 14px')
+
+                        .header-icon
+                            i.pe.page-header-icon.pe-7s-menu
+                        .header-title
+                            h3 Schema Explorer
+                            small
+                                | Nestable - Drag & drop hierarchical list.
+                    hr
+            .row
+                .col-md-8
+                    .panel
+                        .panel-heading
+                            .panel-tools
+                                a.panel-toggle
+                                    i.fa.fa-chevron-up
+                                a.panel-close
+                                    i.fa.fa-times
+                            |                             Nestable List example
+                        .panel-body
+                            p.m-b-lg
+                                | Each list you can customize by standard css styles. Each element is responsive so you can
+                                | add to it any other element to improve functionality of list.
+                            #nestable.dd
+                                ol.dd-list
+                                    li.dd-item(data-id='1')
+                                        .dd-handle
+                                            span
+                                                i.fa.fa-cog.m-r-xs
+                                            |                                             Lorem Ipsum has been the industry's
+                                        ol.dd-list
+                                            li.dd-item(data-id='2')
+                                                .dd-handle
+                                                    span.pull-right  12:00 pm
+                                                    |                                                     Vivamus vestibulum nulla nec ante.
+                                            li.dd-item(data-id='3')
+                                                .dd-handle
+                                                    span.pull-right  11:00 pm
+                                                    |                                                     Nunc dignissim risus id metus.
+                                            li.dd-item(data-id='4')
+                                                .dd-handle
+                                                    span.pull-right  11:00 pm
+                                                    |                                                     Vestibulum commodo
+                                    li.dd-item(data-id='5')
+                                        .dd-handle
+                                            span
+                                                i.fa.fa-bolt.m-r-xs
+                                            |  Integer
+                                            |                                             Many desktop publishing packages
+                                        ol.dd-list
+                                            li.dd-item(data-id='6')
+                                                .dd-handle
+                                                    span.pull-right  15:00 pm
+                                                    |                                                     Nam convallis pellentesque nisl.
+                                            li.dd-item(data-id='7')
+                                                .dd-handle
+                                                    span.pull-right  16:00 pm
+                                                    |                                                     Vivamus molestie gravida turpis
+                                            li.dd-item(data-id='8')
+                                                .dd-handle
+                                                    span.pull-right  21:00 pm
+                                                    |                                                     Ut aliquam sollicitudin leo.
+                .col-md-4
+                    .panel.panel-filled
+                        .panel-heading
+                            .panel-tools
+                                a.panel-toggle
+                                    i.fa.fa-chevron-up
+                                a.panel-close
+                                    i.fa.fa-times
+                                |                             Serialised Output
+                        .panel-body
+                            textarea#nestable-output.form-control(rows='9')
+    // End main content
+    // End wrapper
+    // Vendor scripts
+
+    script(src='vendor/pacejs/pace.min.js')
+    script(src='vendor/jquery/dist/jquery.min.js')
+    script(src='vendor/bootstrap/js/bootstrap.min.js')
+    script(src='vendor/nestable/jquery.nestable.js')
+    // App scripts
+    script(src='scripts/luna.js')
+    script.
+        $(document).ready(function () {
+            // Log for nestable list
+            var updateOutput = function (e) {
+                var list = e.length ? e : $(e.target),
+                    output = list.data('output');
+                if (window.JSON) {
+                    output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+                } else {
+                    output.val('JSON browser support required for this demo.');
+                }
+            };
+            // Activate Nestable for list 1
+            $('#nestable').nestable({
+                group: 1
+            }).on('change', updateOutput);
+            // Output initial serialised data
+            updateOutput($('#nestable').data('output', $('#nestable-output')));
+        });
