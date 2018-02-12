@@ -23,7 +23,7 @@ router.get('/', function (req, res) {
         // console.error(err);
         // console.log(logs);
         return res.render('security', {
-            user: JSON.stringify(req.user),
+            user: req.user,
             users: JSON.stringify(users),
             error: err
         });
