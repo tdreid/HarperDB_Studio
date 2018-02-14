@@ -167,13 +167,19 @@ padding-left: 10px !important;
   border-radius: 5px !important;
 }
 
+.trclick{ cursor: pointer }
+
+.btn-main-active{
+  background-color: #00935A !important;
+}
+
 .table td, .table th{
   border-top:none;
   color: #fff;
 }
 
 .btn-main:hover{
-  background-color: #4F56AC !important;
+  background-color: #00935A !important;
   color:#fff;
 }
 
@@ -184,9 +190,49 @@ padding-left: 10px !important;
   border-radius: 5px !important;
 }
 
+.btn-main-big{
+  background-color: #3E3F87 !important;
+  color:#fff;
+  border: none !important;
+  border-radius: 5px !important;
+  padding:10px 30px !important;
+  min-width: 200px;
+}
+
+.btn-main-big:hover{
+  background-color: #00935A !important;
+  color:#fff;
+}
+
 
 .btn-mainadd:hover{
   background-color: #00CC7A !important;
+  color:#fff;
+}
+
+.btn-mainexit{
+  background-color: #CED4DA !important;
+  color:#3C3F47;
+  border: none !important;
+  border-radius: 5px !important;
+}
+
+
+.btn-mainexit:hover{
+  background-color: #fff !important;
+  color:#3C3F47;
+}
+
+.btn-maindelete{
+  background-color: #ff0000 !important;
+  color:#fff;
+  border: none !important;
+  border-radius: 5px !important;
+}
+
+
+.btn-maindelete:hover{
+  background-color: #FF4040 !important;
   color:#fff;
 }
 
@@ -195,12 +241,21 @@ padding-left: 10px !important;
   margin-bottom: 10px;
 }
 
+.minwidth150{
+  min-width: 150px;
+}
 
 .minwidthcombobox{
   min-width: 150px;
   background-color: #fff;
   padding:5px 5px !important;
 }
+
+.minwidth250{
+  min-width: 250px;
+  text-align: left;
+}
+
 
 .minwidthtextbox{
   padding:4px 5px;
@@ -2504,6 +2559,11 @@ mark,
   font-size: 1.2 rem;
 }
 
+.fa-trash:hover {
+  color:#f00;
+  cursor: pointer;
+}
+
 .largetitle{
   font-size: 2rem;
 }
@@ -3308,6 +3368,7 @@ a > code {
 
 .usericon{font-size: 32px; color: #8F959B }
 
+.width100{ min-width:100px;}
 
 
 /*slect */
@@ -3389,6 +3450,9 @@ select.input-sm {
 }
 .selectinput{    margin: -5px 10px;}
 
+.largetext{
+  font-size: 1.5rem;
+}
 
 /* switch */
 .switchery {
@@ -3482,15 +3546,9 @@ small {
 
 label {
   color: #ffffff;
-  font-weight: 500; 
 }
 label {
   display: flex;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
 }
-
-
-
-

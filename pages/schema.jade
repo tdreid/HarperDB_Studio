@@ -1,113 +1,182 @@
 extends ./layout
 
-
+block link
+    -var selected = 'Schema';
 block content
-    // End navigation
-    // Main content
-    section.content
-        .container-fluid
-            .row
-                .col-lg-12
-                    .view-header
-                        .pull-right.text-right(style='line-height: 14px')
-
-                        .header-icon
-                            i.pe.page-header-icon.pe-7s-menu
-                        .header-title
-                            h3 Schema Explorer
-                            small
-                                | Nestable - Drag & drop hierarchical list.
-                    hr
-            .row
-                .col-md-8
-                    .panel
-                        .panel-heading
-                            .panel-tools
-                                a.panel-toggle
-                                    i.fa.fa-chevron-up
-                                a.panel-close
-                                    i.fa.fa-times
-                            |                             Nestable List example
-                        .panel-body
-                            p.m-b-lg
-                                | Each list you can customize by standard css styles. Each element is responsive so you can
-                                | add to it any other element to improve functionality of list.
-                            #nestable.dd
-                                ol.dd-list
-                                    li.dd-item(data-id='1')
-                                        .dd-handle
-                                            span
-                                                i.fa.fa-cog.m-r-xs
-                                            |                                             Lorem Ipsum has been the industry's
-                                        ol.dd-list
-                                            li.dd-item(data-id='2')
-                                                .dd-handle
-                                                    span.pull-right  12:00 pm
-                                                    |                                                     Vivamus vestibulum nulla nec ante.
-                                            li.dd-item(data-id='3')
-                                                .dd-handle
-                                                    span.pull-right  11:00 pm
-                                                    |                                                     Nunc dignissim risus id metus.
-                                            li.dd-item(data-id='4')
-                                                .dd-handle
-                                                    span.pull-right  11:00 pm
-                                                    |                                                     Vestibulum commodo
-                                    li.dd-item(data-id='5')
-                                        .dd-handle
-                                            span
-                                                i.fa.fa-bolt.m-r-xs
-                                            |  Integer
-                                            |                                             Many desktop publishing packages
-                                        ol.dd-list
-                                            li.dd-item(data-id='6')
-                                                .dd-handle
-                                                    span.pull-right  15:00 pm
-                                                    |                                                     Nam convallis pellentesque nisl.
-                                            li.dd-item(data-id='7')
-                                                .dd-handle
-                                                    span.pull-right  16:00 pm
-                                                    |                                                     Vivamus molestie gravida turpis
-                                            li.dd-item(data-id='8')
-                                                .dd-handle
-                                                    span.pull-right  21:00 pm
-                                                    |                                                     Ut aliquam sollicitudin leo.
-                .col-md-4
-                    .panel.panel-filled
-                        .panel-heading
-                            .panel-tools
-                                a.panel-toggle
-                                    i.fa.fa-chevron-up
-                                a.panel-close
-                                    i.fa.fa-times
-                                |                             Serialised Output
-                        .panel-body
-                            textarea#nestable-output.form-control(rows='9')
-    // End main content
-    // End wrapper
-    // Vendor scripts
-
-    script(src='vendor/pacejs/pace.min.js')
-    script(src='vendor/jquery/dist/jquery.min.js')
-    script(src='vendor/bootstrap/js/bootstrap.min.js')
-    script(src='vendor/nestable/jquery.nestable.js')
-    // App scripts
-    script(src='scripts/luna.js')
-    script.
-        $(document).ready(function () {
-            // Log for nestable list
-            var updateOutput = function (e) {
-                var list = e.length ? e : $(e.target),
-                    output = list.data('output');
-                if (window.JSON) {
-                    output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
-                } else {
-                    output.val('JSON browser support required for this demo.');
-                }
-            };
-            // Activate Nestable for list 1
-            $('#nestable').nestable({
-                group: 1
-            }).on('change', updateOutput);
-            // Output initial serialised data
-            updateOutput($('#nestable').data('output', $('#nestable-output')));
-        });
+        // Counts Section
+        section.dashboard-counts
+            header
+                .boxdisplay
+                    .largetitle.pull-left Schema
+                    .wrapper.count-title.d-flex.pull-right
+                        i.fa.fa-search(aria-hidden='true')
+                        .name.ml-3
+                            input(type='text')
+        section
+            .clear.pt-3
+                .row.text-center.m-3
+                    .col-md-4
+                        a.btn-main-big(data-target='#addtableModal', data-toggle='modal', href='sqlsearchchart.html')
+                            i.fa.fa-plus(aria-hidden='true')
+                            |  Schema/Tables
+                    // Modal Add schema
+                    #addschemaModal.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
+                        .modal-dialog.modal-dialog-centered(role='document')
+                            .modal-content
+                                .modal-header
+                                    #exampleModalLongTitle.modal-title.text-white Add Schema
+                                    button.close(data-dismiss='modal', type='button', aria-label='Close')
+                                        i.fa.fa-times.text-red
+                                .modal-body.text-white
+                                    .row
+                                        // Count item widget
+                                        .col-md-12
+                                            .btn-group(style='float:left')
+                                                span.minwidth150.mr-2 Schema
+                                                button.btn.dropdown-toggle.minwidthcombobox.minwidth250(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Select Schema
+                                                .dropdown-menu
+                                                    a.dropdown-item(href='#') Schema 1
+                                                    a.dropdown-item(href='#') Schema 2
+                                                    a.dropdown-item(href='#') Schema 3
+                                            .btn-group.clear.mt-2(style='float:left;')
+                                                span.minwidth150.mr-2 Name
+                                                input.minwidth250(type='text')
+                                .modal-footer
+                                    .col-md-12.p-0
+                                        button.btn.btn-mainadd(data-dismiss='modal', data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true', style='min-width:150px;')
+                                            | Add
+                    // Modal Add schema
+                    #addtableModal.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
+                        .modal-dialog.modal-dialog-centered(role='document')
+                            .modal-content
+                                .modal-header
+                                    #exampleModalLongTitle.modal-title.text-white Add Table
+                                    button.close(data-dismiss='modal', type='button', aria-label='Close')
+                                        i.fa.fa-times.text-red
+                                .modal-body.text-white
+                                    .row
+                                        // Count item widget
+                                        .col-md-12
+                                            .btn-group(style='float:left')
+                                                span.minwidth150.mr-2 Add
+                                                button.btn.dropdown-toggle.minwidthcombobox.minwidth250(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Table
+                                                .dropdown-menu
+                                                    a.dropdown-item(href='#') Schema 1
+                                                    a.dropdown-item(href='#') Schema 2
+                                                    a.dropdown-item(href='#') Schema 3
+                                            .btn-group.clear.mt-2(style='float:left')
+                                                span.minwidth150.mr-2 Select
+                                                button.btn.dropdown-toggle.minwidthcombobox.minwidth250(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Schema name 1
+                                                .dropdown-menu
+                                                    a.dropdown-item(href='#') Schema 1
+                                                    a.dropdown-item(href='#') Schema 2
+                                                    a.dropdown-item(href='#') Schema 3
+                                            .btn-group.clear.mt-2(style='float:left;')
+                                                span.minwidth150.mr-2 Name
+                                                input.minwidth250(type='text')
+                                            .btn-group.clear.mt-2(style='float:left;')
+                                                span.minwidth150.mr-2 Hash Attribute
+                                                input.minwidth250(type='text')
+                                .modal-footer
+                                    .col-md-12.p-0
+                                        button.btn.btn-mainadd(data-dismiss='modal', data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true', style='min-width:150px;')
+                                            | Add
+                    .col-md-4
+                        a.btn-main-big(href='sqlsearchchart.html')
+                            i.fa.fa-plus(aria-hidden='true')
+                            |  CSV
+                    .col-md-4
+                        a.btn-main-big(href='sqlsearchchart.html') View Data Model
+                .boxdisplay.form-group.clear
+                    .midtitle
+                        | Data Model
+                    ul.tree
+                        li
+                            input#c1(type='checkbox', checked='checked')
+                            label.tree_label(for='c1')
+                                i.fa.fa-caret-down
+                                |  Schema
+                            ul
+                                li
+                                    input#c2(type='checkbox', checked='checked')
+                                    label.tree_label(for='c2')
+                                        i.fa.fa-caret-down
+                                        |  Table
+                                li
+                                    input#t1(type='checkbox', checked='checked')
+                                    label.tree_label(for='t1')
+                                        i.fa.fa-caret-down
+                                        |  Table
+                                    ul
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                li
+                                    input#t2(type='checkbox', checked='checked')
+                                    label.tree_label(for='t2')
+                                        i.fa.fa-caret-down
+                                        |  Table
+                                    ul
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                li
+                                    input#t3(type='checkbox', checked='checked')
+                                    label.tree_label(for='t3')
+                                        i.fa.fa-caret-down
+                                        |  Table
+                                    ul
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label
+                                                | Attribute

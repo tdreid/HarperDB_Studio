@@ -83,4 +83,17 @@ router.post('/update_user', function (req, res) {
 
 });
 
+router.get('/add_role', function(req, res) {
+    res.render('add_role');
+});
+
+router.get('/add_user', function(req, res) {
+    res.render('add_user');
+});
+
+router.get('/edit_role', function(req, res) {
+    res.render('edit_role');
+});
+
+
 module.exports = router;

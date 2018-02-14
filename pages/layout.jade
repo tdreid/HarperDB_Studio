@@ -33,6 +33,15 @@ html
     //if lt IE 9
     script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
     script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    script.
+      (function ($) {
+      $('.spinner .btn:first-of-type').on('click', function () {
+          $('.spinner input').val(parseInt($('.spinner input').val(), 10) + 1);
+      });
+      $('.spinner .btn:last-of-type').on('click', function () {
+          $('.spinner input').val(parseInt($('.spinner input').val(), 10) - 1);
+      });
+      })(jQuery);
   body
     block link
       -var selected  = 'Main';
