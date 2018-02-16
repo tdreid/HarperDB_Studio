@@ -1,0 +1,152 @@
+extends ./layout
+
+block link
+  -var selected = 'Schema';
+block content
+    // Breadcrumb
+    .breadcrumb-holder
+        .container-fluid
+            ul.breadcrumb
+                li.breadcrumb-item
+                    a(href='/schema') Scema Home
+                li.breadcrumb-item.active #{schemaName}
+    // Counts Section
+    section.dashboard-counts
+        header
+            .boxdisplay
+                .pull-right.text-red.largetitle
+                    i.fa.fa-trash(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
+                .largetitle.pull-left #{schemaName}
+                .clear.mt-2 Number of records  / Data Size
+    section
+        .clear.pt-3
+            .row.text-left.m-3
+                .col-md-12
+                    a.btn-main-big.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
+                        i.fa.fa-plus(aria-hidden='true')
+                        |  Table
+                // Modal Add schema
+                #addtableModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+                    .modal-dialog.modal-dialog-centered(role='document')
+                        .modal-content
+                            .modal-header
+                                #exampleModalLongTitle.modal-title.text-white Add Table
+                                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                    i.fa.fa-times.text-red
+                            .modal-body.text-white
+                                .row
+                                    // Count item widget
+                                    .col-md-12
+                                        .btn-group.clear.mt-2(style='float:left;')
+                                            span.minwidth150.mr-2 Name
+                                            input.minwidth250(type='text')
+                                        .btn-group.clear.mt-2(style='float:left;')
+                                            span.minwidth150.mr-2 Hash Attribute
+                                            input.minwidth250(type='text')
+                            .modal-footer
+                                .col-md-12.p-0.text-center
+                                    button.btn.btn-mainadd(type='button', style='min-width:150px;', data-toggle='dropdown', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
+                                        | Add
+            .boxdisplay.form-group.clear.pl-5
+                ul.tree.pl-5
+                    li
+                        input#t1(type='checkbox', checked='checked')
+                        label.tree_label(for='t1')
+                            i.fa.fa-caret-down
+                            |  Table
+                            .clear.mt-2.smallltext
+                                | Number of records  / Data Size
+                                a.ml-5.btn-main-small.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
+                                    i.fa.fa-plus(aria-hidden='true')
+                                    |  CSV
+                                i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
+                            hr
+                        ul
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    i.fa.fa-key(aria-hidden='true', style='margin-left:-20px;')
+                                    |  Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                    li
+                        input#t2(type='checkbox', checked='checked')
+                        label.tree_label(for='t2')
+                            i.fa.fa-caret-down
+                            |  Table
+                            .clear.mt-2.smallltext
+                                | Number of records  / Data Size
+                                a.ml-5.btn-main-small.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
+                                    i.fa.fa-plus(aria-hidden='true')
+                                    |  CSV
+                                i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
+                            hr
+                        ul
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                    li
+                        input#t3(type='checkbox', checked='checked')
+                        label.tree_label(for='t3')
+                            i.fa.fa-caret-down
+                            |  Table
+                            .clear.mt-2.smallltext
+                                | Number of records  / Data Size
+                                a.ml-5.btn-main-small.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
+                                    i.fa.fa-plus(aria-hidden='true')
+                                    |  CSV
+                                i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
+                            hr
+                        ul
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+                            li
+                                input#int4(type='checkbox', checked='checked')
+                                label.tree_label
+                                    | Attribute
+
