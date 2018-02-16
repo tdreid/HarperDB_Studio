@@ -152,7 +152,7 @@ h2 {
   color:#ff0000;
   font-size: 1.3rem;
 }
-
+.smallltext{ font-size: 0.7rem;}
 .minfiltertitle{
   min-width: 80px;
 }
@@ -200,6 +200,20 @@ padding-left: 10px !important;
 }
 
 .btn-main-big:hover{
+  background-color: #00935A !important;
+  color:#fff;
+}
+
+.btn-main-small{
+  background-color: #3E3F87 !important;
+  color:#fff;
+  border: none !important;
+  border-radius: 5px !important;
+  padding:5px 5px !important;
+  min-width: 80px;
+}
+
+.btn-main-small:hover{
   background-color: #00935A !important;
   color:#fff;
 }
@@ -253,6 +267,11 @@ padding-left: 10px !important;
 
 .minwidth250{
   min-width: 250px;
+  text-align: left;
+}
+
+.minwidth350{
+  min-width: 350px;
   text-align: left;
 }
 
@@ -2572,6 +2591,10 @@ mark,
   font-size: 1.5rem;
 }
 
+.midtitle2{
+  font-size: 1.2rem;
+}
+
 .secondheader{
   margin-bottom: 20px;
 }
@@ -2656,6 +2679,8 @@ a.text-primary:focus, a.text-primary:hover {
   color: #fff;
   }
 
+.tree_label hr{padding:0px; margin:5px;}
+
 label.tree_label { cursor: pointer; }
 
 label.tree_label:hover { color: #666; }
@@ -2666,6 +2691,16 @@ label.tree_label:hover { color: #666; }
 /* ————————————————————–
   Tree branches
 */
+
+.messagebox{
+  border:1px solid #aaa;
+  background-color: #666666;
+}
+
+.messagebox p{
+color:#fff;
+padding:10px;
+}
 
 .tree_custom {
   display: block;

@@ -1,13 +1,13 @@
 const express = require('express'),
     router = express.Router(),
-    hdb_callout = require('../utility/harperDBCallout');
+    hdb_callout = require('../utility/harperDBCallout'),
+    reduceTypeLogs = require('../utility/reduceTypeLogs');
 
 
 router.get('/', function (req, res) {
     if (!req.user || !req.user.active || !req.user.password) {
         return res.redirect('/login?ref=logs');
-    }
-
+    }   
 
     var operation = {
         "operation": "read_log",
@@ -30,18 +30,19 @@ router.get('/', function (req, res) {
 
         return res.render('logs', {
             user: req.user,
-            logs: JSON.stringify(logs.file),
+            logs: JSON.stringify(reduceTypeLogs(logs)),
             error: err
         });
     });
 
-
-
-
 });
 
+router.get('/individual', function (req, res) {
+    res.render('log_individual');
+});
 
-
-
+router.get('/search', function (req, res) {
+    res.render('logs_advance');
+});
 
 module.exports = router;

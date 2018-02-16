@@ -2,33 +2,60 @@ extends ./layout
 
 block link
   -var selected = 'Logs';
-block content
-    script(src="scripts/logs.js")
-    style.
-        .tile{
-            padding-top:25px;
-            padding-bottom:25px;
-
-        }
-    // End navigation
-    // Main content
-    section.content
+block content    
+    // Counts Section
+    section.dashboard-counts
+        script(src="scripts/logs.js")
+        header
+            .boxdisplay
+                .midtitle.pull-left
+                    .btn-group.mr-2(style='float:left')
+                        button.btn.dropdown-toggle.minwidthcombobox.minwidth200(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Node name 1
+                        .dropdown-menu
+                            a.dropdown-item(href='#') Node name 1
+                            a.dropdown-item(href='#') Node name 2
+                            a.dropdown-item(href='#') Node name 3
+                    | Logs
+                    i.fa.fa-download
+                .wrapper.count-title.d-flex.pull-right
+                    i.fa.fa-search(aria-hidden='true')
+                    .name.ml-3
+                        input(type='text')
+                .clear.pull-right
+                    a.text-white(href='/logs/search') Advance Search
+    .dashboard-counts.clear.pt-3
         .container-fluid
-            input#logs(type="hidden" value="#{logs}")
             .row
-                .col-md-10-offset-2
-                    .panel.panel-filled
-                        .panel-heading
-                            .panel-tools
-                            | Logs
-                        .panel-body        
-                                    table#logsTable.table.table-striped.table-hover.dataTable.no-footer(role='grid', aria-describedby='logsTable_info')
+                .col-md-12
+                    table#logsTable.table.table-striped
+                        thead
+                            tr
+                                th(scope='col') Name
+                                th(scope='col') Type
+                                th(scope='col') Message Preview
+                                th(scope='col') Timestamp
+                                th(scope='col')
+                        tbody
+                            tr.trclick(onclick="window.location='/logs/individual';")
+                                td Log 111
+                                td
+                                td This is a message...test test tes
+                                td 03.12.1/12:55pm
+                                td.midtitle2
+                                    i.fa.fa-download
+                                    i.fa.fa-trash.ml-2
+                            each log in JSON.parse(logs)
+                                tr.trclick(onclick="window.location='/logs/individual';")
+                                    td Log 
+                                    td #{log.type}
+                                    td #{log.message}
+                                    td #{log.timestamp}
+                                    td.midtitle2
+                                        i.fa.fa-download
+                                        i.fa.fa-trash.ml-2
 
-                                        thead
-                                            tr(role='row')
-                                                th.sorting(tabindex='0', aria-controls='logsTable', rowspan='1', colspan='1', aria-sort='ascending', aria-label='level: activate to sort column descending', style='width: 102px;') level
-                                                th.sorting(tabindex='0', aria-controls='logsTable', rowspan='1', colspan='1', aria-label='message: activate to sort column ascending', style='width: 170px;') message
-                                                th.sorting_desc(tabindex='0', aria-controls='logsTable', rowspan='1', colspan='1', aria-label='timestamp: activate to sort column ascending', style='width: 70px;') timestamp
-                                        tbody#logs_body
-
-
+    footer.main-footer
+        .container-fluid
+            .row
+                .col-sm-6
+                    p HarperDB Studio © 2018

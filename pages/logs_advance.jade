@@ -1,0 +1,105 @@
+extends ./layout
+
+block link
+  -var selected = 'Logs';
+block content
+    // Breadcrumb
+    .breadcrumb-holder
+        .container-fluid
+            ul.breadcrumb
+                li.breadcrumb-item
+                    a(href='/logs') Log Home
+                li.breadcrumb-item.active Log Advanced Search
+    // Counts Section
+    section.dashboard-counts
+        header
+            .boxdisplay
+                .midtitle.pull-left
+                    | Advanced Search
+        .clear.boxdisplay.row
+            // Count item widget
+            .col-md-12
+                .btn-group.clear.mt-2(style='float:left;')
+                    span.minwidth150.mr-2.text-white Search
+                    input.minwidth350.pl-1(type='text', placeholder='Wikd Card')
+                    .btn-group.ml-2(style='float:left')
+                        button.btn.dropdown-toggle.minwidthcombobox.minwidth200(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                            | Time Range  
+                            i.fa.fa-calendar.pull-right.mr-3.mt-1
+                .btn-group.clear.mt-2(style='float:left;')
+                    span.minwidth150.mr-2.text-white Log Level
+                    input.minwidth150.pl-1.mr-5(type='text', placeholder='Value')
+                    span.mr-2.text-white Order
+                    .btn-group.mr-2(style='float:left')
+                        button.btn.dropdown-toggle.minwidthcombobox.minwidth200.mr-5(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Select
+                        .dropdown-menu
+                            a.dropdown-item(href='#') Node name 1
+                            a.dropdown-item(href='#') Node name 2
+                            a.dropdown-item(href='#') Node name 3
+                    span.mr-2.text-white Limit Results
+                    input.minwidth150.pl-1(type='text', placeholder='Value')
+        .row.container-fluid.filterrow.mt-3
+            // Count item widget
+            .col-md-12
+                button.btn.btn-main.minwidthcombobox.pull-right(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Reset
+                button.btn.btn-main.minwidthcombobox.pull-right(type='button', style='margin-right:10px;', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Search
+    header
+        hr
+        .boxdisplay.subheader.midtitle
+            | Results
+            .text-white.midtitle.pull-right
+                i.fa.fa-refresh(data-toggle='modal', data-target='#deleteLogModal')
+    .dashboard-counts.clear.pt-3
+        .container-fluid
+            .row
+                .col-md-12
+                    table.table.table-striped
+                        thead
+                            tr
+                                th(scope='col') Name
+                                th(scope='col') Type
+                                th(scope='col') Message Preview
+                                th(scope='col') Timestamp
+                                th(scope='col')
+                        tbody
+                            tr.trclick(onclick="window.location='logindividual.html';")
+                                td Log 111
+                                td
+                                td This is a message...test test tes
+                                td 03.12.1/12:55pm
+                                td.midtitle2
+                                    i.fa.fa-download
+                                    i.fa.fa-trash.ml-2
+                            tr.trclick(onclick="window.location='logindividual.html';")
+                                td Log 111
+                                td
+                                td This is a message...test test tes
+                                td 03.12.1/12:55pm
+                                td.midtitle2
+                                    i.fa.fa-download
+                                    i.fa.fa-trash.ml-2
+                            tr.trclick(onclick="window.location='logindividual.html';")
+                                td Log 111
+                                td
+                                td This is a message...test test tes
+                                td 03.12.1/12:55pm
+                                td.midtitle2
+                                    i.fa.fa-download
+                                    i.fa.fa-trash.ml-2
+                    #usersTable_length.dataTables_length.pull-left
+                        label
+                            | Show
+                            select.form-control.input-sm.selectinput(name='usersTable_length', aria-controls='usersTable')
+                                option(value='10') 10
+                                option(value='50') 50
+                                option(value='100') 100
+                                option(value='-1') All
+                            |  entries
+                    #usersTable_paginate.dataTables_paginate.paging_simple_numbers.pull-right
+                        ul.pagination
+                            li#usersTable_previous.paginate_button.previous.disabled
+                                a(href='#', aria-controls='usersTable', data-dt-idx='0', tabindex='0') Previous
+                            li.paginate_button.active
+                                a(href='#', aria-controls='usersTable', data-dt-idx='1', tabindex='0') 1
+                            li#usersTable_next.paginate_button.next.disabled
+                                a(href='#', aria-controls='usersTable', data-dt-idx='2', tabindex='0') Next

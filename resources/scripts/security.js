@@ -74,10 +74,7 @@ $(document).ready(function () {
 
 
     sTable = $('#usersTable').DataTable({
-        "dom": 'rtlp',
-        // "dom": "tl<'buttom'<'right'p>>",
-
-        // "dom": "<'warpper count-title d-flex pill-right' <'i.fa.fa-search'>f><'row'<'col-sm-6'><'col-sm-6'>>t<'row'<'col-sm-6'i><'col-sm-6'lp>>",
+        "dom": "<'col-md-12't><'col-md-4'<'pull-left'l>><'col-md-8 right-pagging'p>",
         "lengthMenu": [
             [10, 50, 100, -1],
             [10, 50, 100, "All"]
@@ -93,7 +90,6 @@ $(document).ready(function () {
 });
 
 function toggleActive(username) {
-    // var users = JSON.parse(document.getElementById("users").value);
     var user = null;
 
     for (u in users) {
