@@ -29,7 +29,9 @@ var main = require('./routes/main')
     , logs = require('./routes/logs')
     , logout = require('./routes/logout')
     , user_detail = require('./routes/user_detail')
-    , schema = require('./routes/schema');
+    , schema = require('./routes/schema')
+    , health = require('./routes/health')
+    , help = require('./routes/help');
 
 app.use('/main', main);
 app.use('/login', login);
@@ -39,6 +41,8 @@ app.use('/logs', logs);
 app.use('/logout', logout);
 app.use('/user_detail', user_detail);
 app.use('/schema', schema);
+app.use('/health', health);
+app.use('/help', help);
 app.use('/', explore);
 
 //authen
