@@ -3,7 +3,12 @@ $(document).ready(function () {
     var Textarea = Textcomplete.editors.Textarea;
     var textareaElement = document.getElementById('exampleTextarea')
     var editor = new Textarea(textareaElement);
+    var keywords = JSON.parse(document.getElementById('keywordForAuto').value);
+    console.log(keywords);
+    // var keywords = JSON.parse(localStorage.getItem('keyword'));
 
+    var reserveWords = ['SELECT', 'INSERT', 'UPDATE', 'FROM', 'WHERE', 'INTO', 'SET'].concat(keywords[0]);
+    var schemaAndChilds = keywords[1];
     var textcomplete = new Textcomplete(editor, {
         dropdown: {
             maxCount: Infinity
@@ -37,7 +42,7 @@ $(document).ready(function () {
         ]
     }
     textcomplete.register([{
-            wordsBegin: ['SELECT', 'INSERT', 'UPDATE', 'FROM', 'WHERE', 'INTO', 'SET', 'dog'],
+            wordsBegin: reserveWords,
             match: /\b(\w+)$/,
             search: function (term, callback) {
                 callback($.map(this.wordsBegin, function (word) {
@@ -54,12 +59,12 @@ $(document).ready(function () {
             }
         },
         {
-            wordsBeginssss: arrayOf,
+            keywordAndChild: schemaAndChilds,
             match: /\b(\.\w*)$/,
             search: function (term, callback) {
                 var dot = term.indexOf('.');
                 var fontTerm = term.substring(0, dot - 1);
-                var useWordArray = this.wordsBeginssss[curDotName];
+                var useWordArray = this.keywordAndChild[curDotName];
                 callback($.map(useWordArray, function (word) {
 
                     var subTerm = term.substring(dot + 1, term.length + 1);

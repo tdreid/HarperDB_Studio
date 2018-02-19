@@ -3,3 +3,12 @@
 .right-pagging {
     text-align: right;
 }
+
+.textcomplete-dropdown li:hover,
+.textcomplete-dropdown .active {
+    background-color: rgb(110, 183, 219);
+}
+
+.textcomplete-dropdown a:hover {
+    cursor: pointer;
+}

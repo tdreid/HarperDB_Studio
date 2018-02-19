@@ -5,6 +5,7 @@ block link
 block content
     script(src="../../textcomplete/package/dist/textcomplete.js")
     script(src="../../scripts/sql_search.js")
+    input#keywordForAuto(type="hidden", name="keyword", value="#{keywords}")
     .breadcrumb-holder
         .container-fluid
             ul.breadcrumb
