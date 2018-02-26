@@ -46,7 +46,8 @@ html
     block link
       -var selected  = 'Main';
 
-    -var menu = { 'Main': '/main', 'Explore': '/explore', 'Schema': '/schema', 'Security': '/security', 'Health': '/health', 'Logs': '/logs', 'Help': '/help'};  
+    -var menu = { 'Main': '/main', 'Explore': '/explore', 'Schema': '/schema', 'Security': '/security', 'Health': '/health', 'Logs': '/logs', 'Help': '/help'};
+    -var icons = { 'Main': 'icon-home', 'Explore': 'fa fa-compass', 'Schema': 'fa fa-share-alt', 'Security': 'fa fa-users', 'Health': 'fa fa-line-chart', 'Logs': 'fa fa-cube', 'Help': 'fa fa-question'};
     // Side Navbar
     nav.side-navbar
       .side-navbar-wrapper
@@ -59,7 +60,7 @@ html
               | HarperDB
           // Small Brand information, appears on minimized sidebar
           .sidenav-header-logo
-            a.brand-small.text-center(href='index.html')
+            a.brand-small.text-center(href='/main')
               img(src='../img/harper.png', width='37', height='37')
         // Sidebar Navigation Menus
         .main-menu
@@ -67,10 +68,14 @@ html
              each val, key in menu
               if selected === key
                 li.active
-                 a(href=val, title=key)= key
+                 a(href=val, title=key)
+                  i(class="#{icons[key]}")
+                  | #{key}
               else
                 li
-                  a(href=val, title=key)= key
+                  a(href=val, title=key)
+                    i(class="#{icons[key]}")
+                    | #{key}
     .page
       // navbar
       header.header
