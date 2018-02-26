@@ -2,61 +2,42 @@ extends ./layout
 block link 
   -var selected = 'Main';
 block content
-  section.dashboard-counts
-    header
-      .boxdisplay.largetitle Explore
-    .container-fluid
-      .row
-        // Count item widget
-        .col-xl-2.col-md-4.col-6
-          .wrapper.count-title.d-flex
-            i.fa.fa-search(aria-hidden='true')
-            .name
-              a(href='filtersearch.html')
-                strong.text-uppercase.searchButton  Filter Search
-        // Count item widget
-        .col-xl-2.col-md-4.col-6
-          .wrapper.count-title.d-flex
-            i.fa.fa-search(aria-hidden='true')
-            .name
-              strong.text-uppercase.searchButton  SQL Search
-  header
-  .container-fluid
-    .row
-      // Count item widget
-      .col-md-6
-        .subheader.boxdisplay-6 Recent
-        .wrapper.count-title.d-flex
-          .list-group.w-100
-            a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Dapibus ac facilisis in
-            a.list-group-item.list-group-item-action(href='#') Dapibus ac facilisis in
-            a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Cras sit amet nibh libero
-      // Count item widget
-      .col-md-6
-        .subheader.boxdisplay-6 Favorites
-        .wrapper.count-title.d-flex
-          .list-group.w-100
-            a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Dapibus ac facilisis in
-            a.list-group-item.list-group-item-action(href='#') Dapibus ac facilisis in
-            a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Cras sit amet nibh libero
-  header
-    .boxdisplay.subheader Dashboard
-  // Statistics Section
-  section.statistics
-  .container-fluid
-    .row.d-flex
-      .col-lg-4
-        // Income
-        .card.income.text-center.dashboardplusbox
-          .icon.iconplus
-            i.fa.fa-plus(aria-hidden='true')
-      .col-lg-4
-        // Income
-        .card.income.text-center.dashboardplusbox
-          .icon.iconplus
-            i.fa.fa-plus(aria-hidden='true')
-      .col-lg-4
-        // Income
-        .card.income.text-center.dashboardplusbox
-          .icon.iconplus
-            i.fa.fa-plus(aria-hidden='true')
+  section
+    .clear.pt-5
+      .row.text-center.m-3
+        .col-md-6
+          a.mainmenubox(href='/explore')
+            .insidemainmenubox
+              i.fa.fa-compass(aria-hidden='true')
+              .midtitle2
+                | Explore
+        .col-md-6
+          a.mainmenubox(href='/schema')
+            .insidemainmenubox
+              i.fa.fa-share-alt(aria-hidden='true')
+              .midtitle2
+                | Schema
+        .col-md-6
+          a.mainmenubox(href='/security')
+            .insidemainmenubox
+              i.fa.fa-users(aria-hidden='true')
+              .midtitle2
+                | Security
+        .col-md-6
+          a.mainmenubox(href='/health')
+            .insidemainmenubox
+              i.fa.fa-line-chart(aria-hidden='true')
+              .midtitle2
+                | Health
+        .col-md-6
+          a.mainmenubox(href='/logs')
+            .insidemainmenubox
+              i.fa.fa-cube(aria-hidden='true')
+              .midtitle2
+                | Logs
+        .col-md-6
+          a.mainmenubox(href='/help')
+            .insidemainmenubox
+              i.fa.fa-question(aria-hidden='true')
+              .midtitle2
+                | Help

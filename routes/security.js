@@ -95,5 +95,10 @@ router.get('/edit_role', function(req, res) {
     res.render('edit_role');
 });
 
+router.get('/edit_user', function(req, res) {
+    res.render('edit_user');
+});
+
+
 
 module.exports = router;

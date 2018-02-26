@@ -97,6 +97,12 @@ table {
   padding-bottom: 50px;
 }
 
+.pagebox{
+  margin: 20px;
+  background-color: #4A4C54;
+  padding-bottom:50px;
+}
+
 .page.active {
   width: calc(100% - 70px);
 }
@@ -333,13 +339,53 @@ section header {
   width: 100px;
 }
 
+.insidemainmenubox{
+  padding:20px;
+  font-size: 48px;
+}
+
+.mainmenubox{
+  background-color: #3B3E45;
+  width:100%;
+  border-left: 3px solid #3F3F87;
+  color: #888F96;
+  margin-bottom:20px;
+
+}
+
+.mainmenubox:hover{
+  background-color: #666C77;
+  width:100%;
+  border-left: 3px solid #3F3F87;
+  color:#fff;
+  text-decoration: none !important;
+}
+
 a.whitelink{
   color:#fff !important; cursor: pointer;
 }
 .w-100{ width:100%;}
 
+.namesearchclick, .portsearchclick, .hostsearchclick, .statussearchclick{
+  background: none !important;
+  border: none !important;
+  color:#fff;
+}
+.namesearchinput, .portsearchinput, .hostsearchinput, .statussearchinput {
+  display:none;
+  padding-left:5px;
+  width:200px !important;
+
+  }
+  
+  .namesearchclick:focus  + .namesearchinput,   .portsearchclick:focus + .portsearchinput,   .hostsearchclick:focus + .hostsearchinput,   .statussearchclick:focus + .statussearchinput{
+  display:block;
+  }
+
+  
+
 .activenodebox{
-  background-color: #797979;
+  background-color: #4A4C54;
   color:#fff;
   padding :20px;
   text-align: left;
@@ -2633,6 +2679,11 @@ mark,
   cursor: pointer;
 }
 
+.fa-download:hover, .fa-sign-out:hover, .fa-save:hover, .fa-refresh:hover {
+  color:#00925F;
+  cursor: pointer;
+}
+
 .largetitle{
   font-size: 2rem;
 }
@@ -3546,10 +3597,10 @@ select.input-sm {
   border-radius: 20px;
   cursor: pointer;
   display: inline-block;
-  height: 30px;
+  height: 24px;
   position: relative;
   vertical-align: middle;
-  width: 50px;
+  width: 35px;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -3563,10 +3614,10 @@ select.input-sm {
   background: #fff;
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-  height: 30px;
+  height: 24px;
   position: absolute;
   top: 0;
-  width: 30px;
+  width: 24px;
 }
 small, .small {
   font-size: 85%;
@@ -3574,6 +3625,80 @@ small, .small {
 
 small {
   font-size: 80%;
+}
+
+
+/* The switch - the box around the slider */
+.switch {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  vertical-align: middle;
+  width: 35px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: content-box;
+  background-clip: content-box;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 0px;
+  bottom: 0px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #62BC6B;
+
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #62BC6B;
+
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(12px);
+  -ms-transform: translateX(12px);
+  transform: translateX(12px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 
