@@ -24,90 +24,91 @@ block content
                     a(href='/security') Security Home
                 li.breadcrumb-item.active Add User
     // Counts Section
-    section.dashboard-counts
-        header
-            .boxdisplay.largetitle
-                | Security
-                a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='sqlsearchchart.html') SQL Search
-        .container-fluid
-            .largetitle.pull-left
-                a.btn.btn-main.dropdown-toggle.minwidthcombobox.btn-main-active(href='/security/add_user') Add User
-                a#ad.btn.btn-main.dropdown-toggle.minwidthcombobox(href='/security/add_role') Add Role
-            .wrapper.count-title.d-flex.pull-right
-                i.fa.fa-search(aria-hidden='true')
-                .name.ml-3
-                    input(type='text')
-        .clear
-            .boxdisplay
-                .pull-left
-                    .boxdisplay-6
-                        .addprofileparent.pull-left.mr-3
-                            button.btn.btn-mainadd.iaddprofile(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                i.fa.fa-plus(aria-hidden='true')
-                            span.iprofile
-                                i.fa.fa-user-circle.usericon
-                        input.mr-1.pl-1(type='text', placeholder='username')
-                        input.mr-1.pl-1(type='password', placeholder='password')
-                        input.mr-1.pl-1(type='text', placeholder='role')
-                        label.mr-3(style='display:inline-block')
-                            input(type='checkbox', checked='check')
-                            | Active
-                        button.btn.btn-mainadd.width100(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                            | Add
-    .dashboard-counts.clear.pt-3
-        .container-fluid
-            .row
-                .col-md-12
-                    table.table.table-striped
-                        thead
-                            tr
-                                th(scope='col')
-                                th(scope='col') Username
-                                th(scope='col') Role
-                                th(scope='col') Active
-                                th(scope='col') Failed Login Attempts
-                        tbody
-                            tr
-                                td
+    .pagebox
+        section.dashboard-counts
+            header
+                .boxdisplay.largetitle
+                    | Security
+                    a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='sqlsearchchart.html') SQL Search
+            .container-fluid
+                .largetitle.pull-left
+                    a.btn.btn-main.dropdown-toggle.minwidthcombobox.btn-main-active(href='/security/add_user') Add User
+                    a#ad.btn.btn-main.dropdown-toggle.minwidthcombobox(href='/security/add_role') Add Role
+                .wrapper.count-title.d-flex.pull-right
+                    i.fa.fa-search(aria-hidden='true')
+                    .name.ml-3
+                        input(type='text')
+            .clear
+                .boxdisplay
+                    .pull-left
+                        .boxdisplay-6
+                            .addprofileparent.pull-left.mr-3
+                                button.btn.btn-mainadd.iaddprofile(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                    i.fa.fa-plus(aria-hidden='true')
+                                span.iprofile
                                     i.fa.fa-user-circle.usericon
-                                td -
-                                td -
-                                td
-                                    span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                td -
-                            tr
-                                td
-                                    i.fa.fa-user-circle.usericon
-                                td -
-                                td -
-                                td
-                                    span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                td -
-                            tr
-                                td
-                                    i.fa.fa-user-circle.usericon
-                                td -
-                                td -
-                                td
-                                    span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                td -
-                    #usersTable_length.dataTables_length.pull-left
-                        label
-                            | Show
-                            select.form-control.input-sm.selectinput(name='usersTable_length', aria-controls='usersTable')
-                                option(value='10') 10
-                                option(value='50') 50
-                                option(value='100') 100
-                                option(value='-1') All
-                            |  entries
-                    #usersTable_paginate.dataTables_paginate.paging_simple_numbers.pull-right
-                        ul.pagination
-                            li#usersTable_previous.paginate_button.previous.disabled
-                                a(href='#', aria-controls='usersTable', data-dt-idx='0', tabindex='0') Previous
-                            li.paginate_button.active
-                                a(href='#', aria-controls='usersTable', data-dt-idx='1', tabindex='0') 1
-                            li#usersTable_next.paginate_button.next.disabled
-                                a(href='#', aria-controls='usersTable', data-dt-idx='2', tabindex='0') Next
+                            input.mr-1.pl-1(type='text', placeholder='username')
+                            input.mr-1.pl-1(type='password', placeholder='password')
+                            input.mr-1.pl-1(type='text', placeholder='role')
+                            label.mr-3(style='display:inline-block')
+                                input(type='checkbox', checked='check')
+                                | Active
+                            button.btn.btn-mainadd.width100(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                | Add
+        .dashboard-counts.clear.pt-3
+            .container-fluid
+                .row
+                    .col-md-12
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th(scope='col')
+                                    th(scope='col') Username
+                                    th(scope='col') Role
+                                    th(scope='col') Active
+                                    th(scope='col') Failed Login Attempts
+                            tbody
+                                tr
+                                    td
+                                        i.fa.fa-user-circle.usericon
+                                    td -
+                                    td -
+                                    td
+                                        span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                    td -
+                                tr
+                                    td
+                                        i.fa.fa-user-circle.usericon
+                                    td -
+                                    td -
+                                    td
+                                        span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                    td -
+                                tr
+                                    td
+                                        i.fa.fa-user-circle.usericon
+                                    td -
+                                    td -
+                                    td
+                                        span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                    td -
+                        #usersTable_length.dataTables_length.pull-left
+                            label
+                                | Show
+                                select.form-control.input-sm.selectinput(name='usersTable_length', aria-controls='usersTable')
+                                    option(value='10') 10
+                                    option(value='50') 50
+                                    option(value='100') 100
+                                    option(value='-1') All
+                                |  entries
+                        #usersTable_paginate.dataTables_paginate.paging_simple_numbers.pull-right
+                            ul.pagination
+                                li#usersTable_previous.paginate_button.previous.disabled
+                                    a(href='#', aria-controls='usersTable', data-dt-idx='0', tabindex='0') Previous
+                                li.paginate_button.active
+                                    a(href='#', aria-controls='usersTable', data-dt-idx='1', tabindex='0') 1
+                                li#usersTable_next.paginate_button.next.disabled
+                                    a(href='#', aria-controls='usersTable', data-dt-idx='2', tabindex='0') Next

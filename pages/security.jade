@@ -4,52 +4,52 @@ block link
   -var selected = 'Security';
 block content
   script(src="scripts/security.js")
-  section.dashboard-counts
-    header
-      .boxdisplay.largetitle
-        | Security Hi #{user.username}
-        a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='sqlsearchchart.html') SQL Search
-    .container-fluid
-      input#users(type="hidden" value="#{users}")
-      input#user(type="hidden" value="#{user}")
-      .largetitle.pull-left
-        a.btn.btn-main.dropdown-toggle.minwidthcombobox(href='/security/add_role') Add Role
-        a.btn.btn-main.dropdown-toggle.minwidthcombobox(href='/security/add_user') Add User
-      .wrapper.count-title.d-flex.pull-right
-        i.fa.fa-search(aria-hidden='true')
-        .name.ml-3
-          input#searchSecurity(type='text')
-  .dashboard-counts.clear.pt-3
-    .container-fluid
-      .row
-        .col-md-12
-          table.table.table-striped#usersTable
-            thead
-              tr
-                th(scope='col')
-                th(scope='col') Username
-                th(scope='col') Role
-                th(scope='col') Active
-                th(scope='col') Failed Login Attempts
-                th
-            tbody
-              each u in JSON.parse(users)
-                if(u.username != user.username)
-                  tr.trclick
-                    td(onclick="window.location='/security/edit_user';")
-                      i.fa.fa-user-circle.usericon
-                    td(onclick="window.location='/security/edit_user';")
-                      =u.username
-                    td(onclick="window.location='/security/edit_user';")
-                      =u.role.role
-                    td
-                      if(u.active)
-                        input.js-switch(type="checkbox", checked, onchange='toggleActive("#{u.username}");')
-                      else
-                        input.js-switch(type="checkbox", onchange='toggleActive("#{u.username}");')
-                      //- span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                    td -
-                    td.midtitle2
-                      i.fa.fa-trash.ml-2(title="Delete")
- 
+  .pagebox
+    section.dashboard-counts
+      header
+        .boxdisplay.largetitle
+          | Security Hi #{user.username}
+          a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='sqlsearchchart.html') SQL Search
+      .container-fluid
+        input#users(type="hidden" value="#{users}")
+        input#user(type="hidden" value="#{user}")
+        .largetitle.pull-left
+          a.btn.btn-main.dropdown-toggle.minwidthcombobox(href='/security/add_role') Add Role
+          a.btn.btn-main.dropdown-toggle.minwidthcombobox(href='/security/add_user') Add User
+        .wrapper.count-title.d-flex.pull-right
+          i.fa.fa-search(aria-hidden='true')
+          .name.ml-3
+            input#searchSecurity(type='text')
+    .dashboard-counts.clear.pt-3
+      .container-fluid
+        .row
+          .col-md-12
+            table.table.table-striped#usersTable
+              thead
+                tr
+                  th(scope='col')
+                  th(scope='col') Username
+                  th(scope='col') Role
+                  th(scope='col') Active
+                  th(scope='col') Failed Login Attempts
+                  th
+              tbody
+                each u in JSON.parse(users)
+                  if(u.username != user.username)
+                    tr.trclick
+                      td(onclick="window.location='/security/edit_user';")
+                        i.fa.fa-user-circle.usericon
+                      td(onclick="window.location='/security/edit_user';")
+                        =u.username
+                      td(onclick="window.location='/security/edit_user';")
+                        =u.role.role
+                      td
+                        if(u.active)
+                          input.js-switch(type="checkbox", checked, onchange='toggleActive("#{u.username}");')
+                        else
+                          input.js-switch(type="checkbox", onchange='toggleActive("#{u.username}");')
+                        //- span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                          small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                      td -
+                      td.midtitle2
+                        i.fa.fa-trash.ml-2(title="Delete")

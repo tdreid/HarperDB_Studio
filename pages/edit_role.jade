@@ -11,165 +11,166 @@ block content
                     a(href='/security') Security Home
                 li.breadcrumb-item.active Edit Role
     // Counts Section
-    section.dashboard-counts
-        header
-            .boxdisplay
-                | Search Roles  
-                input.ml-3(type='text')
-                a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='/security/add_role') Add New
-            hr
-    section
-        .clear
-            .boxdisplay
-                .pull-left
-                    .boxdisplay-6
-                        span.mr-3.largetext Role name
-                        span.ml-5.mr-3 Super Admin
-                        span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                button.btn.btn-mainadd.pull-right.width100(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                    | Save
-        .clear.pt-3
-            .boxdisplay
-                .pull-left
-                    .boxdisplay-6
-                        span.mr-5 Schema
-                        span.ml-5.mr-3 Activate All
-                        span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-            .boxdisplay.form-group.clear
-                ul.tree
-                    li
-                        input#c1(type='checkbox', checked='checked')
-                        label.tree_label(for='c1')
-                            i.fa.fa-caret-down
-                            |  Schema 1
-                        ul
-                            li
-                                input#c2(type='checkbox', checked='checked')
-                                label.tree_label(for='c2')
-                                    | Table
-                                    span.ml-5.mr-3 Activate All
-                                    span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                            li
-                                input#t1(type='checkbox', checked='checked')
-                                label.tree_label(for='c3')
-                                    i.fa.fa-caret-down
-                                    |  Table 1
-                            li
-                                input#t2(type='checkbox', checked='checked')
-                                label.tree_label(for='c3')
-                                    i.fa.fa-caret-down
-                                    |  Table 2
-                            li
-                                input#t3(type='checkbox', checked='checked')
-                                label.tree_label(for='c3')
-                                    i.fa.fa-caret-down
-                                    |  Table 3
-                            li
-                                input#t4(type='checkbox', checked='checked')
-                                label.tree_label(for='t4')
-                                    i.fa.fa-caret-down
-                                    |  Table 4
-                                    span.ml-5.mr-3 Activate All
-                                    span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                ul
-                                    li
-                                        input#int4(type='checkbox', checked='checked')
-                                        label.tree_label(for='c2')
-                                            | R
-                                            span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                    li
-                                        input#int4(type='checkbox', checked='checked')
-                                        label.tree_label(for='c2')
-                                            | I
-                                            span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                    li
-                                        input#int4(type='checkbox', checked='checked')
-                                        label.tree_label(for='c2')
-                                            | U
-                                            span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                    li
-                                        input#int4(type='checkbox', checked='checked')
-                                        label.tree_label(for='c2')
-                                            | D
-                                            span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                    li
-                                        input#att4(type='checkbox', checked='checked')
-                                        label.tree_label(for='att4')
-                                            i.fa.fa-caret-down
-                                            |  Attribute Restrictions
-                                            span.ml-5.mr-3 Activate All
-                                            span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                        ul
-                                            li
-                                                input#int4(type='checkbox', checked='checked')
-                                                label.tree_label(for='c2')
-                                                    | Attribute 1
-                                                    span.ml-3.mr-0 R
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 I
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 U
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 D
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                            li
-                                                input#int4(type='checkbox', checked='checked')
-                                                label.tree_label(for='c2')
-                                                    | Attribute 2   
-                                                    span.ml-3.mr-0 R
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 I
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 U
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 D
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                            li
-                                                input#int4(type='checkbox', checked='checked')
-                                                label.tree_label(for='c2')
-                                                    | Attribute 3   
-                                                    span.ml-3.mr-0 R
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 I
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 U
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 D
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                            li
-                                                input#int4(type='checkbox', checked='checked')
-                                                label.tree_label(for='c2')
-                                                    | Attribute 4   
-                                                    span.ml-3.mr-0 R
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 I
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 U
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
-                                                    span.ml-3.mr-0 D
-                                                    span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
-                                                        small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+    .pagebox
+        section.dashboard-counts
+            header
+                .boxdisplay
+                    | Search Roles  
+                    input.ml-3(type='text')
+                    a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='/security/add_role') Add New
+                hr
+        section
+            .clear
+                .boxdisplay
+                    .pull-left
+                        .boxdisplay-6
+                            span.mr-3.largetext Role name
+                            span.ml-5.mr-3 Super Admin
+                            span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                    button.btn.btn-mainadd.pull-right.width100(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        | Save
+            .clear.pt-3
+                .boxdisplay
+                    .pull-left
+                        .boxdisplay-6
+                            span.mr-5 Schema
+                            span.ml-5.mr-3 Activate All
+                            span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                .boxdisplay.form-group.clear
+                    ul.tree
+                        li
+                            input#c1(type='checkbox', checked='checked')
+                            label.tree_label(for='c1')
+                                i.fa.fa-caret-down
+                                |  Schema 1
+                            ul
+                                li
+                                    input#c2(type='checkbox', checked='checked')
+                                    label.tree_label(for='c2')
+                                        | Table
+                                        span.ml-5.mr-3 Activate All
+                                        span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                li
+                                    input#t1(type='checkbox', checked='checked')
+                                    label.tree_label(for='c3')
+                                        i.fa.fa-caret-down
+                                        |  Table 1
+                                li
+                                    input#t2(type='checkbox', checked='checked')
+                                    label.tree_label(for='c3')
+                                        i.fa.fa-caret-down
+                                        |  Table 2
+                                li
+                                    input#t3(type='checkbox', checked='checked')
+                                    label.tree_label(for='c3')
+                                        i.fa.fa-caret-down
+                                        |  Table 3
+                                li
+                                    input#t4(type='checkbox', checked='checked')
+                                    label.tree_label(for='t4')
+                                        i.fa.fa-caret-down
+                                        |  Table 4
+                                        span.ml-5.mr-3 Activate All
+                                        span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                    ul
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label(for='c2')
+                                                | R
+                                                span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                    small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label(for='c2')
+                                                | I
+                                                span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                    small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label(for='c2')
+                                                | U
+                                                span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                    small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                        li
+                                            input#int4(type='checkbox', checked='checked')
+                                            label.tree_label(for='c2')
+                                                | D
+                                                span.switchery.switchery-default.ml-3(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                    small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                        li
+                                            input#att4(type='checkbox', checked='checked')
+                                            label.tree_label(for='att4')
+                                                i.fa.fa-caret-down
+                                                |  Attribute Restrictions
+                                                span.ml-5.mr-3 Activate All
+                                                span.switchery.switchery-default(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                    small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                            ul
+                                                li
+                                                    input#int4(type='checkbox', checked='checked')
+                                                    label.tree_label(for='c2')
+                                                        | Attribute 1
+                                                        span.ml-3.mr-0 R
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 I
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 U
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 D
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                li
+                                                    input#int4(type='checkbox', checked='checked')
+                                                    label.tree_label(for='c2')
+                                                        | Attribute 2   
+                                                        span.ml-3.mr-0 R
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 I
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 U
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 D
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                li
+                                                    input#int4(type='checkbox', checked='checked')
+                                                    label.tree_label(for='c2')
+                                                        | Attribute 3   
+                                                        span.ml-3.mr-0 R
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 I
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 U
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 D
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                li
+                                                    input#int4(type='checkbox', checked='checked')
+                                                    label.tree_label(for='c2')
+                                                        | Attribute 4   
+                                                        span.ml-3.mr-0 R
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 I
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 U
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
+                                                        span.ml-3.mr-0 D
+                                                        span.switchery.switchery-default.ml-1(style='background-color: rgb(100, 189, 99); border-color: rgb(100, 189, 99); box-shadow: rgb(100, 189, 99) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;')
+                                                            small(style='left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;')
