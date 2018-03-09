@@ -1,7 +1,7 @@
 const express = require('express'),
     router = express.Router(),
     hdb_callout = require('./../utility/harperDBCallout'),
-    reduceDescribeAllObject = require('./../utility/setSchemaAllToLocal');
+    reduceDescribeAllObject = require('./../utility/reduceDescribeAllObject');
 
 router.get('/', function (req, res) {
     res.render('explore');
@@ -29,7 +29,7 @@ router.get('/sql_search', function (req, res) {
             return err;
         }
 
-        // console.log(reduceDescribeAllObject(result));
+
         var keywords = reduceDescribeAllObject(result);
         res.render('sql_search', {
             keywords: JSON.stringify(keywords)

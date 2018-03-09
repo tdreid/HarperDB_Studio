@@ -1,4 +1,3 @@
-var hdb_callout = require('./harperDBCallout');
 
 reduceDescribeAllObject = (objectAll) => {
     var schemaNames = [];
@@ -12,9 +11,11 @@ reduceDescribeAllObject = (objectAll) => {
         // second level: save schema.table
         for (var eachTable in objectAll[eachSchema]) {
             curTable.push(eachTable);
+            schemaNames.push(eachTable);
             var curAttr = [];
             // last level: save table.attribute
             for (var eachAttr in objectAll[eachSchema][eachTable]) {
+                // schemaNames.push(eachTable);
                 if (eachAttr == 'attributes') {
                     curAttr = objectAll[eachSchema][eachTable][eachAttr].map(a => a.attribute);
                 }
@@ -27,5 +28,4 @@ reduceDescribeAllObject = (objectAll) => {
     return [schemaNames, schemaAndChilds];
 }
 
-// saveToLocalStorage(reduceDescribeAllObject(simpleObj));
 module.exports = reduceDescribeAllObject;
