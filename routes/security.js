@@ -8,7 +8,7 @@ router.get('/', isAuthenticated, function (req, res) {
 
     var operation = {
         operation: 'list_users'
-    };    
+    };
     var call_object = {
         username: req.user.username,
         password: req.user.password,
@@ -33,7 +33,7 @@ router.get('/', isAuthenticated, function (req, res) {
 });
 
 
-router.post('/update_user', function (req, res) {
+router.post('/update_user', isAuthenticated, function (req, res) {
     if (!req.user || !req.user.active || !req.user.password) {
         return res.redirect('/login?ref=security');
     }
@@ -81,15 +81,15 @@ router.post('/update_user', function (req, res) {
 
 });
 
-router.get('/add_role', function (req, res) {
+router.get('/add_role', isAuthenticated, function (req, res) {
     res.render('add_role');
 });
 
-router.get('/add_user', function (req, res) {
+router.get('/add_user', isAuthenticated, function (req, res) {
     res.render('add_user');
 });
 
-router.get('/edit_role', function (req, res) {
+router.get('/edit_role', isAuthenticated, function (req, res) {
     res.render('edit_role');
 });
 
@@ -97,7 +97,7 @@ router.get('/edit_user', function (req, res) {
     res.render('edit_user');
 });
 
-router.post('/getalluser', function (req, res) {
+router.post('/getalluser', isAuthenticated, function (req, res) {
     var connection = {
         username: req.user.username,
         password: req.user.password,
@@ -112,12 +112,12 @@ router.post('/getalluser', function (req, res) {
         if (err) {
             return res.status(400).send(err);
         }
-        console.log(user);
+
         return res.status(200).send(user);
     });
 });
 
-router.post('/getallrole', function (req, res) {
+router.post('/getallrole', isAuthenticated, function (req, res) {
     var connection = {
         username: req.user.username,
         password: req.user.password,
@@ -132,12 +132,12 @@ router.post('/getallrole', function (req, res) {
         if (err) {
             return res.status(400).send(err);
         }
-        console.log(roles);
+
         return res.status(200).send(roles);
     });
 });
 
-router.post('/adduser', function (req, res) {
+router.post('/add_user', isAuthenticated, function (req, res) {
     var connection = {
         username: req.user.username,
         password: req.user.password,
@@ -153,12 +153,39 @@ router.post('/adduser', function (req, res) {
         active: req.body.active
 
     }
-    hdb_callout.callHarperDB(connection, operation, function (err, user) {
+    hdb_callout.callHarperDB(connection, operation, function (err, message) {
+
+        if (err) {
+            return res.render('add_user', {
+                message: err
+            });
+        }
+
+        return res.render('add_user', {
+            message: message.message
+        });
+    });
+});
+
+router.post('/drop_user', isAuthenticated, function (req, res) {
+    var connection = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+
+    };
+    var operation = {
+        operation: "drop_user",
+        username: req.body.username
+    }
+
+    hdb_callout.callHarperDB(connection, operation, function (err, message) {
         if (err) {
             return res.status(400).send(err);
         }
-        console.log(user);
-        return res.status(200).send(user);
+
+        return res.status(200).send(roles);
     });
 });
 
