@@ -1,10 +1,11 @@
 extends ./layout
 
 block link
-  -var selected = 'Schema';
+    -var selected = 'Schema';
 block content    
     // Counts Section
-    .pagebox    
+    .pagebox
+        // Counts Section
         section.dashboard-counts
             header
                 .boxdisplay
@@ -17,7 +18,7 @@ block content
             .clear.pt-3
                 .row.text-center.m-3
                     .col-md-4
-                        a.btn-main-big(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
+                        a.btn-main-big(href='', data-toggle='modal', data-target='#addtableModal')
                             i.fa.fa-plus(aria-hidden='true')
                             |  Schema/Tables
                     // Modal Add schema
@@ -83,28 +84,23 @@ block content
                                         button.btn.btn-mainadd(type='button', style='min-width:150px;', data-toggle='dropdown', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
                                             | Add
                     .col-md-4
-                        a.btn-main-big(href='sqlsearchchart.html')
+                        a.btn-main-big(href='explore/sql_search')
                             i.fa.fa-plus(aria-hidden='true')
                             |  CSV
                     .col-md-4
-                        a.btn-main-big(href='/explore/sql_search') View Data Model
+                        a.btn-main-big(href='explore/sql_search') View Data Model
                 .boxdisplay.form-group.clear
                     .midtitle
                         | Data Model
                     ul.tree
                         li
-                            input#c1(type='checkbox', checked='checked')
+                            input#c1(type='checkbox')
                             label.tree_label(for='c1')
                                 i.fa.fa-caret-down
-                                a(href='/schema/schema') Schema
+                                a(href='schema/schemaname') Schema
                             ul
                                 li
-                                    input#c2(type='checkbox', checked='checked')
-                                    label.tree_label(for='c2')
-                                        i.fa.fa-caret-down
-                                        |  Table
-                                li
-                                    input#t1(type='checkbox', checked='checked')
+                                    input#t1(type='checkbox')
                                     label.tree_label(for='t1')
                                         i.fa.fa-caret-down
                                         |  Table
@@ -130,7 +126,7 @@ block content
                                             label.tree_label
                                                 | Attribute
                                 li
-                                    input#t2(type='checkbox', checked='checked')
+                                    input#t2(type='checkbox')
                                     label.tree_label(for='t2')
                                         i.fa.fa-caret-down
                                         |  Table
@@ -156,7 +152,7 @@ block content
                                             label.tree_label
                                                 | Attribute
                                 li
-                                    input#t3(type='checkbox', checked='checked')
+                                    input#t3(type='checkbox')
                                     label.tree_label(for='t3')
                                         i.fa.fa-caret-down
                                         |  Table

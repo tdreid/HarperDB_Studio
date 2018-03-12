@@ -1,11 +1,11 @@
 extends ./layout
 
 block link
-  -var selected = 'Explore';
+    -var selected = 'Explore';
 block content
     script(src="../../textcomplete/package/dist/textcomplete.js")
     script(src="../../scripts/sql_search.js")
-    input#keywordForAuto(type="hidden", name="keyword", value="#{keywords}")
+    input#keywordForAuto(name="keyword", type="hidden", value="#{keywords}")
     .breadcrumb-holder
         .container-fluid
             ul.breadcrumb
@@ -13,7 +13,8 @@ block content
                     a(href='/explore') Explore Home
                 li.breadcrumb-item.active SQL Search 
     // Counts Section
-    .pagebox
+    .m-20
+        // Counts Section
         section.dashboard-counts
             div
                 .row
@@ -27,96 +28,96 @@ block content
                                 .name.ml-3
                                     input(type='text')
                             .form-group
-                                ul.tree
-                                    li
+                                ul.tree(style='z-index:10000')
+                                    li.lidragable(value='Schema1')
                                         input#c1(type='checkbox', checked='checked')
                                         label.tree_label(for='c1')
                                             i.fa.fa-caret-down
-                                            |  Schema
+                                            |  Schema1
                                         ul
-                                            li
+                                            li.lidrag.lidragable(value='Table1')
                                                 input#c2(type='checkbox', checked='checked')
                                                 label.tree_label(for='c2')
                                                     i.fa.fa-caret-down
-                                                    |  Table
+                                                    |  Table1
                                                 ul
-                                                    li
-                                                        span.tree_label Attribute
-                                                    li
-                                                        span.tree_label Attribute
-                                            li
+                                                    li.lidragable(value='AttributeA')
+                                                        span.tree_label AttributeA
+                                                    li.lidragable(value='AttributeB')
+                                                        span.tree_label AttributeB
+                                            li.lidragable(value='Table2')
                                                 input#c3(type='checkbox', checked='checked')
                                                 label.tree_label(for='c3')
                                                     i.fa.fa-caret-down
-                                                    |  Table
+                                                    |  Table2
                                                 ul
-                                                    li
-                                                        span.tree_label Attribute
-                                                    li
-                                                        span.tree_label Attribute
-                                    li
+                                                    li.lidragable(value='AttributeC')
+                                                        span.tree_label AttributeC
+                                                    li.lidragable(value='AttributeD')
+                                                        span.tree_label AttributeD
+                                    li.lidragable(value='Schema2')
                                         input#c4(type='checkbox', checked='checked')
                                         label.tree_label(for='c4')
                                             i.fa.fa-caret-down
-                                            |  Schema
+                                            |  Schema2
                                         ul
-                                            li
+                                            li.lidragable(value='Table 3')
                                                 input#c5(type='checkbox', checked='checked')
                                                 label.tree_label(for='c5')
                                                     i.fa.fa-caret-down
-                                                    |  Table
+                                                    |  Table 3
                                                 ul
-                                                    li
-                                                        span.tree_label Attribute
-                                                    li
-                                                        span.tree_label Attribute
-                                            li
+                                                    li.lidragable(value='AttributeE')
+                                                        span.tree_label AttributeE
+                                                    li.lidragable(value='AttributeF')
+                                                        span.tree_label AttributeF
+                                            li.lidragable(value='Table4')
                                                 input#c6(type='checkbox', checked='checked')
                                                 label.tree_label(for='c6')
                                                     i.fa.fa-caret-down
-                                                    |  Table
+                                                    |  Table4
                                                 ul
-                                                    li
-                                                        span.tree_label Attribute
-                                                    li
-                                                        span.tree_label Attribute
-                                    li
+                                                    li.lidragable(value='AttributeG')
+                                                        span.tree_label AttributeG
+                                                    li.lidragable(value='AttributeH')
+                                                        span.tree_label AttributeH
+                                    li.lidragable(value='Schema3')
                                         input#c7(type='checkbox', checked='checked')
                                         label.tree_label(for='c7')
                                             i.fa.fa-caret-down
-                                            |  Schema
+                                            |  Schema3
                                         ul
-                                            li
+                                            li.lidragable(value='Table5')
                                                 input#c8(type='checkbox', checked='checked')
                                                 label.tree_label(for='c8')
                                                     i.fa.fa-caret-down
-                                                    |  Table
+                                                    |  Table5
                                                 ul
-                                                    li
-                                                        span.tree_label Attribute
-                                                    li
-                                                        span.tree_label Attribute
-                                            li
+                                                    li.lidragable(value='AttributeI')
+                                                        span.tree_label AttributeI
+                                                    li.lidragable(value='AttributeJ')
+                                                        span.tree_label AttributeJ
+                                            li.lidragable(value='Table6')
                                                 input#c9(type='checkbox', checked='checked')
                                                 label.tree_label(for='c9')
                                                     i.fa.fa-caret-down
-                                                    |  Table
+                                                    |  Table6
                                                 ul
-                                                    li
-                                                        span.tree_label Attribute
-                                                    li
-                                                        span.tree_label Attribute
-                    .col-6.p-0
+                                                    li.lidragable(value='AttributeK')
+                                                        span.tree_label AttributeGK
+                                                    li.lidragable(value='AttributeL')
+                                                        span.tree_label AttributeL
+                    .col-6.p-0.searchbox(style='z-index:1;')
                         .contentbackground.p-3(style='overflow:auto;')
                             .secondheader
                                 .midtitle.text-white
                                     | SQL Search
-                                    a.btn.btn-main.pull-right(href='/explore/filter_search') Filter Search
+                                    button.btn.btn-main.pull-right(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Filter Search
                             .form-group
-                                textarea#exampleTextarea.form-control(placeholder='Type sql here', rows='3')
+                                textarea#exampleTextarea.w-100.p-1(placeholder='Type sql here', rows='3')
                             div
-                                button.btn.btn-main.pull-right.min-100(type='button', aria-expanded='false') Run
-                        .contentbackground.text-white.p-3
+                                button.btn.btn-main.pull-right.min-100(data-toggle='collapse', type='button', href='#collapseResult', role='button', aria-controls='collapseResult', aria-expanded='false') Run
+                        #collapseResult.contentbackground.text-white.p-3.collapse
                             .secondheader
                                 .midtitle
                                     | Results
@@ -126,88 +127,58 @@ block content
                                         i.fa.fa-save(data-target='#saveModalCenter', data-toggle='modal', style='margin-right:10px;')
                                     .pull-right
                                         i.fa.fa-refresh(style='margin-right:10px;')
-                            // Modal
-                            #saveModalCenter.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
-                                .modal-dialog.modal-dialog-centered(role='document')
-                                    .modal-content
-                                        .modal-header
-                                            #exampleModalLongTitle.modal-title Save Search
-                                            button.close(data-dismiss='modal', type='button', aria-label='Close')
-                                                i.fa.fa-times.text-red
-                                        .modal-body
-                                            .row.filterrow.p-3
-                                                // Count item widget
-                                                .row.w-100
-                                                    .col-md-4.wtitle
-                                                        .boxdisplay-6.text-right Name
-                                                    .col-md-8
-                                                        input.form-control.minwidthtextbox(type='text', style='float:left; max-width:250px; margin-right:5px;')
-                                                .row.w-100
-                                                    .col-md-4.wtitle
-                                                        .boxdisplay-6.text-right Live Resualts URL
-                                                    .col-md-8
-                                                        input.form-control.minwidthtextbox(type='text', style='float:left;  max-width:250px; margin-right:5px;')
-                                                        button.btn.btn-main.pull-left(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Copy
-                                                .row.w-100
-                                                    .col-md-4.wtitle
-                                                        .boxdisplay-6.text-right Notes
-                                                    .col-md-8
-                                                        input.form-control.minwidthtextbox.w-100(type='text', style='float:left; margin-right:5px;')
-                                        .modal-footer
-                                            .col-md-12
-                                                button.btn.btn-mainadd.pull-right(data-dismiss='modal', data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true', style='min-width:150px;')
-                                                    | Save
                             div
-                                .row
+                                .row(style='overflow:auto')
                                     .col-md-12
-                                        table.table.table-striped
-                                            thead
-                                                tr
-                                                    th(scope='col') Column 1
-                                                    th(scope='col') Column 2
-                                                    th(scope='col') Column 3
-                                                    th(scope='col') Column 4
-                                            tbody
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
-                                                tr
-                                                    th(scope='row') -
-                                                    td -
-                                                    td -
-                                                    td -
+                                        div
+                                            table.table.table-striped
+                                                thead
+                                                    tr
+                                                        th(scope='col') Column 1
+                                                        th(scope='col') Column 2
+                                                        th(scope='col') Column 3
+                                                        th(scope='col') Column 4
+                                                tbody
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
+                                                    tr.tablerow
+                                                        th(scope='row') -
+                                                        td -
+                                                        td -
+                                                        td -
                                         #usersTable_length.dataTables_length.pull-left
                                             label
                                                 | Show
@@ -225,7 +196,7 @@ block content
                                                     a(data-dt-idx='1', href='#', aria-controls='usersTable', tabindex='0') 1
                                                 li#usersTable_next.paginate_button.next.disabled
                                                     a(data-dt-idx='2', href='#', aria-controls='usersTable', tabindex='0') Next
-                    .col-3(style='overflow:auto;')
+                    #functionbox.col-3(style='overflow:auto;')
                         .contentbackground.pb-3(style='overflow:auto;')
                             ul.nav.nav-tabs(role='tablist')
                                 li.nav-item
@@ -236,57 +207,83 @@ block content
                             .tab-content.p-3.text-white.-md-6
                                 #functions.tab-pane.row.active(role='tabpanel')
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ABS
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='ABS')
+                                            | ABS
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') CONCAT
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='CONCAT')
+                                            | CONCAT
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') EXP
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='EXP')
+                                            | EXP
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') IF
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='IF')
+                                            | IF
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') IFNULL
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='IFNULL')
+                                            | IFNULL
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') INSTR
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='INSTR')
+                                            | INSTR
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') LEN
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='LEN')
+                                            | LEN
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') LOWER
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='LOWER')
+                                            | LOWER
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') LTRIM
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='LTRIM')
+                                            | LTRIM
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') RTRIM
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='RTRIM')
+                                            | RTRIM
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') MAX
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='MAX')
+                                            | MAX
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') MIN
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='MIN')
+                                            | MIN
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') SUBSTRING
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='SUBSTRING')
+                                            | SUBSTRING
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') REGEXP_LIKE
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='REGEXP_LIKE')
+                                            | REGEXP_LIKE
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ISNULL
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='ISNULL')
+                                            | ISNULL
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') RANDOM
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='RANDOM')
+                                            | RANDOM
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ROUND
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='ROUND')
+                                            | ROUND
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') CEIL
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='CEIL')
+                                            | CEIL
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') FLOOR
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='FLOOR')
+                                            | FLOOR
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') ROWNUM
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='ROWNUM')
+                                            | ROWNUM
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') SQRT
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='SQRT')
+                                            | SQRT
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') TRIM
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='TRIM')
+                                            | TRIM
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') UPPER
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='UPPER')
+                                            | UPPER
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') CONCAT_WS
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='CONCAT_WS')
+                                            | CONCAT_WS
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') MEDIAN
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='MEDIAN')
+                                            | MEDIAN
                                     .col-md-6.btnfunction
-                                        button.btn.btn-main.w-100.btn-b-10(type='button', aria-expanded='false') QUART
+                                        .dragablebtn.btn.btn-main.w-100.btn-b-10(value='QUART')
+                                            | QUART
                                 #buzz.tab-pane.fade(role='tabpanel')
                                     div Format your chart
                                     .btn-group
@@ -312,3 +309,68 @@ block content
                                         input(type='text')
                                     .pt-3 Footer
                                     input(type='text')
+            // Modal
+            #saveModalCenter.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
+                .modal-dialog.modal-dialog-centered(role='document')
+                    .modal-content
+                        .modal-header
+                            #exampleModalLongTitle.modal-title.text-white Save Search
+                            button.close(data-dismiss='modal', type='button', aria-label='Close')
+                                i.fa.fa-times.text-red
+                        .modal-body
+                            .row.filterrow.p-3
+                                // Count item widget
+                                .row.w-100
+                                    .col-md-4.wtitle
+                                        .boxdisplay-6.text-right Name
+                                    .col-md-8
+                                        input.form-control.minwidthtextbox(type='text', style='float:left; max-width:250px; margin-right:5px;')
+                                .row.w-100
+                                    .col-md-4.wtitle
+                                        .boxdisplay-6.text-right Live Resualts URL
+                                    .col-md-8
+                                        input.form-control.minwidthtextbox(type='text', style='float:left;  max-width:250px; margin-right:5px;')
+                                        button.btn.btn-main.pull-left(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Copy
+                                .row.w-100
+                                    .col-md-4.wtitle
+                                        .boxdisplay-6.text-right Notes
+                                    .col-md-8
+                                        input.form-control.minwidthtextbox.w-100(type='text', style='float:left; margin-right:5px;')
+                        .modal-footer
+                            .col-md-12.text-center
+                                button.btn.btn-mainadd(data-dismiss='modal', data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true', style='min-width:150px; ')
+                                    | Save
+            script.
+                $('.lidragable').draggable({
+                helper: function (event) {
+                return $(event.target).clone().css({
+                width: $(event.target).width(),
+                });
+                },
+                appendTo: '.searchbox',
+                zIndex: 2,
+                start: function (event, ui) {
+                ui.helper.css('color', '#888');
+                }
+                });
+                $('.dragablebtn').draggable({
+                helper: function (event) {
+                return $(event.target).clone().css({
+                width: '200px'
+                });
+                },
+                start: function (event, ui) {
+                ui.helper.css('max-width', '200px');
+                },
+                opacity: 0.7,
+                appendTo: '.searchbox',
+                zIndex: 2
+                });
+                $("#exampleTextarea").droppable({
+                drop: function (event, button) {
+                    console.log(this);
+                    var dragValue = $(button.draggable).attr('value');
+                                        
+                    this.value = this.value + ' ' + dragValue;
+                }
+                });

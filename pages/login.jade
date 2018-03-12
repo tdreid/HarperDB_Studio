@@ -46,8 +46,8 @@ html
                                     input#password.form-control(name='password' type='password'
                                     title='Please enter your password' placeholder='******'  required='' value='1234')
 
-                                .panel.panel-filled.panel-c-accent.panel-collapse
-                                    .panel-heading
+                                .panel.panel-filled.panel-c-accent.panel-collapse(style="margin-bottom: 10px")
+                                    .panel-heading(style="padding: 7px")
                                         .panel-tools
                                             a.panel-toggle
                                                 i.fa.fa-chevron-down
@@ -57,7 +57,7 @@ html
                                         .form-group
                                             label.control-label(for='endpoint_url') Endpoint URL
                                             input#endpoint_url.form-control(name='endpoint_url' type='ip',
-                                            title='Please enter the ip or url HarperDB', value='localhost', placeholder='localhost', required='')
+                                            title='Please enter the ip or url HarperDB', value='192.168.1.211', placeholder='localhost', required='')
                                         .form-group
                                             label.control-label(for='endpoint_port') Endpoint Port
                                             input#endpoint_port.form-control(name='endpoint_port' type='text',

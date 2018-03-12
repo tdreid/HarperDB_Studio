@@ -96,7 +96,9 @@ table {
   min-height: 100vh;
   padding-bottom: 50px;
 }
-
+.m-20{
+  margin:20px;
+}
 .pagebox{
   margin: 20px;
   background-color: #4A4C54;
@@ -105,6 +107,14 @@ table {
 
 .page.active {
   width: calc(100% - 70px);
+}
+
+.text-lightgreen{
+  color:#00925F;
+}
+
+.text-purple{
+  color:#807DC4;
 }
 
 h2 {
@@ -186,7 +196,11 @@ padding-left: 10px !important;
 
 .btn-main:hover{
   background-color: #00935A !important;
-  color:#fff;
+  color:#fff !important;
+}
+
+.btn-main:hover * {
+  color: #fff !important;
 }
 
 .btn-mainadd{
@@ -210,6 +224,12 @@ padding-left: 10px !important;
   color:#fff;
 }
 
+.btn-main-big:visited{
+  background-color: #3E3F87 !important;
+  color:#fff;
+}
+
+
 .btn-main-small{
   background-color: #3E3F87 !important;
   color:#fff;
@@ -224,11 +244,22 @@ padding-left: 10px !important;
   color:#fff;
 }
 
+.btn-main-small:visited{
+  background-color: #3E3F87 !important;
+  color:#fff;
+}
+
 
 .btn-mainadd:hover{
   background-color: #00CC7A !important;
   color:#fff;
 }
+
+.btn-mainadd:visited{
+  background-color: #3E3F87 !important;
+  color:#fff;
+}
+
 
 .btn-mainexit{
   background-color: #CED4DA !important;
@@ -274,6 +305,8 @@ padding-left: 10px !important;
 .minwidth250{
   min-width: 250px;
   text-align: left;
+  padding:3px 5px;
+
 }
 
 .minwidth350{
@@ -325,6 +358,7 @@ section header {
   margin-left:5px;
   cursor: pointer;
 }
+
 
 .subheader{
   margin-top:2em;
@@ -910,6 +944,8 @@ nav.navbar a.menu-btn:hover {
   font-size: 1.5em;
   color: #6967B8;
 }
+
+
 
 .dashboard-counts .icon {
   margin-right: 10px;
@@ -3268,6 +3304,10 @@ a > code {
   float:left;
 }
 
+.tablerow:hover{
+  background-color: #636363 !important;
+}
+
 .nav-tabs {
   border-bottom: none;
 }
@@ -3560,14 +3600,34 @@ input, button, select, textarea {
     font-size: inherit;
     line-height: inherit;
 }
+.w-150{
+  min-width:150px;
+}
+.w-250{
+  min-width:250px;
+}
+.w-350{
+  min-width:350px;
+}
+.daterangepicker input{
+  background-color: #fff;
+}
 
+.daterangepicker .daterangepicker_input i {
+  position: absolute;
+  left: 8px;
+  top: 2px !important;
+}
 
+label.switch{
+  margin: 0px;
+}
 option {
   font-weight: normal;
   display: block;
   white-space: pre;
   min-height: 1.2em;
-  padding: 0px 2px 1px;
+  padding: 5px 5px 5px;
 }
 select.input-sm {
   height: 30px;
@@ -3627,33 +3687,12 @@ small {
   font-size: 80%;
 }
 
-
-/* The switch - the box around the slider */
-.switch {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  cursor: pointer;
-  display: inline-block;
-  height: 24px;
-  position: relative;
-  vertical-align: middle;
-  width: 35px;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  box-sizing: content-box;
-  background-clip: content-box;
-}
-
 /* Hide default HTML checkbox */
 .switch input {display:none;}
 
 /* The slider */
 .slider {
-  position: absolute;
+position: relative; float:left;
   cursor: pointer;
   top: 0;
   left: 0;
@@ -3662,6 +3701,13 @@ small {
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
+  height: 24px;
+  width: 34px;
+
+}
+
+#roleanduser .slider{
+  top: 5px !important;
 }
 
 .slider:before {
@@ -3676,6 +3722,10 @@ small {
   transition: .4s;
 }
 
+label.switch{
+  display: inline-block;
+  margin-top:5px;
+}
 input:checked + .slider {
   background-color: #62BC6B;
 

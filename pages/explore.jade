@@ -3,6 +3,7 @@ extends ./layout
 block link
   -var selected = 'Explore';
 block content
+  // Counts Section
   .pagebox
     section.dashboard-counts
       header
@@ -10,19 +11,17 @@ block content
       .container-fluid
         .row
           // Count item widget
-          .col-xl-2.col-md-4.col-6
+          .col-md-12
             .wrapper.count-title.d-flex
-              i.fa.fa-search(aria-hidden='true')
               .name
-                a(href='explore/filter_search')
-                  strong.text-uppercase.searchButton  Filter Search
-          // Count item widget
-          .col-xl-2.col-md-4.col-6
-            .wrapper.count-title.d-flex
-              i.fa.fa-search(aria-hidden='true')
-              .name
-                a(href='explore/sql_search')
-                  strong.text-uppercase.searchButton  SQL Search
+                a.btn.btn-main(href='explore/filter_search', style='float:left; margin-right:20px')
+                  strong.text-uppercase.searchButton
+                    i.fa.fa-search.searchButtoncicon(aria-hidden='true')
+                    |  Filter Search
+                a.btn.btn-main(href='explore/sql_search', style='float:left;')
+                  strong.text-uppercase.searchButton
+                    i.fa.fa-search.searchButtoncicon(aria-hidden='true')
+                    |  SQL Search
     header
     .container-fluid
       .row
@@ -48,16 +47,6 @@ block content
     section.statistics
       .container-fluid
         .row.d-flex
-          .col-lg-4
-            // Income
-            .card.income.text-center.dashboardplusbox
-              .icon.iconplus
-                i.fa.fa-plus(aria-hidden='true')
-          .col-lg-4
-            // Income
-            .card.income.text-center.dashboardplusbox
-              .icon.iconplus
-                i.fa.fa-plus(aria-hidden='true')
           .col-lg-4
             // Income
             .card.income.text-center.dashboardplusbox
