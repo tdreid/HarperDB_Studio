@@ -25,6 +25,17 @@ $(document).ready(function () {
         sTable.search($(this).val()).draw();
     })
 
+    $('#deleteUserModal').on('show.bs.modal', function (e) {
+        var curUsername = $(e.relatedTarget).data('id');
+        usernameForDelete = curUsername;
+        console.log(usernameForDelete);
+    });
+
+    $("#DeleteUserBtn").click(function () {
+        console.log(usernameForDelete);
+        dropUser(usernameForDelete);
+    });    
+
 });
 
 function toggleActive(username) {
@@ -60,4 +71,56 @@ function toggleActive(username) {
 function userDetail(username) {
     window.location = "user_detail?un=" + username
 
+}
+
+dropUser = function (username) {
+    var element = $("#usersTable tbody tr:contains('" + username + "')");
+    element.addClass("forDelete");
+
+    var sTable = $('#usersTable').DataTable();
+    $.ajax({
+        type: "POST",
+        url: '/security/drop_user',
+        data: {
+            username: username
+        },        
+        success: function (res) {
+            sTable.row('.forDelete').remove().draw();
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-full-width",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info(res.message);
+
+            console.log('deleted successfully');
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+goToEditUser = function (username) {
+    var user = null;
+
+    for (u in users) {
+        if (users[u].username == username) {
+            user = users[u];
+            document.getElementById('userToEdit').value = JSON.stringify(user);
+            $('#goToEditUser').submit();
+        }
+    }
 }

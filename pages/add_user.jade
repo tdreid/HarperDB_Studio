@@ -73,20 +73,45 @@ block content
                                     th(scope='col') 
                             tbody
 
-        #addtableModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
-            .modal-dialog.modal-dialog-centered(role='document', style="max-width: 350px")
+        // Modal
+        #deleteUserModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+            .modal-dialog.modal-dialog-centered(role='document')
                 .modal-content
                     .modal-header
-                        #exampleModalLongTitle.modal-title.text-white(style="margin-left: 60px") Confirm Delete ?
+                        #exampleModalLongTitle.modal-title.text-white Are you sure?
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             i.fa.fa-times.text-red
                     .modal-body.text-white
-                        
+                        p
+                            | Deleting this user is a permanent action and cannot be undone.
                     .modal-footer
-                        .col-md-4(style="margin: 0 auto;")
-                            button.btn.btn-danger(type='button', data-toggle='dropdown', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
+                        .col-md-12.p-0
+                            button#DeleteUserBtn.btn.btn-maindelete.pull-right(type='button', style='min-width:150px;', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
                                 | Delete
-                        .col-md-4(style="margin: 0 auto;")
-                            button.btn.btn-main(type='button', data-toggle='dropdown', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
-                                | Cancel
-
+                            button.btn.btn-mainexit.pull-left(type='button', style='min-width:150px;', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
+                                | Exit
+        script.
+            $(document).ready(function () {
+                let errMsg = '#{message}';
+                console.log(errMsg);
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-full-width",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                if(errMsg){
+                    toastr.info(errMsg);
+                }
+            });

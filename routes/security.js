@@ -74,7 +74,6 @@ router.post('/update_user', isAuthenticated, function (req, res) {
         if (err) {
             return res.status(400).send(err);
         }
-
         return res.status(200).send(success);
 
     });
@@ -93,8 +92,8 @@ router.get('/edit_role', isAuthenticated, function (req, res) {
     res.render('edit_role');
 });
 
-router.get('/edit_user', function (req, res) {
-    res.render('edit_user');
+router.post('/edit_user', function (req, res) {
+    res.render('edit_user', {user: JSON.parse(req.body.user)});
 });
 
 router.post('/getalluser', isAuthenticated, function (req, res) {
@@ -150,11 +149,12 @@ router.post('/add_user', isAuthenticated, function (req, res) {
         role: req.body.role,
         username: req.body.username,
         password: req.body.password,
-        active: req.body.active
+        active: req.body.active != undefined ? true: false
 
     }
+    console.log(operation);
     hdb_callout.callHarperDB(connection, operation, function (err, message) {
-
+        console.log(err, message);
         if (err) {
             return res.render('add_user', {
                 message: err
@@ -185,10 +185,8 @@ router.post('/drop_user', isAuthenticated, function (req, res) {
             return res.status(400).send(err);
         }
 
-        return res.status(200).send(roles);
+        return res.status(200).send(message);
     });
 });
-
-
 
 module.exports = router;
