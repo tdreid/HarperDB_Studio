@@ -152,7 +152,7 @@ router.post('/add_user', isAuthenticated, function (req, res) {
         active: req.body.active != undefined ? true: false
 
     }
-    console.log(operation);
+
     hdb_callout.callHarperDB(connection, operation, function (err, message) {
         console.log(err, message);
         if (err) {

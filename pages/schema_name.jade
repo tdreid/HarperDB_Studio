@@ -1,8 +1,9 @@
 extends ./layout
 
 block link
-  -var selected = 'Schema';
+    -var selected = 'Schema';
 block content
+    script(src="scripts/schema_name.js")
     // Breadcrumb
     .breadcrumb-holder
         .container-fluid
@@ -29,125 +30,98 @@ block content
                     // Modal Add schema
                     #addtableModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
                         .modal-dialog.modal-dialog-centered(role='document')
-                            .modal-content
-                                .modal-header
-                                    #exampleModalLongTitle.modal-title.text-white Add Table
-                                    button.close(type='button', data-dismiss='modal', aria-label='Close')
-                                        i.fa.fa-times.text-red
-                                .modal-body.text-white
-                                    .row
-                                        // Count item widget
-                                        .col-md-12
-                                            .btn-group.clear.mt-2(style='float:left;')
-                                                span.minwidth150.mr-2 Name
-                                                input.minwidth250(type='text')
-                                            .btn-group.clear.mt-2(style='float:left;')
-                                                span.minwidth150.mr-2 Hash Attribute
-                                                input.minwidth250(type='text')
-                                .modal-footer
-                                    .col-md-12.p-0.text-center
-                                        button.btn.btn-mainadd(type='button', style='min-width:150px;', data-toggle='dropdown', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
-                                            | Add
+                            form(action="/schema/#{schemaName}", method="post")
+                                .modal-content
+                                    .modal-header
+                                        #exampleModalLongTitle.modal-title.text-white Add Table
+                                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                            i.fa.fa-times.text-red
+                                    .modal-body.text-white
+                                        .row
+                                            // Count item widget
+                                            .col-md-12
+                                                .btn-group.clear.mt-2(style='float:left;')
+                                                    span.minwidth150.mr-2 Name
+                                                    input.minwidth250(type='text', name="tableName")
+                                                .btn-group.clear.mt-2(style='float:left;')
+                                                    span.minwidth150.mr-2 Hash Attribute
+                                                    input.minwidth250(type='text', name="hashAttribute")
+                                    .modal-footer
+                                        .col-md-12.p-0.text-center
+                                            button.btn.btn-mainadd(type='submit', style='min-width:150px;', aria-haspopup='true', aria-expanded='false')
+                                                | Add
                 .boxdisplay.form-group.clear.pl-5
                     ul.tree.pl-5
-                        li
-                            input#t1(type='checkbox', checked='checked')
-                            label.tree_label(for='t1')
-                                i.fa.fa-caret-down
-                                |  Table
-                                .clear.mt-2.smallltext
-                                    | Number of records  / Data Size
-                                    a.ml-5.btn-main-small.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
-                                        i.fa.fa-plus(aria-hidden='true')
-                                        |  CSV
-                                    i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
-                                hr
-                            ul
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        i.fa.fa-key(aria-hidden='true', style='margin-left:-20px;')
-                                        |  Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                        li
-                            input#t2(type='checkbox', checked='checked')
-                            label.tree_label(for='t2')
-                                i.fa.fa-caret-down
-                                |  Table
-                                .clear.mt-2.smallltext
-                                    | Number of records  / Data Size
-                                    a.ml-5.btn-main-small.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
-                                        i.fa.fa-plus(aria-hidden='true')
-                                        |  CSV
-                                    i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
-                                hr
-                            ul
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                        li
-                            input#t3(type='checkbox', checked='checked')
-                            label.tree_label(for='t3')
-                                i.fa.fa-caret-down
-                                |  Table
-                                .clear.mt-2.smallltext
-                                    | Number of records  / Data Size
-                                    a.ml-5.btn-main-small.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
-                                        i.fa.fa-plus(aria-hidden='true')
-                                        |  CSV
-                                    i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
-                                hr
-                            ul
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
-                                li
-                                    input#int4(type='checkbox', checked='checked')
-                                    label.tree_label
-                                        | Attribute
+                        - var tableIndex = 1;
+                        each tableVal in schema
+                            li
+                                input(id="t#{tableIndex}", type='checkbox', checked='checked')
+                                label.tree_label(for='t#{tableIndex}')
+                                    i.fa.fa-caret-down
+                                    |  #{tableVal.name}
+                                    .clear.mt-2.smallltext
+                                        | Number of records  / Data Size
+                                        a.ml-5.btn-main-small.text-center(href='sqlsearchchart.html', data-toggle='modal', data-target='#addtableModal')
+                                            i.fa.fa-plus(aria-hidden='true')
+                                            |  CSV
+                                        i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteUserModal', style='margin-right:10px;')
+                                    hr                            
+                                ul
+                                    if tableVal['attributes'] != undefined
+                                        each attribute in tableVal['attributes']
+                                            if attribute.attribute == tableVal.hash_attribute
+                                                li
+                                                    input#int4(type='checkbox', checked='checked')
+                                                    label.tree_label
+                                                        i.fa.fa-key(aria-hidden='true', style='margin-left:-20px;')
+                                                        |  #{attribute.attribute}
+                                            else
+                                                li
+                                                    input#int4(type='checkbox', checked='checked')
+                                                    label.tree_label
+                                                        | #{attribute.attribute}ibute
+                            - tableIndex ++
 
+
+        // Modal for delete
+        #deleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+            .modal-dialog.modal-dialog-centered(role='document')
+                .modal-content
+                    .modal-header
+                        #exampleModalLongTitle.modal-title.text-white Are you sure?
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            i.fa.fa-times.text-red
+                    .modal-body.text-white
+                        p
+                            | Deleting this user is a permanent action and cannot be undone.
+                    .modal-footer
+                        .col-md-12.p-0
+                            button#DeleteUserBtn.btn.btn-maindelete.pull-right(type='button', style='min-width:150px;', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
+                                | Delete
+                            button.btn.btn-mainexit.pull-left(type='button', style='min-width:150px;', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
+                                | Exit
+
+        script.
+            $(document).ready(function () {
+                let errMsg = '#{message}';
+                if(errMsg){
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-full-width",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.info(errMsg);
+                }
+            });
