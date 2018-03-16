@@ -1,3 +1,4 @@
+var NumRecords = [];
 $(document).ready(function () {
     createuploadFileType();
     $('#deleteModal').on('show.bs.modal', function (e) {
@@ -16,6 +17,12 @@ $(document).ready(function () {
         document.getElementById('tableName').value = tableName;
     });
 
+    $('#addCSVBtn').click(function() { 
+
+        console.log('eieieiei');
+        $("#addCSVBtn").attr("disabled", true);
+    });
+
     $("#csvType").change(function () {
         var type = document.getElementById('csvType').value;
 
@@ -26,6 +33,8 @@ $(document).ready(function () {
         else 
         createDataCSVType();
     });
+
+    getNumOfRecords();
 
 });
 
@@ -97,4 +106,32 @@ createDataCSVType = () => {
     btnDiv.append(span)
     btnDiv.append(upload)
     appendChangeType.append(btnDiv);
+}
+
+getNumOfRecords = () => {
+    var schemaName = document.getElementById('schemaName').value;
+    $( "span.numOfRecords" ).each(function( index ) {
+        var tableName = $( this )[0].id;
+        console.log( schemaName + '.'  + tableName );
+        $.ajax({
+            type: "POST",
+            url: '/schema/records',
+            data: {
+                schemaName: schemaName,
+                tableName: tableName
+            },
+            success: function (res) {
+                console.log(res[0]);
+                console.log( tableName );
+                if (res[0] != undefined)                    
+                    $( 'span.numOfRecords#' + tableName).html(res[0].num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' records / datasize');
+                else                     
+                    $( 'span.numOfRecords#' + tableName).html('no record / datasize');
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+      });
+
 }

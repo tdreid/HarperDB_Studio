@@ -65,15 +65,16 @@ block content
                                     label.tree_label(for='c#{schemaIndex}')
                                         i.fa.fa-caret-down
                                         a(href='schema/#{schemaProp}')= schemaProp
-                                        - schemaIndex++;
+                                        - var cId = 'c' + schemaIndex
+                                        - schemaIndex++;                                        
 
                                     if schemas[schemaProp] != undefined
                                             - var tableIndex = 1;
                                             each tableVal, tableProp in schemas[schemaProp]
                                                 ul
                                                     li
-                                                        input(id='t#{tableIndex}', type='checkbox')
-                                                        label.tree_label(for='t#{tableIndex}')
+                                                        input(id='#{cId}t#{tableIndex}', type='checkbox')
+                                                        label.tree_label(for='#{cId}t#{tableIndex}')
                                                             i.fa.fa-caret-down
                                                             |  #{tableProp}
                                                         ul

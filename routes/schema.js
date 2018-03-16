@@ -209,4 +209,28 @@ router.post('/delete', isAuthenticated, function (req, res) {
     });
 });
 
+router.post('/records', isAuthenticated, function (req, res) {
+    var call_object = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+    };
+    var tableName = req.body.schemaName + '.' + req.body.tableName;
+    var dotIndex = tableName.indexOf('.');
+    var sql = tableName.substr(0, dotIndex + 1) + "\"" + tableName.substr(dotIndex + 1) + "\"";
+    var operation = {
+        operation: 'sql',
+        "sql": "SELECT COUNT(*) AS num FROM " + sql
+    };    
+
+    hdb_callout.callHarperDB(call_object, operation, function (err, message) {
+        if (err) {
+            return res.status(400).send(err);
+        }
+
+        return res.status(200).send(message);
+    });
+});
+
 module.exports = router;

@@ -5,6 +5,7 @@ block link
 block content
     script(src="../../scripts/schema_name.js")
     // Breadcrumb
+    input#schemaName(type="hidden", name="thisSchema" value="#{schemaName}")
     .breadcrumb-holder
         .container-fluid
             ul.breadcrumb
@@ -60,7 +61,8 @@ block content
                                     i.fa.fa-caret-down
                                     |  #{tableVal.name}
                                     .clear.mt-2.smallltext
-                                        | Number of records  / Data Size
+                                        span.ml-3.numOfRecords(id="#{tableVal.name}")
+                                            | Number of records  / Data Size
                                         a.ml-5.btn-main-small.text-center(href="#", data-toggle='modal', data-target='#uploadCSVModal', data-id="#{tableVal.name}")
                                             i.fa.fa-plus(aria-hidden='true')
                                             |  CSV
