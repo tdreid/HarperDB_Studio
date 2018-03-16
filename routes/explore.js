@@ -1,16 +1,15 @@
 const express = require('express'),
     router = express.Router(),
     hdb_callout = require('./../utility/harperDBCallout'),
-    reduceDescribeAllObject = require('./../utility/reduceDescribeAllObject');
+    reduceDescribeAllObject = require('./../utility/reduceDescribeAllObject'),
+    isAuthenticated = require('../utility/checkAuthenticate');
 
-router.get('/', function (req, res) {
+router.get('/', isAuthenticated, function (req, res) {
     res.render('explore');
 });
 
-router.get('/sql_search', function (req, res) {
-    if (!req.user || !req.user.active || !req.user.password) {
-        return res.redirect('/login?ref=sql_search');
-    }
+router.get('/sql_search', isAuthenticated, function (req, res) {
+
     var call_object = {
         username: req.user.username,
         password: req.user.password,
@@ -35,10 +34,10 @@ router.get('/sql_search', function (req, res) {
             keywords: JSON.stringify(keywords)
         });
     });
- 
+
 });
 
-router.get('/filter_search', function (req, res) {
+router.get('/filter_search', isAuthenticated, function (req, res) {
     res.render('filter_search');
 });
 
