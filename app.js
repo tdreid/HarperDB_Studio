@@ -96,7 +96,7 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-
-app.listen(61183, function () {
+var port = process.env.PORT || 61183;
+app.listen(port, function () {
     console.log('Example app listening on port 61183!')
 })
