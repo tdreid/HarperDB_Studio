@@ -3,6 +3,8 @@ extends ./layout
 block link
   -var selected = 'Explore';
 block content
+  input#schemas(type="hidden", name="schemas" value="#{schemas}")
+  script(src="../../scripts/filter_search.js")
   // Breadcrumb
   .breadcrumb-holder
     .container-fluid
@@ -22,70 +24,47 @@ block content
           // Count item widget
           .col-md-12
             .btn-group(style='float:left')
-              button.btn.dropdown-toggle.minwidthcombobox(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Select Schema
-              .dropdown-menu
-                a.dropdown-item(href='#') Schema 1
-                a.dropdown-item(href='#') Schema 2
-                a.dropdown-item(href='#') Schema 3
+              select#selectSchema(name="selectedSchema")
+                option.dropdown-item(value="") select Schema
             .btn-group(style='float:left; margin-left:10px;')
-              button.btn.dropdown-toggle.minwidthcombobox(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Select Table
-              .dropdown-menu
-                a.dropdown-item(href='#') Table 1
-                a.dropdown-item(href='#') Table 2
-                a.dropdown-item(href='#') Table 3
+              select#selectTable(name="selectedTable")
+                option.dropdown-item(value="") Select Table
+
       .container-fluid.pt-5
+        #firstFilterColumn
+          .row.filterrow
+            // Count item widget
+            .col-md-12
+                .btn-group.minfiltertitle(style='float:left')
+                  .boxdisplay-6 FILTER
+                .btn-group(style='float:left; margin-left:10px;')
+                  select#selectAttribute(name="selectedAttribute")
+                    option(value="") Select Column
+                .btn-group(style='float:left; margin-left:10px;')
+                  select#selectAttribute(name="selectedAttribute")
+                    option(value="=") =
+                    option(value="<") 
+                      | <
+                    option(value=">") 
+                      | >
+                    option(value="LIKE") LIKE
+                    option(value="IN") IN
+                div
+                  input.form-control.minwidthtextbox(type='text', placeholder='Enter Value', style='float:left; margin-left:10px; max-width:200px; margin-right:5px;')
+                .removeicon
+                  i.fa.fa-times.text-red
+        #otherFilterColumn
+  
         .row.filterrow
           // Count item widget
           .col-md-12
-            .btn-group.minfiltertitle(style='float:left')
-              .boxdisplay-6 FILTER
-            .btn-group(style='float:left; margin-left:10px;')
-              button.btn.dropdown-toggle.minwidthcombobox(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Column 1
-              .dropdown-menu
-                a.dropdown-item(href='#') Column 1
-                a.dropdown-item(href='#') Column 2
-                a.dropdown-item(href='#') Column 3
-            .btn-group(style='float:left; margin-left:10px;')
-              button.btn.dropdown-toggle.minwidthcombobox(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Operation
-              .dropdown-menu
-                a.dropdown-item(href='#') =
-                a.dropdown-item(href='#')
-                  | <
-                a.dropdown-item(href='#')
-            input.form-control.minwidthtextbox(type='email', placeholder='Enter Value', style='float:left; margin-left:10px; max-width:200px; margin-right:5px;')
-            .removeicon
-              i.fa.fa-times.text-red
-        .row.filterrow
-          // Count item widget
-          .col-md-12
-            .btn-group.minfiltertitle(style='float:left')
-              .boxdisplay-6 AND
-            .btn-group(style='float:left; margin-left:10px;')
-              button.btn.dropdown-toggle.minwidthcombobox(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Column 1
-              .dropdown-menu
-                a.dropdown-item(href='#') Column 1
-                a.dropdown-item(href='#') Column 2
-                a.dropdown-item(href='#') Column 3
-            .btn-group(style='float:left; margin-left:10px;')
-              button.btn.dropdown-toggle.minwidthcombobox(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Operation
-              .dropdown-menu
-                a.dropdown-item(href='#') =
-                a.dropdown-item(href='#')
-                  | <
-                a.dropdown-item(href='#')
-            input.form-control.minwidthtextbox(type='email', placeholder='Enter Value', style='float:left; margin-left:10px; max-width:200px; margin-right:5px;')
-            .removeicon
-              i.fa.fa-times.text-red
-        .row.filterrow
-          // Count item widget
-          .col-md-12
-            button.btn.btn-mainadd.pull-left(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            button#AddFilterColumn.btn.btn-mainadd.pull-left(type='button', aria-haspopup='true', aria-expanded='false')
               i.fa.fa-plus(aria-hidden='true')
         .row.filterrow
           // Count item widget
           .col-md-12
-            button.btn.btn-main.minwidthcombobox.pull-right(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Reset
-            button.btn.btn-main.minwidthcombobox.pull-right(type='button', style='margin-right:10px;', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Search
+            button.btn.btn-main.minwidthcombobox.pull-right(type='button', aria-haspopup='true', aria-expanded='false') Reset
+            button#searchSqlBtn.btn.btn-main.minwidthcombobox.pull-right(type='button', style='margin-right:10px;', aria-haspopup='true', aria-expanded='false') Search
         hr
     header
       .boxdisplay.largetitle
@@ -99,43 +78,4 @@ block content
     .container-fluid
       .row
         .col-md-12
-          table.table.table-striped
-            thead
-              tr
-                th(scope='col') Column 1
-                th(scope='col') Column 2
-                th(scope='col') Column 3
-                th(scope='col') Column 4
-            tbody
-              tr
-                th(scope='row') -
-                td -
-                td -
-                td -
-              tr
-                th(scope='row') -
-                td -
-                td -
-                td -
-              tr
-                th(scope='row') -
-                td -
-                td -
-                td -
-          #usersTable_length.dataTables_length.pull-left
-            label
-              | Show
-              select.form-control.input-sm.selectinput(name='usersTable_length', aria-controls='usersTable')
-                option(value='10') 10
-                option(value='50') 50
-                option(value='100') 100
-                option(value='-1') All
-              |  entries
-          #usersTable_paginate.dataTables_paginate.paging_simple_numbers.pull-right
-            ul.pagination
-              li#usersTable_previous.paginate_button.previous.disabled
-                a(href='#', aria-controls='usersTable', data-dt-idx='0', tabindex='0') Previous
-              li.paginate_button.active
-                a(href='#', aria-controls='usersTable', data-dt-idx='1', tabindex='0') 1
-              li#usersTable_next.paginate_button.next.disabled
-                a(href='#', aria-controls='usersTable', data-dt-idx='2', tabindex='0') Next
+          table#resultTable.table.table-striped

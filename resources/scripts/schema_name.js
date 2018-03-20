@@ -18,8 +18,6 @@ $(document).ready(function () {
     });
 
     $('#addCSVBtn').click(function() { 
-
-        console.log('eieieiei');
         $("#addCSVBtn").attr("disabled", true);
     });
 
