@@ -146,7 +146,11 @@ $(document).ready(function () {
     })
 
     //reset
-    
+    $('#resetSqlBtn').click(() => {
+        console.log('reset sadsdsada');
+        $('#otherFilterColumn').children().remove();
+        $("#selectSchema option[value='']").attr("selected","selected");
+    })
 });
 var removeFilter = () => {
     $('.removeicon .fa').click(function (e) {

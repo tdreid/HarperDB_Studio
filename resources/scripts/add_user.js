@@ -7,9 +7,13 @@ $(document).ready(function () {
         url: '/security/getalluser',
         success: (res => {
             users = res;
-            createUsersTable(users);
-            setSwitch();
-            setDataTable();
+            if (res.error != undefined)
+                console.log(res.error);
+            else {
+                createUsersTable(users);
+                setSwitch();
+                setDataTable();
+            }
         }),
         dataType: 'json'
     });
@@ -65,7 +69,7 @@ $(document).ready(function () {
         console.log(usernameForDelete);
     });
 
-    $("#DeleteUserBtn").click(function () { 
+    $("#DeleteUserBtn").click(function () {
         console.log(usernameForDelete);
         dropUser(usernameForDelete);
     });
@@ -74,6 +78,7 @@ $(document).ready(function () {
 
 createUsersTable = function (allUser) {
     var tbody = $('#AllUserTable tbody');
+    console.log(allUser);
     allUser.forEach(user => {
         if (user.username != 'nook') {
             var tr = document.createElement('tr');

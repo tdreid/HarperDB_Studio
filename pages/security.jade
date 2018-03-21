@@ -41,9 +41,12 @@ block content
                       td(onclick="goToEditUser('#{u.username}')")
                         i.fa.fa-user-circle.usericon
                       td(onclick="goToEditUser('#{u.username}')")
-                        =u.username
+                        =u.username                      
                       td(onclick="goToEditUser('#{u.username}')")
-                        =u.role.role
+                          if(u.role != undifiend)
+                            =u.role.role
+                          else
+                            | - 
                       td
                         if(u.active)
                           input.js-switch(type="checkbox", checked, onchange='toggleActive("#{u.username}");')
