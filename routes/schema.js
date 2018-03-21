@@ -66,7 +66,6 @@ router.post('/', isAuthenticated, function (req, res) {
 })
 
 router.get('/:schemaName', isAuthenticated, function (req, res) {
-    console.log(req.params);
 
     var call_object = {
         username: req.user.username,
@@ -222,7 +221,7 @@ router.post('/records', isAuthenticated, function (req, res) {
     var operation = {
         operation: 'sql',
         "sql": "SELECT COUNT(*) AS num FROM " + sql
-    };    
+    };
 
     hdb_callout.callHarperDB(call_object, operation, function (err, message) {
         if (err) {
@@ -232,5 +231,47 @@ router.post('/records', isAuthenticated, function (req, res) {
         return res.status(200).send(message);
     });
 });
+
+
+router.post('/csv', isAuthenticated, function (req, res) {
+
+    var operation = {
+        operation: 'describe_all'
+    };
+    var operationCSV = {
+        "schema": req.body.schemaName,
+        "table": req.body.selectTableName
+    };
+    if (req.body.csvType == 'file') {
+        operationCSV.operation = "csv_file_load";
+        operationCSV.file_path = req.body.csvPath;
+    } else if (req.body.csvType == 'url') {
+        operationCSV.operation = "csv_url_load";
+        operationCSV.csv_url = req.body.csvUrl;
+    } else {
+        operationCSV.operation = "csv_data_load";
+        operationCSV.data = req.body.csvData;
+    }
+
+    console.log(operationCSV);
+    var call_object = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+
+    };
+
+    hdb_callout.callHarperDB(call_object, operationCSV, function (err, success) {
+        
+        hdb_callout.callHarperDB(call_object, operation, function (error, allSchema) {
+            return res.render('schema', {
+                message: JSON.stringify(success),
+                schemas: allSchema
+            });
+        });
+
+    });
+})
 
 module.exports = router;

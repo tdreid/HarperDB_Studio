@@ -1,5 +1,9 @@
 $(document).ready(function () {
     createAddTableType();
+    createuploadFileType();
+    var schemaName = document.getElementById('schemaName').value;
+    console.log(schemaName);
+    getTable(schemaName);
     $("#addType").change(function () {
         var type = document.getElementById('addType').value;
         if (type == 'table')
@@ -8,7 +12,40 @@ $(document).ready(function () {
             createAddSchemaType();
     })
 
+    $('#addCSVBtn').click(() => {
+        $('#addCSVBtn').attr('disabled', true)
+    })
+
+    $("#csvType").change(function () {
+        var type = document.getElementById('csvType').value;
+
+        if (type == 'file')
+            createuploadFileType();
+        else if (type == 'url')
+            createUrlCSVType()
+        else
+            createDataCSVType();
+    });
+
+    $("#schemaName").change(function () {       
+        var schemaName = document.getElementById('schemaName').value;
+        getTable(schemaName);
+    }); 
+
 });
+
+getTable = (schemaName) => {
+    var schemas = document.getElementById('schemas').value;
+    schemas = JSON.parse(schemas);
+    $("#selectTableName").children().remove();
+    if(schemas[schemaName] != undefined){
+        var tableNames = Object.keys(schemas[schemaName]);
+        tableNames.forEach(element => {
+            console.log(element);
+            $("#selectTableName").append(('<option value="' + element + '"> ' + element + '</option>'));
+        });
+    }
+}
 
 createAddTableType = () => {
     var schemas = document.getElementById('schemas').value;
@@ -34,7 +71,7 @@ createAddTableType = () => {
     select.setAttribute('name', 'schemaName')
     select.setAttribute('id', 'schemaName')
     select.setAttribute('required', true)
-    
+
     schemaNames.forEach(element => {
         var options = document.createElement('option');
         options.setAttribute('value', element)
@@ -68,7 +105,7 @@ createAddTableType = () => {
     btnDiv = document.createElement('div')
     btnDiv.setAttribute('class', 'btn-group clear mt-2')
     btnDiv.setAttribute('style', 'float:left')
-    
+
     var input = document.createElement('input');
     input.setAttribute('class', 'minwidth250')
     input.setAttribute('name', 'hashAttribute')
@@ -108,4 +145,74 @@ createAddSchemaType = () => {
     btnDiv.append(input);
     appendChangeType.append(btnDiv);
     $("div #exampleModalLongTitle").text("Add Schema");
+}
+
+createuploadFileType = () => {
+
+    var appendChangeType = document.getElementById('changeCSVType');
+
+    appendChangeType.innerHTML = '';
+
+    var btnDiv = document.createElement('div')
+    btnDiv.setAttribute('class', 'btn-group clear mr-2')
+    btnDiv.setAttribute('style', 'float:left')
+
+    var span = document.createElement('span')
+    span.setAttribute('class', 'minwidth150 mr-2')
+    span.append('Path CSV File')
+
+
+    var upload = document.createElement('input');
+    upload.setAttribute('type', 'text');
+    upload.setAttribute('name', 'csvPath')
+    upload.setAttribute('id', 'uploadFileCsv')
+    upload.setAttribute('class', 'minwidth250')
+    btnDiv.append(span)
+    btnDiv.append(upload)
+    appendChangeType.append(btnDiv);
+}
+
+createUrlCSVType = () => {
+    var appendChangeType = document.getElementById('changeCSVType');
+
+    appendChangeType.innerHTML = '';
+
+    var btnDiv = document.createElement('div')
+    btnDiv.setAttribute('class', 'btn-group clear mr-2')
+    btnDiv.setAttribute('style', 'float:left')
+
+    var span = document.createElement('span')
+    span.setAttribute('class', 'minwidth150 mr-2')
+    span.append('CSV Url')
+
+
+    var upload = document.createElement('input');
+    upload.setAttribute('type', 'text');
+    upload.setAttribute('name', 'csvUrl')
+    upload.setAttribute('class', 'minwidth250')
+    btnDiv.append(span)
+    btnDiv.append(upload)
+    appendChangeType.append(btnDiv);
+}
+
+createDataCSVType = () => {
+    var appendChangeType = document.getElementById('changeCSVType');
+
+    appendChangeType.innerHTML = '';
+
+    var btnDiv = document.createElement('div')
+    btnDiv.setAttribute('class', 'btn-group clear mr-2')
+    btnDiv.setAttribute('style', 'float:left')
+
+    var span = document.createElement('span')
+    span.setAttribute('class', 'minwidth150 mr-2')
+    span.append('CSV Data')
+
+
+    var upload = document.createElement('textarea');
+    upload.setAttribute('name', 'csvData')
+    upload.setAttribute('class', 'minwidth250')
+    btnDiv.append(span)
+    btnDiv.append(upload)
+    appendChangeType.append(btnDiv);
 }

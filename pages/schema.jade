@@ -37,22 +37,22 @@ block content
                                         .row
 
                                             .col-md-12                                            
-                                                    .btn-group.mb-2(style='float:left')
-                                                        span.minwidth150.mr-2 Add
-                                                        select#addType.minwidth250(name="addType")
-                                                            option(value="table" selected) Table
-                                                            option(value="schema") Schema                                                    
-                                                    #changeAddType
+                                                .btn-group.mb-2(style='float:left')
+                                                    span.minwidth150.mr-2 Add
+                                                    select#addType.minwidth250(name="addType")
+                                                        option(value="table" selected) Table
+                                                        option(value="schema") Schema                                                    
+                                                #changeAddType
                                     .modal-footer
                                         .col-md-12.p-0
                                             button.btn.btn-mainadd(type='submit', style='min-width:150px;', aria-haspopup='true', aria-expanded='false')
                                                 | Add
                     .col-md-4
-                        a.btn-main-big(href='explore/sql_search')
+                        button#importCSV.btn-main-big(type="button", data-toggle='modal', data-target='#uploadCSVModal')
                             i.fa.fa-plus(aria-hidden='true')
                             |  CSV
                     .col-md-4
-                        a.btn-main-big(href='explore/sql_search') View Data Model
+                        a.btn-main-big(href='/explore/sql_search') View Data Model
                 .boxdisplay.form-group.clear
                     .midtitle
                         | Data Model
@@ -64,33 +64,65 @@ block content
                                     input(type='checkbox', id = 'c#{schemaIndex}')
                                     label.tree_label(for='c#{schemaIndex}')
                                         i.fa.fa-caret-down
-                                        a(href='schema/#{schemaProp}')= schemaProp
+                                        a(href='/schema/#{schemaProp}')= schemaProp
                                         - var cId = 'c' + schemaIndex
                                         - schemaIndex++;                                        
 
                                     if schemas[schemaProp] != undefined
-                                            - var tableIndex = 1;
-                                            each tableVal, tableProp in schemas[schemaProp]
-                                                ul
-                                                    li
-                                                        input(id='#{cId}t#{tableIndex}', type='checkbox')
-                                                        label.tree_label(for='#{cId}t#{tableIndex}')
-                                                            i.fa.fa-caret-down
-                                                            |  #{tableProp}
-                                                        ul
-                                                            if schemas[schemaProp][tableProp] != undefined
-                                                                if schemas[schemaProp][tableProp]["attributes"] != undefined
-                                                                    each attributesValue, attributesProp in schemas[schemaProp][tableProp]['attributes']
-                                                                        li
-                                                                            input#int4(type='checkbox', checked='checked')
-                                                                            label.tree_label
-                                                                                | #{attributesValue['attribute']}
-                                                    - tableIndex ++
+                                        - var tableIndex = 1;
+                                        each tableVal, tableProp in schemas[schemaProp]
+                                            ul
+                                                li
+                                                    input(id='#{cId}t#{tableIndex}', type='checkbox')
+                                                    label.tree_label(for='#{cId}t#{tableIndex}')
+                                                        i.fa.fa-caret-down
+                                                        |  #{tableProp}
+                                                    ul
+                                                        if schemas[schemaProp][tableProp] != undefined
+                                                            if schemas[schemaProp][tableProp]["attributes"] != undefined
+                                                                each attributesValue, attributesProp in schemas[schemaProp][tableProp]['attributes']
+                                                                    li
+                                                                        input#int4(type='checkbox', checked='checked')
+                                                                        label.tree_label
+                                                                            | #{attributesValue['attribute']}
+                                                - tableIndex ++
+                    // Modal Import CSV
+                    #uploadCSVModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+                        .modal-dialog.modal-dialog-centered(role='document')
+                            form(action="/schema/csv", method="post")
+                                .modal-content
+                                    .modal-header
+                                        .modal-title.text-white CSV
+                                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                            i.fa.fa-times.text-red
+                                    .modal-body.text-white
+                                        .row
+                                            // Count item widget
+                                            .col-md-12
+                                                .btn-group.clear.mt-2.mb-2(style='float:left;')
+                                                    span.minwidth150.mr-2 Schema
+                                                    select#schemaName.minwidth250(name="schemaName")
+                                                        each schemaVal, schemaProp in schemas
+                                                            option(value="#{schemaProp}") #{schemaProp}
+                                                .btn-group.clear.mt-2.mb-2(style='float:left;')
+                                                    span.minwidth150.mr-2 Table
+                                                    select#selectTableName.minwidth250(name="selectTableName")
+                                                .btn-group.clear.mt-2.mb-2(style='float:left;')
+                                                    span.minwidth150.mr-2 csv type
+                                                    select#csvType.minwidth250(name="csvType")                                           
+                                                        option(value="file" selected) csv upload
+                                                        option(value="url") csv url
+                                                        option(value="data") csv data
+                                                #changeCSVType
+                                    .modal-footer
+                                        .col-md-12.p-0.text-center           
+                                            button.btn.btn-mainadd#addCSVBtn(type='submit', style='min-width:150px;', aria-haspopup='true', aria-expanded='false')
+                                                | Add
         script.
             $(document).ready(function () {
                 let errMsg = '#{message}';
                 if(errMsg){
-                     toastr.options = {
+                    toastr.options = {
                         "closeButton": false,
                         "debug": false,
                         "newestOnTop": false,
