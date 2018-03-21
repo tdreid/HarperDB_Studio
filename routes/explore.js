@@ -31,7 +31,8 @@ router.get('/sql_search', isAuthenticated, function (req, res) {
 
         var keywords = reduceDescribeAllObject(result);
         res.render('sql_search', {
-            keywords: JSON.stringify(keywords)
+            keywords: JSON.stringify(keywords),
+            schemas: result
         });
     });
 

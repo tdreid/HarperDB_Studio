@@ -21,7 +21,7 @@ block content
                     .wrapper.count-title.d-flex.pull-right
                         i.fa.fa-search(aria-hidden='true')
                         .name.ml-3
-                            input(type='text')
+                            input#searchlogs(type='text')
                     .clear.pull-right
                         a.text-white(href='/logs/search') Advance Search
         .dashboard-counts.clear.pt-3
@@ -38,13 +38,7 @@ block content
                                     th(scope='col')
                             tbody
                                 tr.trclick(onclick="window.location='/logs/individual';")
-                                    td Log 111
-                                    td
-                                    td This is a message...test test tes
-                                    td 03.12.1/12:55pm
-                                    td.midtitle2
-                                        i.fa.fa-download
-                                        i.fa.fa-trash.ml-2
+
                                 each log in JSON.parse(logs)
                                     tr.trclick(onclick="window.location='/logs/individual';")
                                         td Log 

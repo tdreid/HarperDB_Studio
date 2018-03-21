@@ -29,94 +29,43 @@ block content
                                     input(type='text')
                             .form-group
                                 ul.tree(style='z-index:10000')
-                                    li.lidragable(value='Schema1')
-                                        input#c1(type='checkbox', checked='checked')
-                                        label.tree_label(for='c1')
-                                            i.fa.fa-caret-down
-                                            |  Schema1
-                                        ul
-                                            li.lidrag.lidragable(value='Table1')
-                                                input#c2(type='checkbox', checked='checked')
-                                                label.tree_label(for='c2')
-                                                    i.fa.fa-caret-down
-                                                    |  Table1
-                                                ul
-                                                    li.lidragable(value='AttributeA')
-                                                        span.tree_label AttributeA
-                                                    li.lidragable(value='AttributeB')
-                                                        span.tree_label AttributeB
-                                            li.lidragable(value='Table2')
-                                                input#c3(type='checkbox', checked='checked')
-                                                label.tree_label(for='c3')
-                                                    i.fa.fa-caret-down
-                                                    |  Table2
-                                                ul
-                                                    li.lidragable(value='AttributeC')
-                                                        span.tree_label AttributeC
-                                                    li.lidragable(value='AttributeD')
-                                                        span.tree_label AttributeD
-                                    li.lidragable(value='Schema2')
-                                        input#c4(type='checkbox', checked='checked')
-                                        label.tree_label(for='c4')
-                                            i.fa.fa-caret-down
-                                            |  Schema2
-                                        ul
-                                            li.lidragable(value='Table 3')
-                                                input#c5(type='checkbox', checked='checked')
-                                                label.tree_label(for='c5')
-                                                    i.fa.fa-caret-down
-                                                    |  Table 3
-                                                ul
-                                                    li.lidragable(value='AttributeE')
-                                                        span.tree_label AttributeE
-                                                    li.lidragable(value='AttributeF')
-                                                        span.tree_label AttributeF
-                                            li.lidragable(value='Table4')
-                                                input#c6(type='checkbox', checked='checked')
-                                                label.tree_label(for='c6')
-                                                    i.fa.fa-caret-down
-                                                    |  Table4
-                                                ul
-                                                    li.lidragable(value='AttributeG')
-                                                        span.tree_label AttributeG
-                                                    li.lidragable(value='AttributeH')
-                                                        span.tree_label AttributeH
-                                    li.lidragable(value='Schema3')
-                                        input#c7(type='checkbox', checked='checked')
-                                        label.tree_label(for='c7')
-                                            i.fa.fa-caret-down
-                                            |  Schema3
-                                        ul
-                                            li.lidragable(value='Table5')
-                                                input#c8(type='checkbox', checked='checked')
-                                                label.tree_label(for='c8')
-                                                    i.fa.fa-caret-down
-                                                    |  Table5
-                                                ul
-                                                    li.lidragable(value='AttributeI')
-                                                        span.tree_label AttributeI
-                                                    li.lidragable(value='AttributeJ')
-                                                        span.tree_label AttributeJ
-                                            li.lidragable(value='Table6')
-                                                input#c9(type='checkbox', checked='checked')
-                                                label.tree_label(for='c9')
-                                                    i.fa.fa-caret-down
-                                                    |  Table6
-                                                ul
-                                                    li.lidragable(value='AttributeK')
-                                                        span.tree_label AttributeGK
-                                                    li.lidragable(value='AttributeL')
-                                                        span.tree_label AttributeL
+                                    - var schemaIndex = 1;
+                                    each schemaVal, schemaProp in schemas
+                                        - var cId = 'c' + schemaIndex; 
+                                        li.lidragable(value='#{schemaProp}')
+                                            input(id="#{cId}", type='checkbox', checked='checked')
+                                            label.tree_label(for='#{cId}')
+                                                i.fa.fa-caret-down
+                                                |  #{schemaProp}
+                                            ul
+                                                if schemas[schemaProp] != undefined
+                                                    - var tableIndex = 1;
+                                                    each tableVal, tableProp in schemas[schemaProp]
+                                                        - var tId = cId + 't' + tableIndex;
+                                                        li.lidragable(value='#{tableProp}')
+                                                            input(id="#{tId}", type='checkbox', checked='checked')
+                                                            label.tree_label(for='#{tId}')
+                                                                i.fa.fa-caret-down
+                                                                |  #{tableProp}
+                                                            ul
+                                                                if schemas[schemaProp][tableProp] != undefined
+                                                                    if schemas[schemaProp][tableProp]["attributes"] != undefined
+                                                                        each attributesValue, attributesProp in schemas[schemaProp][tableProp]['attributes']
+                                                                            li.lidragable(value="#{attributesValue['attribute']}")
+                                                                                span.tree_label= attributesValue['attribute']
+                                                        - tableIndex ++;
+                                        - schemaIndex ++
+
                     .col-6.p-0.searchbox(style='z-index:1;')
                         .contentbackground.p-3(style='overflow:auto;')
                             .secondheader
                                 .midtitle.text-white
                                     | SQL Search
-                                    button.btn.btn-main.pull-right(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Filter Search
+                                    a.btn.btn-main.pull-right(href='/explore/filter_search', aria-expanded='false', aria-haspopup='true') Filter Search
                             .form-group
                                 textarea#exampleTextarea.w-100.p-1(placeholder='Type sql here', rows='3')
                             div
-                                button.btn.btn-main.pull-right.min-100(data-toggle='collapse', type='button', href='#collapseResult', role='button', aria-controls='collapseResult', aria-expanded='false') Run
+                                button#runSQL.btn.btn-main.pull-right.min-100( type='button', role='button', aria-controls='collapseResult', aria-expanded='false') Run
                         #collapseResult.contentbackground.text-white.p-3.collapse
                             .secondheader
                                 .midtitle
@@ -131,7 +80,7 @@ block content
                                 .row(style='overflow:auto')
                                     .col-md-12
                                         div
-                                            table.table.table-striped
+                                            table#resultTable.table.table-striped
                                                 thead
                                                     tr
                                                         th(scope='col') Column 1
@@ -179,23 +128,7 @@ block content
                                                         td -
                                                         td -
                                                         td -
-                                        #usersTable_length.dataTables_length.pull-left
-                                            label
-                                                | Show
-                                                select.form-control.input-sm.selectinput(name='usersTable_length', aria-controls='usersTable')
-                                                    option(value='10') 10
-                                                    option(value='50') 50
-                                                    option(value='100') 100
-                                                    option(value='-1') All
-                                                |  entries
-                                        #usersTable_paginate.dataTables_paginate.paging_simple_numbers.pull-right
-                                            ul.pagination
-                                                li#usersTable_previous.paginate_button.previous.disabled
-                                                    a(data-dt-idx='0', href='#', aria-controls='usersTable', tabindex='0') Previous
-                                                li.paginate_button.active
-                                                    a(data-dt-idx='1', href='#', aria-controls='usersTable', tabindex='0') 1
-                                                li#usersTable_next.paginate_button.next.disabled
-                                                    a(data-dt-idx='2', href='#', aria-controls='usersTable', tabindex='0') Next
+                                       
                     #functionbox.col-3(style='overflow:auto;')
                         .contentbackground.pb-3(style='overflow:auto;')
                             ul.nav.nav-tabs(role='tablist')
@@ -370,7 +303,7 @@ block content
                 drop: function (event, button) {
                     console.log(this);
                     var dragValue = $(button.draggable).attr('value');
-                                        
-                    this.value = this.value + ' ' + dragValue;
+
+                    this.value = this.value + dragValue;
                 }
                 });

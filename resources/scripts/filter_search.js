@@ -4,7 +4,24 @@ let operations = ['=', '<', '<=', '>', '>=', 'LIKE', 'in']
 let condition = ['AND', 'OR']
 
 $(document).ready(function () {
-
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-full-width",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    
     var schemas = document.getElementById('schemas').value;
     grobalSchemas = JSON.parse(schemas);
     var keys = Object.keys(grobalSchemas);
@@ -26,6 +43,7 @@ $(document).ready(function () {
     selectToggle();
 
     $('#searchSqlBtn, .fa-refresh').click(function (e) {
+        
         $(document.body).css({
             'cursor': 'wait'
         });
@@ -65,27 +83,16 @@ $(document).ready(function () {
                 sql: queryString + whereString + moreQuery
             },
             success: function (obj) {
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-full-width",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
+                console.log(obj)
+
 
                 if (obj.result.error != undefined) {
                     toastr.error(obj.result.error);
-                } else {
+                }
+                else if(typeof obj.result == 'string'){
+                    toastr.error(obj.result);
+                }
+                 else {
                     toastr.success(obj.sql);
                     var columnssss = [];
                     if (obj.result.length > 0) {
