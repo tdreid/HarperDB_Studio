@@ -37,8 +37,6 @@ block content
                                     th(scope='col') Timestamp
                                     th(scope='col')
                             tbody
-                                tr.trclick(onclick="window.location='/logs/individual';")
-
                                 each log in JSON.parse(logs)
                                     tr.trclick(onclick="window.location='/logs/individual';")
                                         td Log 
