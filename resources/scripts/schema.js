@@ -1,7 +1,7 @@
 $(document).ready(function () {
     createAddTableType();
     createuploadFileType();
-    var schemaName = document.getElementById('schemaName').value;
+    var schemaName = document.getElementById('selectSchemaName').value;
     console.log(schemaName);
     getTable(schemaName);
     $("#addType").change(function () {
@@ -27,8 +27,8 @@ $(document).ready(function () {
             createDataCSVType();
     });
 
-    $("#schemaName").change(function () {       
-        var schemaName = document.getElementById('schemaName').value;
+    $("#selectSchemaName").change(function () {
+        var schemaName = document.getElementById('selectSchemaName').value;
         getTable(schemaName);
     }); 
 
@@ -41,7 +41,6 @@ getTable = (schemaName) => {
     if(schemas[schemaName] != undefined){
         var tableNames = Object.keys(schemas[schemaName]);
         tableNames.forEach(element => {
-            console.log(element);
             $("#selectTableName").append(('<option value="' + element + '"> ' + element + '</option>'));
         });
     }
