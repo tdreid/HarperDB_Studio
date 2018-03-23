@@ -1,3 +1,4 @@
+var schemaForSearch = [];
 $(document).ready(function () {
     createAddTableType();
     createuploadFileType();
@@ -30,7 +31,39 @@ $(document).ready(function () {
     $("#selectSchemaName").change(function () {
         var schemaName = document.getElementById('selectSchemaName').value;
         getTable(schemaName);
-    }); 
+    });
+
+    $('[id]').each(function () {
+        var ids = $('[id="' + this.id + '"]');
+        if (ids.length > 1 && ids[0] == this)
+            console.warn('Multiple IDs #' + this.id);
+    });
+
+    var schemas = document.getElementById('schemas').value;
+    schemas = JSON.parse(schemas);
+    schemaForSearch = Object.keys(schemas);
+
+    $('#searchSchema').keyup(function () {
+        var valueSearch = $('#searchSchema').val();
+        console.log(valueSearch);
+        if (valueSearch == ''){
+            console.log('all');
+            schemaForSearch.forEach(element => {
+                $('#' + element).show();
+            });
+        }
+        else {
+            schemaForSearch.forEach(element => {
+                $('#' + element).hide();
+            });
+            let results = [];
+            valueSearch = valueSearch.toLowerCase();
+            results = schemaForSearch.filter(x => x.toLowerCase().includes(valueSearch));
+            results.forEach(element => {
+                $('#' + element).show();
+            });
+        }
+    });
 
 });
 
@@ -38,7 +71,7 @@ getTable = (schemaName) => {
     var schemas = document.getElementById('schemas').value;
     schemas = JSON.parse(schemas);
     $("#selectTableName").children().remove();
-    if(schemas[schemaName] != undefined){
+    if (schemas[schemaName] != undefined) {
         var tableNames = Object.keys(schemas[schemaName]);
         tableNames.forEach(element => {
             $("#selectTableName").append(('<option value="' + element + '"> ' + element + '</option>'));

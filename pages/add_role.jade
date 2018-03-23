@@ -3,6 +3,7 @@ extends ./layout
 block link
     -var selected = 'Security';
 block content
+    script(src="../../scripts/add_role.js")
     // Breadcrumb
     .breadcrumb-holder
         .container-fluid
@@ -16,7 +17,7 @@ block content
             header
                 .boxdisplay.largetitle
                     | Add Role
-                    a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='securityeditrole.html') Edit Existing
+                    a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='/security/edit_role') Edit Existing
         section
             .clear
                 .boxdisplay
@@ -25,9 +26,7 @@ block content
                             span.mr-3 Name
                             input(type='text')
                             span.ml-5.mr-3 Super Admin
-                            label.switch
-                                input(type='checkbox', checked='checked')
-                                span.slider.round
+                            input.js-switch(type='checkbox', checked='checked')
                     button.btn.btn-mainadd.pull-right.width100(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                         i.fa.fa-plus(aria-hidden='true')
             .clear.pt-3
@@ -36,165 +35,111 @@ block content
                         .boxdisplay-6
                             span.mr-5 Schema
                             span.ml-5.mr-3 Activate All
-                            label.switch
-                                input(type='checkbox', checked='checked')
-                                span.slider.round
+                            input.js-switch(type='checkbox', checked='checked')
                 .boxdisplay.form-group.clear
-                    ul.tree
-                        li
-                            input#c1(type='checkbox', checked='checked')
-                            label.tree_label(for='c1')
+                    ul.trees
+                        li         
+                            label.tree_label
                                 i.fa.fa-caret-down
                                 |  Schema 1
                             ul
                                 li
-                                    input#c2(type='checkbox', checked='checked')
-                                    label.tree_label(for='c2')
-                                        | Table
-                                        span.ml-5.mr-3 Activate All
-                                        label.switch
-                                            input(type='checkbox', checked='checked')
-                                            span.slider.round
-                                li
-                                    input#t1(type='checkbox', checked='checked')
-                                    label.tree_label(for='c3')
+                                label.tree_label
+                                    | Table
+                                    span.ml-5.mr-3 Activate All
+                                    input.js-switch(type='checkbox')
+                                li                                    
+                                    label.tree_label
                                         i.fa.fa-caret-down
                                         |  Table 1
+                                    span.ml-5.mr-3 Activate All
+                                    input.js-switch(type='checkbox' value="4")
                                 li
-                                    input#t2(type='checkbox', checked='checked')
-                                    label.tree_label(for='c3')
+                                    label.tree_label
                                         i.fa.fa-caret-down
                                         |  Table 2
-                                li
-                                    input#t3(type='checkbox', checked='checked')
-                                    label.tree_label(for='c3')
+                                    span.ml-5.mr-3 Activate All
+                                    input.js-switch(type='checkbox' value="4")
+                                li                                    
+                                    label.tree_label
                                         i.fa.fa-caret-down
                                         |  Table 3
+                                    span.ml-5.mr-3 Activate All
+                                    input.js-switch(type='checkbox' value="4")    
                                 li
-                                    input#t4(type='checkbox', checked='checked')
-                                    label.tree_label(for='t4')
+                                    label.tree_label
                                         i.fa.fa-caret-down
                                         |  Table 4
-                                        span.ml-5.mr-3 Activate All
-                                        label.switch
-                                            input(type='checkbox', checked='checked')
-                                            span.slider.round
+                                    span.ml-5.mr-3 Activate All
+                                    input.js-switch(type='checkbox' value="4")
+
                                     ul
-                                        li
-                                            input#int4(type='checkbox', checked='checked')
-                                            label.tree_label(for='c2', title='Read')
+                                        li                                            
+                                            label.tree_label(title='Read')
                                                 | R
-                                                label.switch
-                                                    input(type='checkbox', checked='checked')
-                                                    span.slider.round
-                                        li
-                                            input#int4(type='checkbox', checked='checked')
-                                            label.tree_label(for='c2', title='Insert')
+                                                input.js-switch(type='checkbox', checked='checked')
+                                        li                                            
+                                            label.tree_label(title='Insert')
                                                 | I
-                                                label.switch
-                                                    input(type='checkbox', checked='checked')
-                                                    span.slider.round
-                                        li
-                                            input#int4(type='checkbox', checked='checked')
-                                            label.tree_label(for='c2', title='Update')
+                                                input.js-switch(type='checkbox', checked='checked')
+                                        li                                            
+                                            label.tree_label(title='Update')
                                                 | U
-                                                label.switch
-                                                    input(type='checkbox', checked='checked')
-                                                    span.slider.round
-                                        li
-                                            input#int4(type='checkbox', checked='checked')
-                                            label.tree_label(for='c2', title='Delete')
+                                                input.js-switch(type='checkbox', checked='checked')
+                                        li                                            
+                                            label.tree_label(title='Delete')
                                                 | D
-                                                label.switch
-                                                    input(type='checkbox', checked='checked')
-                                                    span.slider.round
+                                                input.js-switch(type='checkbox', checked='checked')
                                         li
-                                            input#att4(type='checkbox', checked='checked')
-                                            label.tree_label(for='att4')
+                                            input(type='checkbox', checked='checked')
+                                            label.tree_label
                                                 i.fa.fa-caret-down
                                                 |  Attribute Restrictions
-                                                span.ml-5.mr-3 Activate All
-                                                label.switch
-                                                    input(type='checkbox', checked='checked')
-                                                    span.slider.round
+                                            span.ml-5.mr-3 Activate All
+                                            input.js-switch(type='checkbox')
+
                                             ul
                                                 li
-                                                    input#int4(type='checkbox', checked='checked')
-                                                    label.tree_label(for='c2')
+                                                        label
                                                         | Attribute 1
                                                         span.ml-3.mr-0(title='Read') R
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Insert') I
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Update') U
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Delete') D
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                 li
-                                                    input#int4(type='checkbox', checked='checked')
-                                                    label.tree_label(for='c2')
+                                                        label
                                                         | Attribute 1
-                                                        span.ml-3.mr-0(title='Read') R
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        span.ml-3.mr-0(title='Read') R 
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Insert') I
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Update') U
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Delete') D
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                 li
-                                                    input#int4(type='checkbox', checked='checked')
-                                                    label.tree_label(for='c2')
+                                                        label
                                                         | Attribute 1
                                                         span.ml-3.mr-0(title='Read') R
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Insert') I
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Update') U
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Delete') D
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                 li
-                                                    input#int4(type='checkbox', checked='checked')
-                                                    label.tree_label(for='c2')
+                                                        label
                                                         | Attribute 1
                                                         span.ml-3.mr-0(title='Read') R
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Insert') I
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Update') U
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')
                                                         span.ml-3.mr-0(title='Delete') D
-                                                        label.switch
-                                                            input(type='checkbox', checked='checked')
-                                                            span.slider.round
+                                                        input.js-switch(type='checkbox', checked='checked')

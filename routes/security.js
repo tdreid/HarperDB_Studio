@@ -92,7 +92,7 @@ router.get('/edit_role', isAuthenticated, function (req, res) {
     res.render('edit_role');
 });
 
-router.post('/edit_user', function (req, res) {
+router.post('/edit_user', isAuthenticated, function (req, res) {
     res.render('edit_user', {user: JSON.parse(req.body.user)});
 });
 

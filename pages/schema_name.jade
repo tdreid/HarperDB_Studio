@@ -110,7 +110,7 @@ block content
         // Modal add csv files                      
         #uploadCSVModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
             .modal-dialog.modal-dialog-centered(role='document')
-                form(action="/schema/upload_csv/#{schemaName}", method="post")
+                form#addCSVForm(action="/schema/upload_csv/#{schemaName}", method="post")
                     .modal-content
                         .modal-header
                             #exampleModalLongTitle.modal-title.text-white CSV

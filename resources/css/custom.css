@@ -12,3 +12,49 @@
 .textcomplete-dropdown a:hover {
     cursor: pointer;
 }
+
+/* ————————————————————–
+  Tree core styles
+*/
+
+.trees {
+    margin: 0.5em;
+    margin-left: -55px;
+    margin-top: 20px;
+    list-style: none;
+}
+
+.trees input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+/* .trees input ~ ul { display: none; } */
+
+/* .trees input:checked ~ ul { display: block; } */
+
+/* ————————————————————–
+  Tree rows
+*/
+
+.trees ul {
+    list-style: none;
+}
+
+.trees li {
+    line-height: 1.2;
+    position: relative;
+    padding: 0 0 1em 1em;
+}
+
+.trees ul li {
+    padding: 0.5em 0 0 1em;
+}
+
+.trees>li:last-child {
+    padding-bottom: 0;
+}
+
+.datatable-over {
+    overflow: auto;
+}

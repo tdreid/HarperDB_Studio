@@ -21,7 +21,7 @@ $(document).ready(function () {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-    
+
     var schemas = document.getElementById('schemas').value;
     grobalSchemas = JSON.parse(schemas);
     var keys = Object.keys(grobalSchemas);
@@ -43,7 +43,7 @@ $(document).ready(function () {
     selectToggle();
 
     $('#searchSqlBtn, .fa-refresh').click(function (e) {
-        
+
         $(document.body).css({
             'cursor': 'wait'
         });
@@ -56,7 +56,16 @@ $(document).ready(function () {
         var first = $('#firstFilterColumn .col-md-12').children().children();
         var whereString = '';
         if (first.length > 0) {
-            whereString = " WHERE " + first[1].value + " " + first[2].value + " " + first[3].value.replace(/"/g, '\'');;
+            var curValue = first[3].value.replace(/"/g, '\'');
+            console.log(curValue);
+            console.log(isNaN(parseFloat(curValue)));
+            if (isNaN(parseFloat(curValue)) == true)
+                curValue =  curValue;
+            else {
+                curValue = parseFloat(curValue);
+                console.log(curValue);
+            }
+            whereString = " WHERE " + first[1].value + " " + first[2].value + " " + curValue;
         }
 
         var others = $('#otherFilterColumn .col-md-12').children().children();
@@ -68,8 +77,16 @@ $(document).ready(function () {
                 if (i % 5 != 4) {
                     if (i % 5 == 1)
                         curValue = "\"" + others[i].value + "\""
-                    else
+                    else if (i % 5 == 3) {
                         curValue = others[i].value.replace(/"/g, '\'');
+                        console.log(curValue);
+                        if (isNaN(curValue) == true)
+                            curValue = "'" + curValue + "'";
+                        else 
+                            curValue = parseInt(curValue);
+                    } else
+                        curValue = others[i].value.replace(/"/g, '\'');
+
                     moreQuery += curValue + ' ';
                 }
             }
@@ -88,11 +105,9 @@ $(document).ready(function () {
 
                 if (obj.result.error != undefined) {
                     toastr.error(obj.result.error);
-                }
-                else if(typeof obj.result == 'string'){
+                } else if (typeof obj.result == 'string') {
                     toastr.error(obj.result);
-                }
-                 else {
+                } else {
                     toastr.success(obj.sql);
                     var columnssss = [];
                     if (obj.result.length > 0) {
@@ -113,7 +128,7 @@ $(document).ready(function () {
                         sTable = $('#resultTable').DataTable({
                             data: data,
                             columns: columnssss,
-                            "dom": "<'col-md-12't><'col-md-4'<'pull-left'l>><'col-md-8 right-pagging'p>",
+                            "dom": "<'col-md-12 datatable-over't><'col-md-4'<'pull-left'l>><'col-md-8 right-pagging'p>",
                             "lengthMenu": [
                                 [10, 50, 100, -1],
                                 [10, 50, 100, "All"]
@@ -154,14 +169,12 @@ $(document).ready(function () {
 
     //reset
     $('#resetSqlBtn').click(() => {
-        console.log('reset sadsdsada');
         $('#otherFilterColumn').children().remove();
-        $("#selectSchema option[value='']").attr("selected","selected");
+        $("#selectSchema option[value='']").attr("selected", "selected");
     })
 });
 var removeFilter = () => {
     $('.removeicon .fa').click(function (e) {
-        console.log(e);
         $(this).parent().parent().parent().remove();
     })
 }
@@ -218,9 +231,6 @@ createOtherFilterColumn = () => {
         conditionOption.append(element)
         conditions.append(conditionOption);
     });
-
-    // var andDiv = document.createElement('div')
-    // andDiv.append(conditions);
 
     btnGroupDiv.append(conditions)
 

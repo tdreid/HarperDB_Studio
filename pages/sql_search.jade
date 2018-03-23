@@ -6,6 +6,8 @@ block content
     script(src="../../textcomplete/package/dist/textcomplete.js")
     script(src="../../scripts/sql_search.js")
     input#keywordForAuto(name="keyword", type="hidden", value="#{keywords}")
+    - var thisSchemas = JSON.stringify(schemas);
+    input#schemaAll(type="hidden", name="schemaAll" value="#{thisSchemas}")
     .breadcrumb-holder
         .container-fluid
             ul.breadcrumb
@@ -26,13 +28,13 @@ block content
                             .wrapper.count-title.d-flex
                                 i.fa.fa-search(aria-hidden='true')
                                 .name.ml-3
-                                    input(type='text')
+                                    input#searchSchema(type='text')
                             .form-group
                                 ul.tree(style='z-index:10000')
                                     - var schemaIndex = 1;
                                     each schemaVal, schemaProp in schemas
                                         - var cId = 'c' + schemaIndex; 
-                                        li.lidragable(value='#{schemaProp}')
+                                        li.lidragable(value='#{schemaProp}', id="#{schemaProp}")
                                             input(id="#{cId}", type='checkbox', checked='checked')
                                             label.tree_label(for='#{cId}')
                                                 i.fa.fa-caret-down
@@ -81,53 +83,6 @@ block content
                                     .col-md-12
                                         div
                                             table#resultTable.table.table-striped
-                                                thead
-                                                    tr
-                                                        th(scope='col') Column 1
-                                                        th(scope='col') Column 2
-                                                        th(scope='col') Column 3
-                                                        th(scope='col') Column 4
-                                                tbody
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
-                                                    tr.tablerow
-                                                        th(scope='row') -
-                                                        td -
-                                                        td -
-                                                        td -
                                        
                     #functionbox.col-3(style='overflow:auto;')
                         .contentbackground.pb-3(style='overflow:auto;')

@@ -17,8 +17,9 @@ $(document).ready(function () {
         document.getElementById('tableName').value = tableName;
     });
 
-    $('#addCSVBtn').click(function() { 
+    $('#addCSVForm').submit(function() {
         $("#addCSVBtn").attr("disabled", true);
+        return true;
     });
 
     $("#csvType").change(function () {

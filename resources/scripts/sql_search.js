@@ -129,7 +129,7 @@ $(document).ready(function () {
                         sTable = $('#resultTable').DataTable({
                             data: data,
                             columns: columnssss,
-                            "dom": "<'col-md-12't><'col-md-4'<'pull-left'l>><'col-md-8 right-pagging'p>",
+                            "dom": "<'col-md-12 datatable-over't><'col-md-4'<'pull-left'l>><'col-md-8 right-pagging'p>",
                             "lengthMenu": [
                                 [10, 50, 100, -1],
                                 [10, 50, 100, "All"]
@@ -166,6 +166,28 @@ $(document).ready(function () {
     //export
     $('.fa-sign-out').click(() => {
         sTable.button(0).trigger();
-    })
+    });
 
+    var schemas = $('#schemaAll').val()
+    schemas = JSON.parse(schemas);
+    schemaForSearch = Object.keys(schemas);
+
+    $('#searchSchema').keyup(function () {
+        var valueSearch = $('#searchSchema').val();
+        if (valueSearch == '') {
+            schemaForSearch.forEach(element => {
+                $('#' + element).show();
+            });
+        } else {
+            schemaForSearch.forEach(element => {
+                $('#' + element).hide();
+            });
+            let results = [];
+            valueSearch = valueSearch.toLowerCase();
+            results = schemaForSearch.filter(x => x.toLowerCase().includes(valueSearch));
+            results.forEach(element => {
+                $('#' + element).show();
+            });
+        }
+    });
 });
