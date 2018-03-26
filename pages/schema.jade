@@ -16,7 +16,7 @@ block content
                     .wrapper.count-title.d-flex.pull-right
                         i.fa.fa-search(aria-hidden='true')
                         .name.ml-3
-                            input(type='text')
+                            input#searchSchema(type='text')
         section
             .clear.pt-3
                 .row.text-center.m-3
@@ -58,8 +58,8 @@ block content
                         | Data Model
 
                     - var schemaIndex = 1;
-                        each schemaVal, schemaProp in schemas
-                            ul.tree
+                        each schemaVal, schemaProp in schemas              
+                            ul.tree(id = "#{schemaProp}")
                                 li
                                     input(type='checkbox', id = 'c#{schemaIndex}')
                                     label.tree_label(for='c#{schemaIndex}')
@@ -101,15 +101,15 @@ block content
                                             .col-md-12
                                                 .btn-group.clear.mt-2.mb-2(style='float:left;')
                                                     span.minwidth150.mr-2 Schema
-                                                    select#selectSchemaName.minwidth250(name="schemaName")
+                                                    select#selectSchemaName.minwidth250(name="schemaName" required)
                                                         each schemaVal, schemaProp in schemas
                                                             option(value="#{schemaProp}") #{schemaProp}
                                                 .btn-group.clear.mt-2.mb-2(style='float:left;')
                                                     span.minwidth150.mr-2 Table
-                                                    select#selectTableName.minwidth250(name="selectTableName")
+                                                    select#selectTableName.minwidth250(name="selectTableName" required)
                                                 .btn-group.clear.mt-2.mb-2(style='float:left;')
                                                     span.minwidth150.mr-2 csv type
-                                                    select#csvType.minwidth250(name="csvType")                                           
+                                                    select#csvType.minwidth250(name="csvType" required)
                                                         option(value="file" selected) csv upload
                                                         option(value="url") csv url
                                                         option(value="data") csv data

@@ -2,7 +2,7 @@ let firstFilterCol = '';
 let grobalSchemas = '';
 let operations = ['=', '<', '<=', '>', '>=', 'LIKE', 'in']
 let condition = ['AND', 'OR']
-
+let saveSQL = '';
 $(document).ready(function () {
     toastr.options = {
         "closeButton": false,
@@ -21,7 +21,7 @@ $(document).ready(function () {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
-
+    $("#collapseResult").hide()
     var schemas = document.getElementById('schemas').value;
     grobalSchemas = JSON.parse(schemas);
     var keys = Object.keys(grobalSchemas);
@@ -60,7 +60,7 @@ $(document).ready(function () {
             console.log(curValue);
             console.log(isNaN(parseFloat(curValue)));
             if (isNaN(parseFloat(curValue)) == true)
-                curValue =  curValue;
+                curValue = curValue;
             else {
                 curValue = parseFloat(curValue);
                 console.log(curValue);
@@ -82,7 +82,7 @@ $(document).ready(function () {
                         console.log(curValue);
                         if (isNaN(curValue) == true)
                             curValue = "'" + curValue + "'";
-                        else 
+                        else
                             curValue = parseInt(curValue);
                     } else
                         curValue = others[i].value.replace(/"/g, '\'');
@@ -105,10 +105,14 @@ $(document).ready(function () {
 
                 if (obj.result.error != undefined) {
                     toastr.error(obj.result.error);
+                    $("#collapseResult").hide()
                 } else if (typeof obj.result == 'string') {
                     toastr.error(obj.result);
+                    $("#collapseResult").hide()
                 } else {
+                    $("#collapseResult").show()
                     toastr.success(obj.sql);
+                    saveSQL = obj.sql;
                     var columnssss = [];
                     if (obj.result.length > 0) {
                         Object.keys(obj.result[0]).forEach(element => {
@@ -140,6 +144,7 @@ $(document).ready(function () {
                                 titleAttr: 'CSV'
                             }]
                         });
+                        saveRecent(obj.sql);
                     } else {
                         if ($.fn.DataTable.isDataTable('#resultTable')) {
                             sTable.destroy();
@@ -172,7 +177,36 @@ $(document).ready(function () {
         $('#otherFilterColumn').children().remove();
         $("#selectSchema option[value='']").attr("selected", "selected");
     })
+
+    $("#favoriteForm").submit(function (event) {
+
+        saveFavorite().then(() => {
+            $('#saveModalCenter').modal('toggle');
+        });
+        event.preventDefault();
+    });
+
 });
+
+function saveFavorite() {
+    return new Promise(resolve => {
+        $.ajax({
+            type: "POST",
+            url: '/explore/setfavorite',
+            data: {
+                sql: saveSQL,
+                note: document.getElementById('favoriteNote').value,
+                name: document.getElementById('favoriteName').value
+            },
+            success: function (result) {
+                toastr.success(JSON.stringify(result));
+                resolve(true);
+            }
+        })
+    })
+
+}
+
 var removeFilter = () => {
     $('.removeicon .fa').click(function (e) {
         $(this).parent().parent().parent().remove();
@@ -339,4 +373,22 @@ var getAttribute = (schema, table) => {
         $('#selectAttribute').append('<option value="' + element + '"> ' + element + '</option>');
     });
 
+}
+
+var saveRecent = (sql) => {
+    var host = window.location.host;
+    var encode = btoa(sql);
+    var liveLink = host + '/explore/sql_search/' + encode
+    var array = localStorage.getItem('recentSql')
+    if (array == null)
+        array = [];
+    else
+        array = JSON.parse(array);
+    var object = {
+        sql: sql,
+        url: liveLink
+    }
+    array.push(object);
+    document.getElementById("liveLinkSQL").value = liveLink;
+    localStorage.setItem('recentSql', JSON.stringify(array));
 }

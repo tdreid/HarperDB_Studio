@@ -87,18 +87,19 @@ createUsersTable = function (allUser) {
             var td = document.createElement('td');
             var i = document.createElement('i');
             i.setAttribute('class', 'fa fa-user-circle usericon');
-            td.append(i);
-            tr.append(td);
+            td.appendChild(i);
+            tr.appendChild(td);
 
             //Username
-            td = document.createElement('td');
-            td.append(user['username'])
-            tr.append(td);
+            var td = document.createElement('td');
+            // console.log()
+            td.appendChild(document.createTextNode(user['username']));
+            tr.appendChild(td);
 
             // Role
             td = document.createElement('td');
-            td.append(user.role != undefined ? user.role.role : 'no role')
-            tr.append(td);
+            td.appendChild(document.createTextNode(user.role != undefined ? user.role.role : 'no role'))
+            tr.appendChild(td);
 
             //Active
             td = document.createElement('td');
@@ -108,13 +109,13 @@ createUsersTable = function (allUser) {
             input.setAttribute('class', 'js-switch');
             if (user.active)
                 input.setAttribute('checked', true);
-            td.append(input)
-            tr.append(td);
+            td.appendChild(input)
+            tr.appendChild(td);
 
             //Failed Login Attempts
             td = document.createElement('td');
-            td.append(' - ')
-            tr.append(td);
+            td.appendChild(document.createTextNode(' - '))
+            tr.appendChild(td);
             //delete icon
             td = document.createElement('td');
             td.setAttribute('class', 'midtitle2');
@@ -125,8 +126,8 @@ createUsersTable = function (allUser) {
             i.setAttribute('data-target', '#deleteUserModal')
             i.setAttribute('data-id', user.username)
 
-            td.append(i);
-            tr.append(td);
+            td.appendChild(i);
+            tr.appendChild(td);
             tbody.append(tr);
         }
     });

@@ -8,6 +8,7 @@ block content
     input#keywordForAuto(name="keyword", type="hidden", value="#{keywords}")
     - var thisSchemas = JSON.stringify(schemas);
     input#schemaAll(type="hidden", name="schemaAll" value="#{thisSchemas}")
+    input#sqlLink(type="hidden", name="sqlLink" value="#{sqlLink}")
     .breadcrumb-holder
         .container-fluid
             ul.breadcrumb
@@ -65,7 +66,7 @@ block content
                                     | SQL Search
                                     a.btn.btn-main.pull-right(href='/explore/filter_search', aria-expanded='false', aria-haspopup='true') Filter Search
                             .form-group
-                                textarea#exampleTextarea.w-100.p-1(placeholder='Type sql here', rows='3')
+                                textarea#exampleTextarea.w-100.p-1(placeholder='Type sql here', rows='3' value="#{sqlLink}")
                             div
                                 button#runSQL.btn.btn-main.pull-right.min-100( type='button', role='button', aria-controls='collapseResult', aria-expanded='false') Run
                         #collapseResult.contentbackground.text-white.p-3.collapse
@@ -201,33 +202,34 @@ block content
             #saveModalCenter.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
                 .modal-dialog.modal-dialog-centered(role='document')
                     .modal-content
-                        .modal-header
-                            #exampleModalLongTitle.modal-title.text-white Save Search
-                            button.close(data-dismiss='modal', type='button', aria-label='Close')
-                                i.fa.fa-times.text-red
-                        .modal-body
-                            .row.filterrow.p-3
-                                // Count item widget
-                                .row.w-100
-                                    .col-md-4.wtitle
-                                        .boxdisplay-6.text-right Name
-                                    .col-md-8
-                                        input.form-control.minwidthtextbox(type='text', style='float:left; max-width:250px; margin-right:5px;')
-                                .row.w-100
-                                    .col-md-4.wtitle
-                                        .boxdisplay-6.text-right Live Resualts URL
-                                    .col-md-8
-                                        input.form-control.minwidthtextbox(type='text', style='float:left;  max-width:250px; margin-right:5px;')
-                                        button.btn.btn-main.pull-left(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Copy
-                                .row.w-100
-                                    .col-md-4.wtitle
-                                        .boxdisplay-6.text-right Notes
-                                    .col-md-8
-                                        input.form-control.minwidthtextbox.w-100(type='text', style='float:left; margin-right:5px;')
-                        .modal-footer
-                            .col-md-12.text-center
-                                button.btn.btn-mainadd(data-dismiss='modal', data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true', style='min-width:150px; ')
-                                    | Save
+                        form#favoriteForm
+                            .modal-header
+                                #exampleModalLongTitle.modal-title.text-white Save Search
+                                button.close(data-dismiss='modal', type='button', aria-label='Close')
+                                    i.fa.fa-times.text-red
+                            .modal-body
+                                .row.filterrow.p-3
+                                    // Count item widget
+                                    .row.w-100
+                                        .col-md-4.wtitle
+                                            .boxdisplay-6.text-right Name
+                                        .col-md-8
+                                            input#favoriteName.form-control.minwidthtextbox(type='text', style='float:left; max-width:250px; margin-right:5px;' required)
+                                    .row.w-100
+                                        .col-md-4.wtitle
+                                            .boxdisplay-6.text-right Live Resualts URL
+                                        .col-md-8
+                                            input.form-control.minwidthtextbox#liveLinkSQL(type='text', style='float:left;  max-width:250px; margin-right:5px;' readonly)
+                                            button.btn.btn-main.pull-left(type='button', aria-expanded='false', aria-haspopup='true' onclick="copySqlLink()") Copy
+                                    .row.w-100
+                                        .col-md-4.wtitle
+                                            .boxdisplay-6.text-right Notes
+                                        .col-md-8
+                                            input#favoriteNote.form-control.minwidthtextbox.w-100(type='text', style='float:left; margin-right:5px;')
+                            .modal-footer
+                                .col-md-12.text-center
+                                    button.btn.btn-mainadd(type='submit', aria-expanded='false', aria-haspopup='true', style='min-width:150px; ')
+                                        | Save
             script.
                 $('.lidragable').draggable({
                 helper: function (event) {

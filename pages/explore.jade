@@ -3,6 +3,7 @@ extends ./layout
 block link
   -var selected = 'Explore';
 block content
+  script(src="../../scripts/explore.js")
   // Counts Section
   .pagebox
     section.dashboard-counts
@@ -29,18 +30,23 @@ block content
         .col-md-6
           .subheader.boxdisplay-6 Recent
           .wrapper.count-title.d-flex
-            .list-group.w-100
-              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Dapibus ac facilisis in
-              a.list-group-item.list-group-item-action(href='#') Dapibus ac facilisis in
-              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Cras sit amet nibh libero
+            .list-group.w-100#listRecent
+
         // Count item widget
         .col-md-6
           .subheader.boxdisplay-6 Favorites
-          .wrapper.count-title.d-flex
+          .wrapper.count-title.d-flex(styles="height: 491px")
             .list-group.w-100
-              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Dapibus ac facilisis in
-              a.list-group-item.list-group-item-action(href='#') Dapibus ac facilisis in
-              a.list-group-item.list-group-item-action.list-group-item-dark(href='#') Cras sit amet nibh libero
+              each value, index in recents
+                - var str = value.sql
+                - var encode = Buffer.from(""+str+"").toString('base64')
+                if index % 2 == 0
+                  a.list-group-item.list-group-item-action.list-group-item-dark(href='/explore/sql_search/#{encode}') #{value.name}
+                else
+                  if value.name != undefined
+                    a.list-group-item.list-group-item-action(href='/explore/sql_search/#{encode}') #{value.name}
+                  else
+                    a.list-group-item.list-group-item-action.list-group-item-dark(href='#') No favorite
     header
       .boxdisplay.subheader Dashboard
     // Statistics Section
