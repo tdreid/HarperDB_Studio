@@ -27,10 +27,10 @@ block content
                     .pull-left
                         .boxdisplay-6
                             span.mr-3 Name
-                            input(type='text')
+                            input#newRoleName(type='text')
                             span.ml-5.mr-3 Super Admin
                             input#superadmin.js-switch(type='checkbox', checked='checked')
-                    button.btn.btn-mainadd.pull-right.width100(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    button.btn.btn-mainadd.pull-right.width100(type='button', aria-haspopup='true', aria-expanded='false' onclick="addingRole()")
                         i.fa.fa-plus(aria-hidden='true')
             .clear.pt-3
                 .boxdisplay

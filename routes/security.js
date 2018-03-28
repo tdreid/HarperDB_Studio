@@ -104,6 +104,24 @@ router.get('/add_role', isAuthenticated, function (req, res) {
 
 });
 
+router.post('/add_role', isAuthenticated, function (req, res) {
+    var call_object = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+
+    };
+    console.log(JSON.parse(req.body.operationAddRole));
+    hdb_callout.callHarperDB(call_object, JSON.parse(req.body.operationAddRole), function (err, result) {
+        if (err) {
+            return res.status(400).send(result);
+        }
+
+        return res.status(200).send(result);
+    });
+});
+
 router.get('/add_user', isAuthenticated, function (req, res) {
     res.render('add_user');
 });

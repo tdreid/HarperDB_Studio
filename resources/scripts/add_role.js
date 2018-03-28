@@ -163,4 +163,68 @@ $(document).ready(function () {
         }
     })
 
+
 });
+
+var addingRole = function () {
+    var operation = "add_role"
+    var objAddRole = {};
+    objAddRole.operation = operation;
+    objAddRole.role = document.getElementById('newRoleName').value;
+    objAddRole.permission = {}
+    objAddRole.permission.super_admin = document.querySelector('#superadmin').checked
+    var flatenSchema = document.getElementById('flatenSchema').value;
+    flatenSchema = JSON.parse(flatenSchema);
+    var schemas = Object.keys(flatenSchema);
+
+    if (schemas.length > 0) {
+        schemas.forEach(schema => {
+            if (flatenSchema[schema] != undefined) {
+                var tables = Object.keys(flatenSchema[schema]);
+                if (tables.length > 0) {
+                    objAddRole.permission[schema] = {}
+                    objAddRole.permission[schema].tables = {}
+                    tables.forEach(table => {
+                        var idAttribute = schema + '_' + table + '_';
+                        objAddRole.permission[schema].tables[table] = {};
+                        objAddRole.permission[schema].tables[table].read = document.querySelector('#' + idAttribute + 'R').checked;
+                        objAddRole.permission[schema].tables[table].insert = document.querySelector('#' + idAttribute + 'I').checked;
+                        objAddRole.permission[schema].tables[table].update = document.querySelector('#' + idAttribute + 'U').checked;
+                        objAddRole.permission[schema].tables[table].delete = document.querySelector('#' + idAttribute + 'D').checked;
+                        var attributes = flatenSchema[schema][table];
+
+                        if (attributes.length > 0) {
+                            objAddRole.permission[schema].tables[table].attribute_restrictions = [];
+
+                            attributes.forEach(att => {
+                                var attObj = {}
+                                var idRestrictions = idAttribute + att + "_";
+                                attObj.attribute_name = att;
+                                attObj.read = document.querySelector('#' + idRestrictions + 'R').checked;
+                                attObj.insert = document.querySelector('#' + idRestrictions + 'I').checked;
+                                attObj.update = document.querySelector('#' + idRestrictions + 'U').checked;
+                                attObj.delete = document.querySelector('#' + idRestrictions + 'D').checked;                                
+                                objAddRole.permission[schema].tables[table].attribute_restrictions.push(attObj);
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    }
+    
+    console.log(JSON.stringify(objAddRole));
+
+    $.ajax({
+        type: "POST",
+        url: '/security/add_role',
+        data: {"operationAddRole": JSON.stringify(objAddRole)},
+        success: function (res) {
+            console.log('add role successfully');
+            console.log(res)
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
