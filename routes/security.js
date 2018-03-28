@@ -1,7 +1,8 @@
 const express = require('express'),
     router = express.Router(),
     hdb_callout = require('../utility/harperDBCallout'),
-    isAuthenticated = require('../utility/checkAuthenticate');
+    isAuthenticated = require('../utility/checkAuthenticate'),
+    mapObject = require('../utility/mapDescribeAllToAddRole');
 
 
 router.get('/', isAuthenticated, function (req, res) {
@@ -81,7 +82,26 @@ router.post('/update_user', isAuthenticated, function (req, res) {
 });
 
 router.get('/add_role', isAuthenticated, function (req, res) {
-    res.render('add_role');
+    var call_object = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+
+    };
+    var operation = {
+        operation: "describe_all"
+    }
+
+    hdb_callout.callHarperDB(call_object, operation, function (err, result) {
+        res.render('add_role', {
+            schemas: result,
+            flatenSchema: JSON.stringify(mapObject(result))
+
+        });
+
+    });
+
 });
 
 router.get('/add_user', isAuthenticated, function (req, res) {
@@ -93,7 +113,9 @@ router.get('/edit_role', isAuthenticated, function (req, res) {
 });
 
 router.post('/edit_user', isAuthenticated, function (req, res) {
-    res.render('edit_user', {user: JSON.parse(req.body.user)});
+    res.render('edit_user', {
+        user: JSON.parse(req.body.user)
+    });
 });
 
 router.post('/getalluser', isAuthenticated, function (req, res) {
@@ -149,7 +171,7 @@ router.post('/add_user', isAuthenticated, function (req, res) {
         role: req.body.role,
         username: req.body.username,
         password: req.body.password,
-        active: req.body.active != undefined ? true: false
+        active: req.body.active != undefined ? true : false
 
     }
 

@@ -68,9 +68,70 @@ var object1 = {
                 }
             ]
         }
+    },
+    'notable': {
+
+    },
+    noatt: {
+        table1: {
+            hash_attribute: "productid",
+            "id": "a139d2e3-a5d1-4028-b5be-920525b5ff6d",
+        },
+        table2: {
+            hash_attribute: "productid",
+            "id": "a139d2e3-a5d1-4028-b5be-920525b5ff6d",
+        }
     }
 }
 
-mapDescribeAllToAddRole = (desAllObject) => {
-    
+var obj2 = {};
+
+var mapDescribeAllToAddRole = (desAllObject) => {
+    mapRoleArray = {};
+    if (typeof desAllObject == 'object') {
+        var schemaNames = Object.keys(desAllObject);
+        if (schemaNames.length > 0) {
+            schemaNames.forEach(eachSchema => {
+                var curSchema = {};
+                if (desAllObject[eachSchema] != undefined) {
+                    var tableNames = Object.keys(desAllObject[eachSchema]);
+                    if (tableNames.length > 0) {
+                        tableNames.forEach(eachTable => {
+                            var curTable = {}
+                            if (desAllObject[eachSchema][eachTable]['attributes'] != undefined) {
+                                var attributes = Object.values(desAllObject[eachSchema][eachTable]['attributes'])
+                                attributes = attributes.map(a => a.attribute);
+                                curTable = attributes;
+                            }
+                            curSchema[eachTable] = (curTable);
+                        });
+                    }
+                }
+                mapRoleArray[eachSchema] = curSchema;
+            });
+        }
+    }
+    console.log(JSON.stringify(mapRoleArray));
+
+    return mapRoleArray;
 }
+
+mapDescribeAllToAddRole(obj2);
+
+var e = [{
+        dev: [{
+                dog: ['name', 'id', 'age', 'breed']
+            },
+            {
+                cat: ['gender', 'color', 'cat_id']
+            }
+        ]
+    },
+    {
+        test: [{
+            customer: ['cus_id', 'first_name', 'last_name']
+        }]
+    }
+]
+
+module.exports = mapDescribeAllToAddRole;
