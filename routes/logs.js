@@ -31,18 +31,19 @@ router.get('/', function (req, res) {
         return res.render('logs', {
             user: req.user,
             logs: JSON.stringify(reduceTypeLogs(logs)),
-            error: err
+            error: err,
+            nameOfUser: req.user.username
         });
     });
 
 });
 
 router.get('/individual', function (req, res) {
-    res.render('log_individual');
+    res.render('log_individual', {nameOfUser: req.user.username});
 });
 
 router.get('/search', function (req, res) {
-    res.render('logs_advance');
+    res.render('logs_advance', {nameOfUser: req.user.username});
 });
 
 module.exports = router;

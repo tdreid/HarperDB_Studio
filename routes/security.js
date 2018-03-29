@@ -24,7 +24,8 @@ router.get('/', isAuthenticated, function (req, res) {
         return res.render('security', {
             user: req.user,
             users: JSON.stringify(users),
-            error: err
+            error: err,
+            nameOfUser: req.user.username
         });
     });
 
@@ -96,7 +97,8 @@ router.get('/add_role', isAuthenticated, function (req, res) {
     hdb_callout.callHarperDB(call_object, operation, function (err, result) {
         res.render('add_role', {
             schemas: result,
-            flatenSchema: JSON.stringify(mapObject(result))
+            flatenSchema: JSON.stringify(mapObject(result)),
+            nameOfUser: req.user.username
 
         });
 
@@ -123,16 +125,17 @@ router.post('/add_role', isAuthenticated, function (req, res) {
 });
 
 router.get('/add_user', isAuthenticated, function (req, res) {
-    res.render('add_user');
+    res.render('add_user', {nameOfUser: req.user.username});
 });
 
 router.get('/edit_role', isAuthenticated, function (req, res) {
-    res.render('edit_role');
+    res.render('edit_role', {nameOfUser: req.user.username});
 });
 
 router.post('/edit_user', isAuthenticated, function (req, res) {
     res.render('edit_user', {
-        user: JSON.parse(req.body.user)
+        user: JSON.parse(req.body.user),
+        nameOfUser: req.user.username
     });
 });
 
@@ -197,12 +200,14 @@ router.post('/add_user', isAuthenticated, function (req, res) {
         console.log(err, message);
         if (err) {
             return res.render('add_user', {
-                message: err
+                message: err,
+                nameOfUser: req.user.username
             });
         }
 
         return res.render('add_user', {
-            message: message.message
+            message: message.message,
+            nameOfUser: req.user.username
         });
     });
 });

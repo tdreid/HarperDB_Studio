@@ -18,8 +18,8 @@ router.get('/', isAuthenticated, function (req, res) {
     hdb_callout.callHarperDB(call_object, operation, function (err, allSchema) {
 
         return res.render('schema', {
-
-            schemas: allSchema
+            schemas: allSchema,
+            nameOfUser: req.user.username
         });
     });
 
@@ -58,7 +58,8 @@ router.post('/', isAuthenticated, function (req, res) {
         hdb_callout.callHarperDB(call_object, operation, function (error, allSchema) {
             return res.render('schema', {
                 message: JSON.stringify(success),
-                schemas: allSchema
+                schemas: allSchema,
+                nameOfUser: req.user.username
             });
         });
 
@@ -82,7 +83,8 @@ router.get('/:schemaName', isAuthenticated, function (req, res) {
     hdb_callout.callHarperDB(call_object, operation, function (error, schema) {
         res.render('schema_name', {
             schemaName: req.params.schemaName,
-            schema: schema
+            schema: schema,
+            nameOfUser: req.user.username
         });
     });
 });
@@ -115,7 +117,8 @@ router.post('/addtable/:schemaName', isAuthenticated, function (req, res) {
             res.render('schema_name', {
                 schemaName: req.params.schemaName,
                 schema: schema,
-                message: JSON.stringify(success)
+                message: JSON.stringify(success),
+                nameOfUser: req.user.username
             });
         });
 
@@ -168,7 +171,8 @@ router.post('/upload_csv/:schemaName', isAuthenticated, function (req, res) {
             res.render('schema_name', {
                 schemaName: req.params.schemaName,
                 schema: schema,
-                message: JSON.stringify(success)
+                message: JSON.stringify(success),
+                nameOfUser: req.user.username
             });
         });
 
@@ -267,7 +271,8 @@ router.post('/csv', isAuthenticated, function (req, res) {
         hdb_callout.callHarperDB(call_object, operation, function (error, allSchema) {
             return res.render('schema', {
                 message: JSON.stringify(success),
-                schemas: allSchema
+                schemas: allSchema,
+                nameOfUser: req.user.username
             });
         });
 

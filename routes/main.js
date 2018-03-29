@@ -3,7 +3,7 @@ const express = require('express'),
     isAuthenticated = require('../utility/checkAuthenticate');
 
 router.get('/', isAuthenticated, function (req, res) {
-    res.render('index');
+    res.render('index', {nameOfUser: req.user.username});
 });
 
 

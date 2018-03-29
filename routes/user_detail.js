@@ -28,7 +28,8 @@ router.get('/', function (req, res) {
             return res.render('user_detail', {
                 user: req.user,
                 detail_user: {},
-                error: err
+                error: err,
+                nameOfUser: req.user.username
             });
         }
         var detail_user = null;
@@ -43,7 +44,8 @@ router.get('/', function (req, res) {
             return res.render('user_detail', {
                 user: req.user,
                 detail_user: detail_user,
-                json_detail_user: JSON.stringify(detail_user)
+                json_detail_user: JSON.stringify(detail_user),
+                nameOfUser: req.user.username
             });
         }
 

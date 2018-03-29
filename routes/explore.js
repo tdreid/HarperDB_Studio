@@ -8,7 +8,8 @@ const express = require('express'),
 router.get('/', isAuthenticated, function (req, res) {
     favorite.getFavorites(req, res).then(recents => {
         res.render('explore', {
-            recents: recents
+            recents: recents,
+            nameOfUser: req.user.username
         });
     })
 
@@ -38,7 +39,8 @@ router.get('/sql_search', isAuthenticated, function (req, res) {
         var keywords = reduceDescribeAllObject(result);
         res.render('sql_search', {
             keywords: JSON.stringify(keywords),
-            schemas: result
+            schemas: result,
+            nameOfUser: req.user.username
         });
     });
 
@@ -69,7 +71,8 @@ router.get('/sql_search/:sqllink', isAuthenticated, function (req, res) {
         res.render('sql_search', {
             keywords: JSON.stringify(keywords),
             schemas: result,
-            sqlLink: Buffer.from(req.params.sqllink, 'base64').toString()
+            sqlLink: Buffer.from(req.params.sqllink, 'base64').toString(),
+            nameOfUser: req.user.username
         });
     });
 
@@ -94,7 +97,8 @@ router.get('/filter_search', isAuthenticated, function (req, res) {
             return err;
         }
         res.render('filter_search', {
-            schemas: JSON.stringify(result)
+            schemas: JSON.stringify(result),
+            nameOfUser: req.user.username
         });
     });
 
