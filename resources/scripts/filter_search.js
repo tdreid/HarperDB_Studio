@@ -259,6 +259,8 @@ createOtherFilterColumn = () => {
     var conditions = document.createElement('select')
     conditions.setAttribute('id', 'conditionsAttribute' + curNum)
     conditions.setAttribute('name', 'conditionsAttribute' + curNum)
+    conditions.setAttribute('class', 'form-controls')
+    
     condition.forEach(element => {
         var conditionOption = document.createElement('option')
         conditionOption.setAttribute('value', element)
@@ -277,6 +279,7 @@ createOtherFilterColumn = () => {
     var columnSelect = document.createElement('select')
     columnSelect.setAttribute('id', 'selectAttribute' + curNum)
     columnSelect.setAttribute('name', 'selectedAttribute' + curNum)
+    columnSelect.setAttribute('class', 'form-controls')
 
     var attributes = [];
     var schema = document.getElementById('selectSchema').value;
@@ -306,6 +309,7 @@ createOtherFilterColumn = () => {
     var operationSelect = document.createElement('select')
     operationSelect.setAttribute('id', 'selectOperation' + curNum)
     operationSelect.setAttribute('name', 'selectedOperation' + curNum)
+    operationSelect.setAttribute('class', 'form-controls')
 
     operations.forEach(element => {
         var options = document.createElement('option')

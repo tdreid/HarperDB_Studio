@@ -39,7 +39,7 @@ block content
                                             .col-md-12                                            
                                                 .btn-group.mb-2(style='float:left')
                                                     span.minwidth150.mr-2 Add
-                                                    select#addType.minwidth250(name="addType")
+                                                    select#addType.minwidth250.form-controls(name="addType")
                                                         option(value="table" selected) Table
                                                         option(value="schema") Schema                                                    
                                                 #changeAddType
@@ -101,15 +101,15 @@ block content
                                             .col-md-12
                                                 .btn-group.clear.mt-2.mb-2(style='float:left;')
                                                     span.minwidth150.mr-2 Schema
-                                                    select#selectSchemaName.minwidth250(name="schemaName" required)
+                                                    select#selectSchemaName.minwidth250.form-controls(name="schemaName" required)
                                                         each schemaVal, schemaProp in schemas
                                                             option(value="#{schemaProp}") #{schemaProp}
                                                 .btn-group.clear.mt-2.mb-2(style='float:left;')
                                                     span.minwidth150.mr-2 Table
-                                                    select#selectTableName.minwidth250(name="selectTableName" required)
+                                                    select#selectTableName.minwidth250.form-controls(name="selectTableName" required)
                                                 .btn-group.clear.mt-2.mb-2(style='float:left;')
                                                     span.minwidth150.mr-2 csv type
-                                                    select#csvType.minwidth250(name="csvType" required)
+                                                    select#csvType.minwidth250.form-controls(name="csvType" required)
                                                         option(value="file" selected) csv upload
                                                         option(value="url") csv url
                                                         option(value="data") csv data

@@ -43,20 +43,25 @@ block content
                 .boxdisplay
                     .pull-left
                         form#addUserForm(method="post", action="/security/add_user")
-                            .boxdisplay-6
-                                .addprofileparent.pull-left.mr-3
-                                    button.btn.btn-mainadd.iaddprofile(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true')
-                                        i.fa.fa-plus(aria-hidden='true')
-                                    span.iprofile
-                                        i.fa.fa-user-circle.usericon
-                                input.mr-1.pl-1(name="username", type='text', placeholder='username', required)
-                                input.mr-1.pl-1(name="password", type='password', placeholder='password', required)
-                                select#selectRole.mr-1.pl-1(name="role", placeholder='role', required)
-                                label.mr-3(style='display:inline-block')
-                                    input#test(name="active", type='checkbox', checked='check')
-                                    | Active
-                                button.btn.btn-mainadd.width100(type='submit', aria-expanded='false', aria-haspopup='true')
-                                    | Add
+                            .boxdisplay-6.row
+                                .col-xs-2.form-group
+                                    .addprofileparent.pull-left.mr-3
+                                        button.btn.btn-mainadd.iaddprofile(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true')
+                                            i.fa.fa-plus(aria-hidden='true')
+                                        span.iprofile
+                                            i.fa.fa-user-circle.usericon
+                                .col-xs-2.form-group.ml-1
+                                    input.form-controls(name="username", type='text', placeholder='username', required)
+                                .col-xs-2.form-group.ml-1
+                                    input.form-controls(name="password", type='password', placeholder='password', required)
+                                .col-xs-2.form-group.ml-1
+                                    select#selectRole.form-controls(name="role", placeholder='role', required)
+                                .col-xs-2.ml-1
+                                    label.mr-1(style='display:inline-block')
+                                        input#test(name="active", type='checkbox', checked='check')
+                                        | Active
+                                    button.btn.btn-mainadd.width100(type='submit', aria-expanded='false', aria-haspopup='true')
+                                        | Add
         .dashboard-counts.clear.pt-3
             .container-fluid
                 .row

@@ -91,7 +91,7 @@ createAddTableType = () => {
     }
 
     var btnDiv = document.createElement('div')
-    btnDiv.setAttribute('class', 'btn-group clear mr-2')
+    btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
     btnDiv.setAttribute('style', 'float:left')
 
     var span = document.createElement('span')
@@ -99,7 +99,7 @@ createAddTableType = () => {
     span.append('Select Schema')
 
     var select = document.createElement('select');
-    select.setAttribute('class', 'minwidth250')
+    select.setAttribute('class', 'minwidth250 form-controls')
     select.setAttribute('name', 'schemaName')
     select.setAttribute('id', 'schemaName')
     select.setAttribute('required', true)
@@ -116,11 +116,11 @@ createAddTableType = () => {
     appendChangeType.append(btnDiv);
 
     btnDiv = document.createElement('div')
-    btnDiv.setAttribute('class', 'btn-group clear mt-2')
+    btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
     btnDiv.setAttribute('style', 'float:left')
 
     var input = document.createElement('input');
-    input.setAttribute('class', 'minwidth250')
+    input.setAttribute('class', 'minwidth250 form-controls')
     input.setAttribute('name', 'tableName')
     input.setAttribute('id', 'tableName')
     input.setAttribute('required', true)
@@ -135,11 +135,11 @@ createAddTableType = () => {
     appendChangeType.append(btnDiv);
 
     btnDiv = document.createElement('div')
-    btnDiv.setAttribute('class', 'btn-group clear mt-2')
+    btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
     btnDiv.setAttribute('style', 'float:left')
 
     var input = document.createElement('input');
-    input.setAttribute('class', 'minwidth250')
+    input.setAttribute('class', 'minwidth250 form-controls')
     input.setAttribute('name', 'hashAttribute')
     input.setAttribute('id', 'hashAttribute')
     input.setAttribute('required', true)
@@ -168,7 +168,7 @@ createAddSchemaType = () => {
     span.append('Schema Name')
 
     var input = document.createElement('input');
-    input.setAttribute('class', 'minwidth250')
+    input.setAttribute('class', 'minwidth250 form-controls')
     input.setAttribute('name', 'schemaName')
     input.setAttribute('id', 'schemaName')
     input.setAttribute('required', true)
@@ -186,7 +186,7 @@ createuploadFileType = () => {
     appendChangeType.innerHTML = '';
 
     var btnDiv = document.createElement('div')
-    btnDiv.setAttribute('class', 'btn-group clear mr-2')
+    btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
     btnDiv.setAttribute('style', 'float:left')
 
     var span = document.createElement('span')
@@ -198,7 +198,7 @@ createuploadFileType = () => {
     upload.setAttribute('type', 'text');
     upload.setAttribute('name', 'csvPath')
     upload.setAttribute('id', 'uploadFileCsv')
-    upload.setAttribute('class', 'minwidth250')
+    upload.setAttribute('class', 'minwidth250 form-controls')
     btnDiv.append(span)
     btnDiv.append(upload)
     appendChangeType.append(btnDiv);
@@ -210,7 +210,7 @@ createUrlCSVType = () => {
     appendChangeType.innerHTML = '';
 
     var btnDiv = document.createElement('div')
-    btnDiv.setAttribute('class', 'btn-group clear mr-2')
+    btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
     btnDiv.setAttribute('style', 'float:left')
 
     var span = document.createElement('span')
@@ -221,7 +221,7 @@ createUrlCSVType = () => {
     var upload = document.createElement('input');
     upload.setAttribute('type', 'text');
     upload.setAttribute('name', 'csvUrl')
-    upload.setAttribute('class', 'minwidth250')
+    upload.setAttribute('class', 'minwidth250 form-controls')
     btnDiv.append(span)
     btnDiv.append(upload)
     appendChangeType.append(btnDiv);
@@ -233,7 +233,7 @@ createDataCSVType = () => {
     appendChangeType.innerHTML = '';
 
     var btnDiv = document.createElement('div')
-    btnDiv.setAttribute('class', 'btn-group clear mr-2')
+    btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
     btnDiv.setAttribute('style', 'float:left')
 
     var span = document.createElement('span')
@@ -243,7 +243,7 @@ createDataCSVType = () => {
 
     var upload = document.createElement('textarea');
     upload.setAttribute('name', 'csvData')
-    upload.setAttribute('class', 'minwidth250')
+    upload.setAttribute('class', 'minwidth250 form-controls')
     btnDiv.append(span)
     btnDiv.append(upload)
     appendChangeType.append(btnDiv);

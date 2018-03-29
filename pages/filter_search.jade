@@ -24,10 +24,10 @@ block content
           // Count item widget
           .col-md-12
             .btn-group(style='float:left')
-              select#selectSchema(name="selectedSchema")
+              select#selectSchema.form-controls(name="selectedSchema")
                 option.dropdown-item(value="") select Schema
             .btn-group(style='float:left; margin-left:10px;')
-              select#selectTable(name="selectedTable")
+              select#selectTable.form-controls(name="selectedTable")
                 option.dropdown-item(value="") Select Table
 
       .container-fluid.pt-5
@@ -38,10 +38,10 @@ block content
               .btn-group.minfiltertitle(style='float:left')
                 .boxdisplay-6 FILTER
               .btn-group(style='float:left; margin-left:10px;')
-                select#selectAttribute(name="selectedAttribute")
+                select#selectAttribute.form-controls(name="selectedAttribute")
                   option(value="") Select Column
               .btn-group(style='float:left; margin-left:10px;')
-                select#selectAttribute(name="selectedAttribute")
+                select#selectAttribute.form-controls(name="selectedAttribute")
                   option(value="=") =
                   option(value="<") 
                     | <
@@ -95,18 +95,18 @@ block content
                   .col-md-4.wtitle
                     .boxdisplay-6.text-right Name
                   .col-md-8
-                    input#favoriteName.form-control.minwidthtextbox(type='text', style='float:left; max-width:250px; margin-right:5px;' required)
+                    input#favoriteName.form-controls.minwidthtextbox(type='text', style='float:left; max-width:250px; margin-right:5px;' required)
                 .row.w-100
                   .col-md-4.wtitle
                     .boxdisplay-6.text-right Live Resualts URL
                   .col-md-8
-                    input.form-control.minwidthtextbox#liveLinkSQL(type='text', style='float:left;  max-width:250px; margin-right:5px;' readonly)
+                    input.form-controls.minwidthtextbox#liveLinkSQL(type='text', style='float:left;  max-width:250px; margin-right:5px;' readonly)
                     button.btn.btn-main.pull-left(type='button', aria-expanded='false', aria-haspopup='true' onclick="copySqlLink()") Copy
                 .row.w-100
                   .col-md-4.wtitle
                     .boxdisplay-6.text-right Notes
                   .col-md-8
-                    input#favoriteNote.form-control.minwidthtextbox.w-100(type='text', style='float:left; margin-right:5px;')
+                    input#favoriteNote.form-controls.minwidthtextbox.w-100(type='text', style='float:left; margin-right:5px;')
             .modal-footer
               .col-md-12.text-center
                 button.btn.btn-mainadd(type='submit', aria-expanded='false', aria-haspopup='true', style='min-width:150px; ')
