@@ -172,7 +172,7 @@ var addingRole = function () {
     objAddRole.operation = operation;
     objAddRole.role = document.getElementById('newRoleName').value;
     objAddRole.permission = {}
-    objAddRole.permission.super_admin = document.querySelector('#superadmin').checked
+    objAddRole.permission.super_user = document.querySelector('#superadmin').checked
     var flatenSchema = document.getElementById('flatenSchema').value;
     flatenSchema = JSON.parse(flatenSchema);
     var schemas = Object.keys(flatenSchema);
@@ -192,9 +192,9 @@ var addingRole = function () {
                         objAddRole.permission[schema].tables[table].update = document.querySelector('#' + idAttribute + 'U').checked;
                         objAddRole.permission[schema].tables[table].delete = document.querySelector('#' + idAttribute + 'D').checked;
                         var attributes = flatenSchema[schema][table];
-
+                        objAddRole.permission[schema].tables[table].attribute_restrictions = [];
                         if (attributes.length > 0) {
-                            objAddRole.permission[schema].tables[table].attribute_restrictions = [];
+                           
 
                             attributes.forEach(att => {
                                 var attObj = {}

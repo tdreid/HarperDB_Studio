@@ -51,7 +51,7 @@ block content
                                     label.tree_label
                                     | Tables
                                     span.ml-5.mr-3 Activate All
-                                    input.js-switch.schema(type='checkbox', id="#{schemaProp}", class="#{schemaProp}")
+                                    input.js-switch.schema(type='checkbox', id="#{schemaProp}", class="#{schemaProp}", checked='checked')
                                     if schemas[schemaProp] != undefined
                                         
                                         each tableVal, tableProp in schemas[schemaProp]
@@ -60,7 +60,7 @@ block content
                                                         i.fa.fa-caret-down
                                                         | #{tableProp}
                                                     span.ml-5.mr-3(style="text-align: right")    Activate All
-                                                    input.js-switch.table(type='checkbox', id="#{schemaProp}_#{tableProp}", class="#{schemaProp} #{schemaProp}_#{tableProp}")
+                                                    input.js-switch.table(type='checkbox', id="#{schemaProp}_#{tableProp}", class="#{schemaProp} #{schemaProp}_#{tableProp}", checked='checked')
 
                                                     ul
                                                         li
@@ -85,7 +85,7 @@ block content
                                                                 i.fa.fa-caret-down
                                                                 |  Attribute Restrictions
                                                             span.ml-5.mr-3 Activate All
-                                                            input.js-switch.attribute(type='checkbox', id="#{schemaProp}_#{tableProp}_All", class="#{schemaProp} #{schemaProp}_#{tableProp}")
+                                                            input.js-switch.attribute(type='checkbox', id="#{schemaProp}_#{tableProp}_All", class="#{schemaProp} #{schemaProp}_#{tableProp}", checked='checked')
 
                                                             ul
                                                                  if schemas[schemaProp][tableProp] != undefined
@@ -101,92 +101,4 @@ block content
                                                                                     span.ml-3.mr-0(title='Update') U
                                                                                     input.js-switch(class="#{schemaProp} #{schemaProp}_#{tableProp} #{schemaProp}_#{tableProp}_All", type='checkbox', id="#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_U", checked='checked')
                                                                                     span.ml-3.mr-0(title='Delete') D
-                                                                                    input.js-switch(class="#{schemaProp} #{schemaProp}_#{tableProp} #{schemaProp}_#{tableProp}_All", type='checkbox', id="#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_D", checked='checked')
-                    //- ul.trees
-                    //-     li         
-                    //-         label.tree_label
-                    //-             i.fa.fa-caret-down
-                    //-             |  Schema 1
-                    //-         ul
-                    //-             li
-                    //-             label.tree_label
-                    //-                 | Table
-                    //-                 span.ml-5.mr-3 Activate All
-                    //-                 input.js-switch(type='checkbox')
-                    //-             li
-                    //-                 label.tree_label
-                    //-                     i.fa.fa-caret-down
-                    //-                     |  Table 4
-                    //-                 span.ml-5.mr-3 Activate All
-                    //-                 input.js-switch(type='checkbox' value="4")
-
-                    //-                 ul
-                    //-                     li
-                    //-                         label.tree_label(title='Read')
-                    //-                             | R
-                    //-                             input.js-switch(type='checkbox', checked='checked')
-                    //-                     li                                            
-                    //-                         label.tree_label(title='Insert')
-                    //-                             | I
-                    //-                             input.js-switch(type='checkbox', checked='checked')
-                    //-                     li                                            
-                    //-                         label.tree_label(title='Update')
-                    //-                             | U
-                    //-                             input.js-switch(type='checkbox', checked='checked')
-                    //-                     li                                            
-                    //-                         label.tree_label(title='Delete')
-                    //-                             | D
-                    //-                             input.js-switch(type='checkbox', checked='checked')
-                    //-                     li
-                    //-                         input(type='checkbox', checked='checked')
-                    //-                         label.tree_label
-                    //-                             i.fa.fa-caret-down
-                    //-                             |  Attribute Restrictions
-                    //-                         span.ml-5.mr-3 Activate All
-                    //-                         input.js-switch(type='checkbox')
-
-                    //-                         ul
-                    //-                             li
-                    //-                                 label
-                    //-                                 | Attribute 1
-                    //-                                 span.ml-3.mr-0(title='Read') R
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Insert') I
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Update') U
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Delete') D
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                             li
-                    //-                                 label
-                    //-                                 | Attribute 1
-                    //-                                 span.ml-3.mr-0(title='Read') R 
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Insert') I
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Update') U
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Delete') D
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                             li
-                    //-                                 label
-                    //-                                 | Attribute 1
-                    //-                                 span.ml-3.mr-0(title='Read') R
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Insert') I
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Update') U
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Delete') D
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                             li
-                    //-                                 label
-                    //-                                 | Attribute 1
-                    //-                                 span.ml-3.mr-0(title='Read') R
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Insert') I
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Update') U
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
-                    //-                                 span.ml-3.mr-0(title='Delete') D
-                    //-                                 input.js-switch(type='checkbox', checked='checked')
+                                                                                    input.js-switch(class="#{schemaProp} #{schemaProp}_#{tableProp} #{schemaProp}_#{tableProp}_All", type='checkbox', id="#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_D", checked='checked')        
