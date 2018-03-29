@@ -1,7 +1,8 @@
-const express = require('express')
-    , router = express.Router();
+const express = require('express'),
+    router = express.Router(),
+    isAuthenticated = require('../utility/checkAuthenticate');
 
-router.get('/', function(req, res) {
+router.get('/', isAuthenticated, function (req, res) {
     res.render('index');
 });
 

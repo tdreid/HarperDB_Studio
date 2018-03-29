@@ -46,7 +46,7 @@ app.use('/user_detail', user_detail);
 app.use('/schema', schema);
 app.use('/health', health);
 app.use('/help', help);
-app.use('/', explore);
+app.use('/', main);
 
 //authen
 passport.use(new LocalStrategy({
