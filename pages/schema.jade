@@ -21,7 +21,7 @@ block content
             .clear.pt-3
                 .row.text-center.m-3
                     .col-md-4
-                        a.btn-main-big(href='', data-toggle='modal', data-target='#addtableModal')
+                        button.btn-main-big( data-toggle='modal', data-target='#addtableModal')
                             i.fa.fa-plus(aria-hidden='true')
                             |  Schema/Tables
                     // Modal Add schema
@@ -52,7 +52,7 @@ block content
                             i.fa.fa-plus(aria-hidden='true')
                             |  CSV
                     .col-md-4
-                        a.btn-main-big(href='/explore/sql_search') View Data Model
+                        button.btn-main-big(href='/explore/sql_search') View Data Model
                 .boxdisplay.form-group.clear
                     .midtitle
                         | Data Model
