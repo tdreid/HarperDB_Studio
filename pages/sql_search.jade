@@ -45,7 +45,7 @@ block content
                                                     - var tableIndex = 1;
                                                     each tableVal, tableProp in schemas[schemaProp]
                                                         - var tId = cId + 't' + tableIndex;
-                                                        li.lidragable(value='#{tableProp}')
+                                                        li.lidragable(value='#{schemaProp}.#{tableProp}')
                                                             input(id="#{tId}", type='checkbox', checked='checked')
                                                             label.tree_label(for='#{tId}')
                                                                 i.fa.fa-caret-down
