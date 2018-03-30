@@ -130,10 +130,19 @@ $(document).ready(function () {
     $("#favoriteForm").submit(function (event) {
 
         saveFavorite().then(() => {
-            $('#saveModalCenter').modal('toggle'); 
+            $('#saveModalCenter').modal('toggle');
         });
         event.preventDefault();
     });
+
+    $('.dragablebtn.doubleclick').dblclick((e) => {        
+        document.getElementById("exampleTextarea").value += e.target.attributes['value'].value;
+    })
+
+    // $('li.doubleclick').dblclick((e) => {        
+    //     console.log(this)
+    //     // document.getElementById("exampleTextarea").value += e.target.attributes['value'].value;
+    // })
 });
 
 function saveFavorite() {
