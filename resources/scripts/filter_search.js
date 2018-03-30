@@ -175,7 +175,13 @@ $(document).ready(function () {
     //reset
     $('#resetSqlBtn').click(() => {
         $('#otherFilterColumn').children().remove();
-        $("#selectSchema option[value='']").attr("selected", "selected");
+        $("#selectSchema").val('');
+        // $('#selectTable').children().remove();
+        $("#selectTable").val('');
+        getTables();
+        $("input").val('');
+        $('#selectAttribute').children().remove();
+        $('#selectAttribute').append('<option value="">select attribute</option>');
     })
 
     $("#favoriteForm").submit(function (event) {
@@ -260,7 +266,7 @@ createOtherFilterColumn = () => {
     conditions.setAttribute('id', 'conditionsAttribute' + curNum)
     conditions.setAttribute('name', 'conditionsAttribute' + curNum)
     conditions.setAttribute('class', 'form-controls')
-    
+
     condition.forEach(element => {
         var conditionOption = document.createElement('option')
         conditionOption.setAttribute('value', element)
