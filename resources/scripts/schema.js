@@ -46,13 +46,12 @@ $(document).ready(function () {
     $('#searchSchema').keyup(function () {
         var valueSearch = $('#searchSchema').val();
         console.log(valueSearch);
-        if (valueSearch == ''){
+        if (valueSearch == '') {
             console.log('all');
             schemaForSearch.forEach(element => {
                 $('#' + element).show();
             });
-        }
-        else {
+        } else {
             schemaForSearch.forEach(element => {
                 $('#' + element).hide();
             });
@@ -65,6 +64,9 @@ $(document).ready(function () {
         }
     });
 
+    $('#goToViewDataModel').click(function () {
+        window.location.href = "/explore/sql_search";
+    })
 });
 
 getTable = (schemaName) => {

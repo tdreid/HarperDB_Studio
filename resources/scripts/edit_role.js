@@ -1,4 +1,6 @@
+document.body.style.cursor='wait';
 $(document).ready(function () {
+   
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
     elems.forEach(function (html) {
@@ -39,5 +41,10 @@ $(document).ready(function () {
                 $('#' + element).show();
             });
         }
+    });
+
+    jQuery(document).ready(function() {
+        console.log('eieieiei load');
+        document.body.style.cursor='default';
     });
 });

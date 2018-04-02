@@ -99,7 +99,10 @@ var mapDescribeAllToAddRole = (desAllObject) => {
                         tableNames.forEach(eachTable => {
                             var curTable = {}
                             if (desAllObject[eachSchema][eachTable]['attributes'] != undefined) {
-                                var attributes = Object.values(desAllObject[eachSchema][eachTable]['attributes'])
+                                // var attributes = Object.values(desAllObject[eachSchema][eachTable]['attributes'])
+                                var attributes = Object.keys(desAllObject[eachSchema][eachTable]['attributes']).map(function(key) {
+                                    return desAllObject[eachSchema][eachTable]['attributes'][key];
+                                });
                                 attributes = attributes.map(a => a.attribute);
                                 curTable = attributes;
                             }
@@ -116,7 +119,7 @@ var mapDescribeAllToAddRole = (desAllObject) => {
     return mapRoleArray;
 }
 
-// mapDescribeAllToAddRole(obj2);
+// mapDescribeAllToAddRole(object1);
 
 var e = [{
         dev: [{
