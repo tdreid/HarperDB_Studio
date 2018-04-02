@@ -7,10 +7,20 @@ $(document).ready(function () {
             [10, 50, 100, "All"]
         ],
         "iDisplayLength": 10,
+        buttons: [{
+            extend: 'csvHtml5',
+            text: '<i class="fa fa-refresh"></i>',
+            titleAttr: 'CSV'
+        }]
     });
 
-    $('#searchlogs').keyup(function () {        
+    $('#searchlogs').keyup(function () {
         sTable.search($(this).val()).draw();
     });
+
+    //export
+    $('.fa.fa-download').click(() => {
+        sTable.button(0).trigger();
+    })
 
 });
