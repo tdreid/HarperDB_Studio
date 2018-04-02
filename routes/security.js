@@ -114,7 +114,6 @@ router.post('/add_role', isAuthenticated, function (req, res) {
         endpoint_port: req.user.endpoint_port
 
     };
-    console.log(JSON.parse(req.body.operationAddRole));
     hdb_callout.callHarperDB(call_object, JSON.parse(req.body.operationAddRole), function (err, result) {
         if (err) {
             return res.status(400).send(result);
@@ -125,11 +124,21 @@ router.post('/add_role', isAuthenticated, function (req, res) {
 });
 
 router.get('/add_user', isAuthenticated, function (req, res) {
-    res.render('add_user', {nameOfUser: req.user.username});
+    res.render('add_user', {
+        nameOfUser: req.user.username
+    });
 });
 
 router.get('/edit_role', isAuthenticated, function (req, res) {
-    res.render('edit_role', {nameOfUser: req.user.username});
+
+    Promise.all([getSchemaAll(req, res), getListRole(req, res)]).then( (resultArray) => {
+        res.render('edit_role', {
+            nameOfUser: req.user.username,
+            schemas: resultArray[0],
+            roles: resultArray[1]
+        });
+    })
+    
 });
 
 router.post('/edit_user', isAuthenticated, function (req, res) {
@@ -233,5 +242,47 @@ router.post('/drop_user', isAuthenticated, function (req, res) {
         return res.status(200).send(message);
     });
 });
+
+var getListRole = (req, res) => {
+    return new Promise(resolve => {
+        var connection = {
+            username: req.user.username,
+            password: req.user.password,
+            endpoint_url: req.user.endpoint_url,
+            endpoint_port: req.user.endpoint_port
+
+        };
+        var operation = {
+            "operation": "list_roles"
+        }
+        hdb_callout.callHarperDB(connection, operation, function (err, roles) {
+            if (err) {
+                return resolve(err);
+            }
+            return resolve(roles);
+        });
+    });
+}
+
+var getSchemaAll = (req, res) => {
+    return new Promise(resolve => {
+        var connection = {
+            username: req.user.username,
+            password: req.user.password,
+            endpoint_url: req.user.endpoint_url,
+            endpoint_port: req.user.endpoint_port
+
+        };
+        var operation = {
+            "operation": "describe_all"
+        }
+        hdb_callout.callHarperDB(connection, operation, function (err, schemas) {
+            if (err) {
+                return resolve(schemas);
+            }
+            return resolve(schemas);
+        });
+    });
+}
 
 module.exports = router;

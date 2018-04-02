@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     schemas = JSON.parse(schemas);
 
-    console.log(schemas);
+    // console.log(schemas);
 
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
@@ -220,8 +220,26 @@ var addingRole = function () {
         url: '/security/add_role',
         data: {"operationAddRole": JSON.stringify(objAddRole)},
         success: function (res) {
-            console.log('add role successfully');
+            console.log('add ' + res.role + ' role successfully');
             console.log(res)
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-full-width",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info('add ' + res.role + ' role successfully');
         },
         error: function (err) {
             console.log(err);

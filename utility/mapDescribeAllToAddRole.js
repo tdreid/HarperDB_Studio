@@ -111,12 +111,12 @@ var mapDescribeAllToAddRole = (desAllObject) => {
             });
         }
     }
-    console.log(JSON.stringify(mapRoleArray));
+    // console.log(JSON.stringify(mapRoleArray));
 
     return mapRoleArray;
 }
 
-mapDescribeAllToAddRole(obj2);
+// mapDescribeAllToAddRole(obj2);
 
 var e = [{
         dev: [{

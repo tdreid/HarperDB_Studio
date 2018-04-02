@@ -392,8 +392,13 @@ var saveRecent = (sql) => {
     var array = localStorage.getItem('recentSql')
     if (array == null)
         array = [];
-    else
+    else {
         array = JSON.parse(array);
+        if (array.length >= 7) {
+            array.shift()
+        }
+    }
+
     var object = {
         sql: sql,
         url: liveLink
