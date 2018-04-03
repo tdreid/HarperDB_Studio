@@ -131,14 +131,14 @@ router.get('/add_user', isAuthenticated, function (req, res) {
 
 router.get('/edit_role', isAuthenticated, function (req, res) {
 
-    Promise.all([getSchemaAll(req, res), getListRole(req, res)]).then( (resultArray) => {
+    Promise.all([getSchemaAll(req, res), getListRole(req, res)]).then((resultArray) => {
         res.render('edit_role', {
             nameOfUser: req.user.username,
             schemas: resultArray[0],
             roles: resultArray[1]
         });
     })
-    
+
 });
 
 router.post('/edit_user', isAuthenticated, function (req, res) {
@@ -242,6 +242,29 @@ router.post('/drop_user', isAuthenticated, function (req, res) {
         return res.status(200).send(message);
     });
 });
+
+router.post('/drop_role', isAuthenticated, function (req, res) {
+    var connection = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+
+    };
+
+    var operation = {
+        operation: "drop_role",
+        id: req.body.roleId
+    }
+
+    hdb_callout.callHarperDB(connection, operation, function (err, message) {
+        if (err) {
+            return res.status(400).send(message);
+        }
+
+        return res.status(200).send(message);
+    });
+})
 
 var getListRole = (req, res) => {
     return new Promise(resolve => {

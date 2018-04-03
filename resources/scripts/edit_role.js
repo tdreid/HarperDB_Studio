@@ -1,6 +1,30 @@
-document.body.style.cursor='wait';
+document.body.style.cursor = 'wait';
+
+let currentRoleId = null;
+let currentRoleName = null;
 $(document).ready(function () {
-   
+    $('[id]').each(function () {
+        var ids = $('[id="' + this.id + '"]');
+        if (ids.length > 1 && ids[0] == this)
+            console.warn('Multiple IDs #' + this.id);
+    });
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-full-width",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
     elems.forEach(function (html) {
@@ -8,15 +32,75 @@ $(document).ready(function () {
             size: 'small'
         });
     });
-    
+
     $('.trees > li label').parent().find('ul').toggle();
-    
+
     $('.trees > li label').click(function () {
         $(this).parent().find('ul').toggle();
     });
 
-    $('#changingName').click( () => {
-        
+    $('.allschema').change((e) => {
+        console.log(e.currentTarget.id)
+        var specials = Array.prototype.slice.call(document.querySelectorAll('.' + e.currentTarget.id));
+        var changeAllSchemas = document.querySelector('#' + e.currentTarget.id);
+        // console.log(changeAllSchemas.checked)
+        toggleAllSwitch(changeAllSchemas, specials);
+    })
+
+    $('.alltables').change(function (e) {
+        console.log(e.currentTarget.id)
+        var changeAllTables = document.querySelector('#' + e.currentTarget.id);
+        var specials = Array.prototype.slice.call(document.querySelectorAll('.' + e.currentTarget.id));
+        console.log(changeAllTables.checked)
+        toggleAllSwitch(changeAllTables, specials);
+    })
+
+    $('.childTables').change(function (e) {
+        console.log(e.currentTarget.id)
+        var changeChildTables = document.querySelector('#' + e.currentTarget.id);
+        var specials = Array.prototype.slice.call(document.querySelectorAll('.' + e.currentTarget.id));
+        console.log(changeChildTables.checked)
+        toggleAllSwitch(changeChildTables, specials);
+    })
+
+    $('.childTables').change(function (e) {
+        console.log(e.currentTarget.id)
+        var changeChildTables = document.querySelector('#' + e.currentTarget.id);
+        var specials = Array.prototype.slice.call(document.querySelectorAll('.' + e.currentTarget.id));
+        console.log(changeChildTables.checked)
+        toggleAllSwitch(changeChildTables, specials);
+    })
+
+    $('.attributeAll').change(function (e) {
+        console.log(e.currentTarget.id)
+        var changeAttributeAll = document.querySelector('#' + e.currentTarget.id);
+        var specials = Array.prototype.slice.call(document.querySelectorAll('.' + e.currentTarget.id));
+        console.log(changeAttributeAll.checked)
+        toggleAllSwitch(changeAttributeAll, specials);
+    })
+
+    $('#changingName').click(() => {
+
+    })
+
+    $('#EditRoleModal').on('show.bs.modal', function (e) {
+        var id = $(e.relatedTarget).data('id');
+        var name = $(e.relatedTarget).data('name');
+        console.log(id, ' ', name);
+        document.getElementById('textRoleName').innerHTML = 'Edit on "' + name + '" role';
+    });
+
+    $('#deleteRole').on('show.bs.modal', function (e) {
+        var id = $(e.relatedTarget).data('id');
+        var name = $(e.relatedTarget).data('name');
+        currentRoleId = id;
+        currentRoleName = name;
+        console.log(id, ' ', name);
+        document.getElementById('exampleModalLongTitle').innerHTML = 'Are you sure for delete "' + name + '" role ?';
+    });
+
+    $('#DeleteRoleBtn').click(() => {
+        deleteRole(currentRoleId, currentRoleName);
     })
 
     var schemas = $('#usedSchemas').val()
@@ -43,8 +127,129 @@ $(document).ready(function () {
         }
     });
 
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         console.log('eieieiei load');
-        document.body.style.cursor='default';
+        document.body.style.cursor = 'default';
     });
 });
+
+var toggleAllSwitch = function (changeState, allElements) {
+    if (changeState.checked) {
+        //true
+        allElements.forEach(special => {
+            if (!special.checked) {
+                special.checked = true;
+                if (typeof Event === 'function' || !document.fireEvent) {
+                    var event = document.createEvent('HTMLEvents');
+                    event.initEvent('change', true, true);
+                    special.dispatchEvent(event);
+                } else {
+                    special.fireEvent('onchange');
+                }
+            }
+        });
+    } else {
+        allElements.forEach(special => {
+            if (special.checked) {
+                special.checked = false;
+                if (typeof Event === 'function' || !document.fireEvent) {
+                    var event = document.createEvent('HTMLEvents');
+                    event.initEvent('change', true, true);
+                    special.dispatchEvent(event);
+                } else {
+                    special.fireEvent('onchange');
+                }
+            }
+        });
+    }
+}
+
+var addingRole = function () {
+    var operation = "add_role"
+    var objAddRole = {};
+    objAddRole.operation = operation;
+    objAddRole.role = document.getElementById('newRoleName').value;
+    objAddRole.permission = {}
+    objAddRole.permission.super_user = document.querySelector('#superadmin').checked
+    var flatenSchema = document.getElementById('flatenSchema').value;
+    flatenSchema = JSON.parse(flatenSchema);
+    var schemas = Object.keys(flatenSchema);
+
+    if (schemas.length > 0) {
+        schemas.forEach(schema => {
+            if (flatenSchema[schema] != undefined) {
+                var tables = Object.keys(flatenSchema[schema]);
+                if (tables.length > 0) {
+                    objAddRole.permission[schema] = {}
+                    objAddRole.permission[schema].tables = {}
+                    tables.forEach(table => {
+                        var idAttribute = schema + '_' + table + '_';
+                        objAddRole.permission[schema].tables[table] = {};
+                        objAddRole.permission[schema].tables[table].read = document.querySelector('#' + idAttribute + 'R').checked;
+                        objAddRole.permission[schema].tables[table].insert = document.querySelector('#' + idAttribute + 'I').checked;
+                        objAddRole.permission[schema].tables[table].update = document.querySelector('#' + idAttribute + 'U').checked;
+                        objAddRole.permission[schema].tables[table].delete = document.querySelector('#' + idAttribute + 'D').checked;
+                        var attributes = flatenSchema[schema][table];
+                        objAddRole.permission[schema].tables[table].attribute_restrictions = [];
+                        if (attributes.length > 0) {
+
+
+                            attributes.forEach(att => {
+                                var attObj = {}
+                                var idRestrictions = idAttribute + att + "_";
+                                attObj.attribute_name = att;
+                                attObj.read = document.querySelector('#' + idRestrictions + 'R').checked;
+                                attObj.insert = document.querySelector('#' + idRestrictions + 'I').checked;
+                                attObj.update = document.querySelector('#' + idRestrictions + 'U').checked;
+                                attObj.delete = document.querySelector('#' + idRestrictions + 'D').checked;
+                                objAddRole.permission[schema].tables[table].attribute_restrictions.push(attObj);
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    console.log(JSON.stringify(objAddRole));
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: '/security/add_role',
+    //     data: {"operationAddRole": JSON.stringify(objAddRole)},
+    //     success: function (res) {
+    //         console.log('add ' + res.role + ' role successfully');
+    //         console.log(res)
+
+    //         toastr.info('add ' + res.role + ' role successfully');
+    //     },
+    //     error: function (err) {
+    //         console.log(err);
+    //     }
+    // });
+}
+
+var deleteRole = (roleId, roleName) => {
+    $.ajax({
+        type: "POST",
+        url: '/security/drop_role',
+        data: {
+            "roleId": roleId
+        },
+        success: function (res) {
+            console.log(res);
+
+
+            // $('#deleteRole').modal('hide');
+            $('#deleteRole').modal('toggle');
+            $('.modal-backdrop').remove();
+            if (res.error) {
+                toastr.error(JSON.stringify(res));
+            } else {
+                toastr.info(JSON.stringify(res));
+                $("#" + roleName).empty();
+            }
+
+        }
+    })
+}
