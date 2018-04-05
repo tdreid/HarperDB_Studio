@@ -12,6 +12,7 @@ html
     // Bootstrap CSS
     link(href='../../vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
     link(rel='stylesheet', href='../../vendor/switchery/switchery.min.css')
+    link(rel='stylesheet', href='../../styles/loader.css')
     // Font Awesome CSS
     link(href='../../vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet')
     // Fontastic Custom icon font
@@ -99,7 +100,8 @@ html
                   a.nav-link.logout(href='/logout')
                     | LOGOUT
       // Counts Section
-      block content    
+      section.content
+        block content    
       footer.main-footer
         .container-fluid
           .row

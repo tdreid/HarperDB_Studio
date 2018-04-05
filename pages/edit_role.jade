@@ -17,13 +17,15 @@ block content
         - var usedRoles = JSON.stringify(roles)
         input#usedSchemas(type="hidden", name="usedSchemas" value="#{usedSchemas}")
         input#usedRoles(type="hidden", name="usedRoles" value="#{usedRoles}")
+        input#flatenSchema(type="hidden", name="flatenSchema" value="#{flatenSchema}")
+
         section.dashboard-counts
             header
                 .boxdisplay
                     | Search Roles  
                     input#searchRole.ml-3(type='text')
                     a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='/security/add_role') Add New
-        each role in roles            
+        each role in roles
             section(id="#{role.role}")
                 hr
                 .clear
@@ -31,16 +33,16 @@ block content
                         .pull-left
                             .boxdisplay-6
                                 span.mr-3.largetext
-                                    a(href='#' class="editName changingName_#{role.role}")
+                                    a(href='#editname' class="editName", id='clickToChange_#{role.role}')
                                         i.fa.fa-pencil
-                                    span(class="showName changingName_#{role.role}")
+                                    span(class="showName", id="showName_#{role.role}")
                                         | #{role.role}
-                                input#newRoleName(type='text' value="#{role.role}" hidden)
+                                //- input(id="#{role.role}_newRoleName", type='text' value="#{role.role}" hidden)
                                 span.ml-5.mr-3 Super User
                                 if role.permission.super_user                                   
-                                    input#superadmin.js-switch(type='checkbox', checked='checked')
+                                    input.js-switch(id="#{role.role}_superadmin", type='checkbox', checked='checked')
                                 else                                    
-                                    input#superadmin.js-switch(type='checkbox')
+                                    input.js-switch(id="#{role.role}_superadmin", type='checkbox')
                         button.btn.btn-mainadd.pull-right.width100(data-toggle='modal', data-target='#EditRoleModal', type='button', aria-haspopup='true', data-id="#{role.id}" data-name="#{role.role}" aria-expanded='false')
                             | Save
                 .clear.pt-3
@@ -112,7 +114,7 @@ block content
                                                                                                         each attResText, attResProp in {'R': 'read', 'I': 'insert', 'U': 'update', 'D': 'delete'}                                                                                                         
                                                                                                             if eachAttRole[attResText]                                                                                                            
                                                                                                                 span.ml-3.mr-0(title='#{attResText}') #{attResProp}
-                                                                                                                input.js-switch(class="#{role.role}_all #{role.role}_all_#{schemaProp} #{role.role}_all_#{schemaProp}_#{tableProp} #{role.role}_all_#{schemaProp}_#{tableProp}_All", type='checkbox', id="#{role.role}_all_#{role.role}_all_#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_#{attResProp}", checked='checked')
+                                                                                                                input.js-switch(class="#{role.role}_all #{role.role}_all_#{schemaProp} #{role.role}_all_#{schemaProp}_#{tableProp} #{role.role}_all_#{schemaProp}_#{tableProp}_All", type='checkbox', id="#{role.role}_all_#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_#{attResProp}", checked='checked')
                                                                                                             else                                                                                                            
                                                                                                                 span.ml-3.mr-0(title='#{attResText}') #{attResProp}
                                                                                                                 input.js-switch(class="#{role.role}_all #{role.role}_all_#{schemaProp} #{role.role}_all_#{schemaProp}_#{tableProp} #{role.role}_all_#{schemaProp}_#{tableProp}_All", type='checkbox', id="#{role.role}_all_#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_#{attResProp}")

@@ -123,6 +123,23 @@ router.post('/add_role', isAuthenticated, function (req, res) {
     });
 });
 
+router.post('/alter_role', isAuthenticated, function (req, res) {
+    var call_object = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+
+    };
+    hdb_callout.callHarperDB(call_object, JSON.parse(req.body.operationEditRole), function (err, result) {
+        if (err) {
+            return res.status(400).send(result);
+        }
+
+        return res.status(200).send(result);
+    });
+});
+
 router.get('/add_user', isAuthenticated, function (req, res) {
     res.render('add_user', {
         nameOfUser: req.user.username
@@ -135,6 +152,7 @@ router.get('/edit_role', isAuthenticated, function (req, res) {
         res.render('edit_role', {
             nameOfUser: req.user.username,
             schemas: resultArray[0],
+            flatenSchema: JSON.stringify(mapObject(resultArray[0])),
             roles: resultArray[1]
         });
     })
