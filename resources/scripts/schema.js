@@ -98,7 +98,7 @@ createAddTableType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('Select Schema')
+    span.appendChild(document.createTextNode('Select Schema'))
 
     var select = document.createElement('select');
     select.setAttribute('class', 'minwidth250 form-controls')
@@ -109,13 +109,13 @@ createAddTableType = () => {
     schemaNames.forEach(element => {
         var options = document.createElement('option');
         options.setAttribute('value', element)
-        options.append(element)
-        select.append(options);
+        options.appendChild(document.createTextNode(element))
+        select.appendChild(options);
     });
 
-    btnDiv.append(span);
-    btnDiv.append(select);
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span);
+    btnDiv.appendChild(select);
+    appendChangeType.appendChild(btnDiv);
 
     btnDiv = document.createElement('div')
     btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
@@ -129,12 +129,12 @@ createAddTableType = () => {
 
     span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('Table Name')
+    span.appendChild(document.createTextNode('Table Name'))
 
-    btnDiv.append(span)
-    btnDiv.append(input)
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(input)
 
-    appendChangeType.append(btnDiv);
+    appendChangeType.appendChild(btnDiv);
 
     btnDiv = document.createElement('div')
     btnDiv.setAttribute('class', 'btn-group clear mt-2 mb-2')
@@ -148,11 +148,11 @@ createAddTableType = () => {
 
     span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('Hash Attribute')
+    span.appendChild(document.createTextNode('Hash Attribute'))
 
-    btnDiv.append(span)
-    btnDiv.append(input)
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(input)
+    appendChangeType.appendChild(btnDiv);
     $("div #exampleModalLongTitle").text("Add Table");
 }
 
@@ -167,7 +167,7 @@ createAddSchemaType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('Schema Name')
+    span.appendChild(document.createTextNode('Schema Name'))
 
     var input = document.createElement('input');
     input.setAttribute('class', 'minwidth250 form-controls')
@@ -175,9 +175,9 @@ createAddSchemaType = () => {
     input.setAttribute('id', 'schemaName')
     input.setAttribute('required', true)
 
-    btnDiv.append(span);
-    btnDiv.append(input);
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span);
+    btnDiv.appendChild(input);
+    appendChangeType.appendChild(btnDiv);
     $("div #exampleModalLongTitle").text("Add Schema");
 }
 
@@ -193,7 +193,7 @@ createuploadFileType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('Path CSV File')
+    span.appendChild(document.createTextNode('Path CSV File'))
 
 
     var upload = document.createElement('input');
@@ -201,9 +201,9 @@ createuploadFileType = () => {
     upload.setAttribute('name', 'csvPath')
     upload.setAttribute('id', 'uploadFileCsv')
     upload.setAttribute('class', 'minwidth250 form-controls')
-    btnDiv.append(span)
-    btnDiv.append(upload)
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(upload)
+    appendChangeType.appendChild(btnDiv);
 }
 
 createUrlCSVType = () => {
@@ -217,16 +217,16 @@ createUrlCSVType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('CSV Url')
+    span.appendChild(document.createTextNode('CSV Url'))
 
 
     var upload = document.createElement('input');
     upload.setAttribute('type', 'text');
     upload.setAttribute('name', 'csvUrl')
     upload.setAttribute('class', 'minwidth250 form-controls')
-    btnDiv.append(span)
-    btnDiv.append(upload)
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(upload)
+    appendChangeType.appendChild(btnDiv);
 }
 
 createDataCSVType = () => {
@@ -240,13 +240,13 @@ createDataCSVType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('CSV Data')
+    span.appendChild(document.createTextNode('CSV Data'))
 
 
     var upload = document.createElement('textarea');
     upload.setAttribute('name', 'csvData')
     upload.setAttribute('class', 'minwidth250 form-controls')
-    btnDiv.append(span)
-    btnDiv.append(upload)
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(upload)
+    appendChangeType.appendChild(btnDiv);
 }

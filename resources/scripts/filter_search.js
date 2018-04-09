@@ -270,13 +270,13 @@ createOtherFilterColumn = () => {
     condition.forEach(element => {
         var conditionOption = document.createElement('option')
         conditionOption.setAttribute('value', element)
-        conditionOption.append(element)
-        conditions.append(conditionOption);
+        conditionOption.appendChild(document.createTextNode(element))
+        conditions.appendChild(conditionOption);
     });
 
-    btnGroupDiv.append(conditions)
+    btnGroupDiv.appendChild(conditions)
 
-    colDiv.append(btnGroupDiv)
+    colDiv.appendChild(btnGroupDiv)
 
     var btnGroupDivColumn = document.createElement('div')
     btnGroupDivColumn.setAttribute('class', 'btn-group minfiltertitle')
@@ -295,18 +295,18 @@ createOtherFilterColumn = () => {
 
     var options = document.createElement('option')
     options.setAttribute('value', '')
-    options.append('Select Column')
+    options.appendChild(document.createTextNode('Select Column'))
 
     attributes.forEach(element => {
         options = document.createElement('option')
         options.setAttribute('value', element)
-        options.append(element)
-        columnSelect.append(options);
+        options.appendChild(document.createTextNode(element))
+        columnSelect.appendChild(options);
     });
 
-    btnGroupDivColumn.append(columnSelect);
+    btnGroupDivColumn.appendChild(columnSelect);
 
-    colDiv.append(btnGroupDivColumn)
+    colDiv.appendChild(btnGroupDivColumn)
 
     var btnGroupDivOperation = document.createElement('div')
     btnGroupDivOperation.setAttribute('class', 'btn-group minfiltertitle')
@@ -320,13 +320,13 @@ createOtherFilterColumn = () => {
     operations.forEach(element => {
         var options = document.createElement('option')
         options.setAttribute('value', element)
-        options.append(element)
-        operationSelect.append(options);
+        options.appendChild(document.createTextNode(element))
+        operationSelect.appendChild(options);
     });
 
-    btnGroupDivOperation.append(operationSelect);
+    btnGroupDivOperation.appendChild(operationSelect);
 
-    colDiv.append(btnGroupDivOperation)
+    colDiv.appendChild(btnGroupDivOperation)
 
     var valueDiv = document.createElement('div')
 
@@ -335,8 +335,8 @@ createOtherFilterColumn = () => {
     valueInput.setAttribute('class', 'form-control minwidthtextbox')
     valueInput.setAttribute('style', 'float:left; margin-left:10px; max-width:200px; margin-right:5px;')
     valueInput.setAttribute('placeholder', 'Enter Value')
-    valueDiv.append(valueInput);
-    colDiv.append(valueDiv)
+    valueDiv.appendChild(valueInput);
+    colDiv.appendChild(valueDiv)
 
     var removeDiv = document.createElement('div')
     removeDiv.setAttribute('class', 'removeicon')
@@ -344,11 +344,11 @@ createOtherFilterColumn = () => {
     var removeIcon = document.createElement('i')
     removeIcon.setAttribute('class', 'fa fa-times text-red')
 
-    removeDiv.append(removeIcon);
+    removeDiv.appendChild(removeIcon);
 
-    colDiv.append(removeDiv)
+    colDiv.appendChild(removeDiv)
 
-    rowDiv.append(colDiv);
+    rowDiv.appendChild(colDiv);
     $('#otherFilterColumn').append(rowDiv);
     selectToggle();
     removeFilter();

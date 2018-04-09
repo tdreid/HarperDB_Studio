@@ -49,7 +49,7 @@ createuploadFileType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('Path CSV File')
+    span.appendChild(document.createTextNode('Path CSV File'))
 
 
     var upload = document.createElement('input');
@@ -57,9 +57,9 @@ createuploadFileType = () => {
     upload.setAttribute('name', 'csvPath')
     upload.setAttribute('id', 'uploadFileCsv')
     upload.setAttribute('class', 'minwidth250 form-controls')
-    btnDiv.append(span)
-    btnDiv.append(upload)
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(upload)
+    appendChangeType.appendChild(btnDiv);
 }
 
 createUrlCSVType = () => {
@@ -73,16 +73,16 @@ createUrlCSVType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('CSV Url')
+    span.appendChild(document.createTextNode('CSV Url'))
 
 
     var upload = document.createElement('input');
     upload.setAttribute('type', 'text');
     upload.setAttribute('name', 'csvUrl')
     upload.setAttribute('class', 'minwidth250 form-controls')
-    btnDiv.append(span)
-    btnDiv.append(upload)
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(upload)
+    appendChangeType.appendChild(btnDiv);
 }
 
 createDataCSVType = () => {
@@ -96,15 +96,15 @@ createDataCSVType = () => {
 
     var span = document.createElement('span')
     span.setAttribute('class', 'minwidth150 mr-2')
-    span.append('CSV Data')
+    span.appendChild(document.createTextNode('CSV Data'))
     
 
     var upload = document.createElement('textarea');
     upload.setAttribute('name', 'csvData')
     upload.setAttribute('class', 'minwidth250 form-controls')
-    btnDiv.append(span)
-    btnDiv.append(upload)
-    appendChangeType.append(btnDiv);
+    btnDiv.appendChild(span)
+    btnDiv.appendChild(upload)
+    appendChangeType.appendChild(btnDiv);
 }
 
 getNumOfRecords = () => {
