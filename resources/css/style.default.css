@@ -3651,7 +3651,7 @@ select.input-sm {
 }
 
 /* switch */
-.switchery {
+/* .switchery {
   background-color: #fff;
   border: 1px solid #dfdfdf;
   border-radius: 20px;
@@ -3678,7 +3678,7 @@ select.input-sm {
   position: absolute;
   top: 0;
   width: 24px;
-}
+} */
 small, .small {
   font-size: 85%;
 }
