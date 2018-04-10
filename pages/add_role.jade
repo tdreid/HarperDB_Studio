@@ -64,20 +64,20 @@ block content
 
                                                     ul
                                                         li
-                                                            label.tree_label(title='Read')
-                                                                | R
+                                                            label.tree_label(title='Read') 
+                                                                span.mr-2 R                                                                
                                                                 input.js-switch(type='checkbox', id="#{schemaProp}_#{tableProp}_R", class="#{schemaProp} #{schemaProp}_#{tableProp}", checked='checked')
                                                         li                                            
-                                                            label.tree_label(title='Insert')
-                                                                | I
+                                                            label.tree_label(title='Insert') 
+                                                                span.mr-3 I
                                                                 input.js-switch(type='checkbox', id="#{schemaProp}_#{tableProp}_I", class="#{schemaProp} #{schemaProp}_#{tableProp}", checked='checked')
                                                         li                                            
                                                             label.tree_label(title='Update')
-                                                                | U
+                                                                span.mr-2 U
                                                                 input.js-switch(type='checkbox', id="#{schemaProp}_#{tableProp}_U", class="#{schemaProp} #{schemaProp}_#{tableProp}", checked='checked')
                                                         li                                            
                                                             label.tree_label(title='Delete')
-                                                                | D
+                                                                span.mr-2 D
                                                                 input.js-switch(type='checkbox', id="#{schemaProp}_#{tableProp}_D", class="#{schemaProp} #{schemaProp}_#{tableProp}", checked='checked')
                                                         li
                                                             input(type='checkbox', checked='checked')
@@ -94,11 +94,11 @@ block content
                                                                             li
                                                                                 span(style="width: 80px;") #{attributesValue['attribute']}
                                                                                 span(style="width: 300px; text-align: right")
-                                                                                    span.ml-3.mr-0(title='Read') R
+                                                                                    span.ml-3.mr-1(title='Read') R
                                                                                     input.js-switch(class="#{schemaProp} #{schemaProp}_#{tableProp} #{schemaProp}_#{tableProp}_All", type='checkbox', id="#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_R", checked='checked')
-                                                                                    span.ml-3.mr-0(title='Insert') I
+                                                                                    span.ml-3.mr-1(title='Insert') I
                                                                                     input.js-switch(class="#{schemaProp} #{schemaProp}_#{tableProp} #{schemaProp}_#{tableProp}_All", type='checkbox', id="#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_I", checked='checked')
-                                                                                    span.ml-3.mr-0(title='Update') U
+                                                                                    span.ml-3.mr-1(title='Update') U
                                                                                     input.js-switch(class="#{schemaProp} #{schemaProp}_#{tableProp} #{schemaProp}_#{tableProp}_All", type='checkbox', id="#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_U", checked='checked')
-                                                                                    span.ml-3.mr-0(title='Delete') D
+                                                                                    span.ml-3.mr-1(title='Delete') D
                                                                                     input.js-switch(class="#{schemaProp} #{schemaProp}_#{tableProp} #{schemaProp}_#{tableProp}_All", type='checkbox', id="#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}_D", checked='checked')        
