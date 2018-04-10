@@ -25,7 +25,7 @@ block content
                     | Search Roles  
                     input#searchRole.ml-3(type='text')
                     a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='/security/add_role') Add New
-        each role in roles
+        each role in roles                        
             section(id="#{role.role}")
                 hr
                 .clear
@@ -35,7 +35,7 @@ block content
                                 span.mr-3.largetext
                                     a(href='#editname' class="editName", id='clickToChange_#{role.role}')
                                         i.fa.fa-pencil
-                                    span(class="showName", id="showName_#{role.role}")
+                                    span(class="showName", id="showName_#{role.role}", data-toggle="collapse", data-target="#collapse_#{role.role}")
                                         | #{role.role}
                                 //- input(id="#{role.role}_newRoleName", type='text' value="#{role.role}" hidden)
                                 span.ml-5.mr-3 Super User
@@ -45,7 +45,7 @@ block content
                                     input.js-switch(id="#{role.role}_superadmin", type='checkbox')
                         button.btn.btn-mainadd.pull-right.width100(data-toggle='modal', data-target='#EditRoleModal', type='button', aria-haspopup='true', data-id="#{role.id}" data-name="#{role.role}" aria-expanded='false')
                             | Save
-                .clear.pt-3
+                .clear.pt-3.collapse(id="collapse_#{role.role}")
                     .boxdisplay
                         .pull-left
                             .boxdisplay-6
@@ -135,6 +135,7 @@ block content
                             .boxdisplay.largetitle
                                 .pull-right
                                     i.fa.fa-trash(data-toggle='modal', data-target='#deleteRole', style='margin-right:10px;' data-id="#{role.id}", data-name="#{role.role}")
+                br
                 br
     #EditRoleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
         .modal-dialog.modal-dialog-centered(role='document')
