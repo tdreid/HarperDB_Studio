@@ -150,7 +150,8 @@ $(document).ready(function () {
                             sTable.destroy();
                             $('#resultTable').empty();
                         }
-                        alert('data is empty');
+                        // alert('data is empty');
+                        toastr.info('data is empty');
                     }
                 }
                 $(document.body).css({
