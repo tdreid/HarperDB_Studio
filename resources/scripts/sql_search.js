@@ -135,14 +135,14 @@ $(document).ready(function () {
         event.preventDefault();
     });
 
-    $('.dragablebtn.doubleclick').dblclick((e) => {        
+    $('.dragablebtn.doubleclick').dblclick((e) => {
         document.getElementById("exampleTextarea").value += e.target.attributes['value'].value;
     })
 
-    // $('li.doubleclick').dblclick((e) => {        
-    //     console.log(this)
-    //     // document.getElementById("exampleTextarea").value += e.target.attributes['value'].value;
-    // })
+    $('li .doubleclick').dblclick((e) => {
+        // console.log($(e.currentTarget).attr('value'));
+        document.getElementById("exampleTextarea").value += $(e.currentTarget).attr('value')
+    })
 });
 
 function saveFavorite() {
