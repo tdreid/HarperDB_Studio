@@ -179,7 +179,7 @@ router.post('/getalluser', isAuthenticated, function (req, res) {
     }
     hdb_callout.callHarperDB(connection, operation, function (err, user) {
         if (err) {
-            return res.status(400).send(err);
+            return res.status(400).send(user);
         }
 
         return res.status(200).send(user);
@@ -219,23 +219,16 @@ router.post('/add_user', isAuthenticated, function (req, res) {
         role: req.body.role,
         username: req.body.username,
         password: req.body.password,
-        active: req.body.active != undefined ? true : false
+        active: req.body.active
 
     }
 
     hdb_callout.callHarperDB(connection, operation, function (err, message) {
-        console.log(err, message);
         if (err) {
-            return res.render('add_user', {
-                message: err,
-                nameOfUser: req.user.username
-            });
+            return res.status(400).send(message);
         }
 
-        return res.render('add_user', {
-            message: message.message,
-            nameOfUser: req.user.username
-        });
+        return res.status(200).send(message);
     });
 });
 

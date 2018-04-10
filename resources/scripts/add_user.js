@@ -2,6 +2,24 @@ let users = null;
 let roles = '';
 let usernameForDelete = null;
 $(document).ready(function () {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-full-width",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
     $.ajax({
         type: "POST",
         url: '/security/getalluser',
@@ -53,6 +71,17 @@ $(document).ready(function () {
                 required: true,
             },
         },
+        submitHandler: function (form) {
+
+            var newUser = {
+                username: $("input[name=username]").val(),
+                password: $("input[name=password]").val(),
+                role: $("select[name=role]").val(),
+                active: $("input[name=active]").prop('checked'),
+            }
+            addnewUser(newUser);
+        }
+
 
     });
 
@@ -66,19 +95,51 @@ $(document).ready(function () {
     $('#deleteUserModal').on('show.bs.modal', function (e) {
         var curUsername = $(e.relatedTarget).data('id');
         usernameForDelete = curUsername;
-        console.log(usernameForDelete);
     });
 
     $("#DeleteUserBtn").click(function () {
-        console.log(usernameForDelete);
         dropUser(usernameForDelete);
     });
 
 });
 
+addnewUser = function (newUser) {
+    $.ajax({
+        type: "POST",
+        url: '/security/add_user',
+        data: newUser,
+        success: (res => {
+            if (res.error) {
+                toastr.error(res.error);
+            } else {
+                toastr.info(res.message);
+                $.ajax({
+                    type: "POST",
+                    url: '/security/getalluser',
+                    success: (res => {
+                        users = res;
+                        if (res.error != undefined)
+                            console.log(res.error);
+                        else {
+                            var sTable = $('#AllUserTable').DataTable();
+                            sTable.destroy();
+                            $('#AllUserTable tbody').children().remove()
+                            createUsersTable(users);
+                            setSwitch();
+                            setDataTable();
+                        }
+
+                    }),
+                    dataType: 'json'
+                });
+            }
+        }),
+        dataType: 'json'
+    });
+}
+
 createUsersTable = function (allUser) {
     var tbody = $('#AllUserTable tbody');
-    console.log(allUser);
     allUser.forEach(user => {
         if (user.username != 'nook') {
             var tr = document.createElement('tr');
@@ -160,7 +221,8 @@ function toggleActive(username) {
                 type: "POST",
                 url: '/security/update_user',
                 data: user,
-                success: function () {
+                success: function (res) {
+                    toastr.info(JSON.stringify(res));
                     console.log('updated successfully');
                 },
                 error: function (err) {
@@ -174,7 +236,7 @@ function toggleActive(username) {
 }
 
 setDataTable = () => {
-    sTable = $('#AllUserTable').DataTable({
+    var sTable = $('#AllUserTable').DataTable({
         "dom": "<'col-md-12't><'col-md-4'<'pull-left'l>><'col-md-8 right-pagging'p>",
         "lengthMenu": [
             [10, 50, 100, -1],
