@@ -19,7 +19,12 @@ app.use(favicon("https://s3.amazonaws.com/hdb-marketing/harperdb__flavicon_4Cw_i
 app.use(session({
     secret: 'keyboard cat',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    rolling: true,
+    cookie: {
+        maxAge: 60000 * 15, // 15 minutes 
+    }
+
 }));
 app.use(passport.initialize());
 app.use(passport.session());
