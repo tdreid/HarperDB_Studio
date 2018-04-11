@@ -30,7 +30,7 @@ $(document).ready(function () {
     var editor = new Textarea(textareaElement);
     var keywords = JSON.parse(document.getElementById('keywordForAuto').value);
 
-    var reserveWords = ['SELECT', 'INSERT', 'UPDATE', 'FROM', 'WHERE', 'INTO', 'SET'].concat(keywords[0]);
+    var reserveWords = ['SELECT', 'INSERT', 'UPDATE', 'FROM', 'WHERE', 'INTO', 'SET', 'DELETE'].concat(keywords[0]);
     var schemaAndChilds = keywords[1];
     var textcomplete = new Textcomplete(editor, {
         dropdown: {
@@ -240,7 +240,12 @@ runDatatable = function () {
                         sTable.destroy();
                         $('#resultTable').empty();
                     }
-                    alert('data is empty');
+                    if (obj.result.message)
+                        toastr.success(obj.result.message);
+                    else if (obj.result.length == 0)
+                        toastr.info('data is empty');
+                    else
+                        toastr.info(JSON.stringify(obj.result));
                 }
             }
             $(document.body).css({
