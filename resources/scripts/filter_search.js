@@ -57,14 +57,16 @@ $(document).ready(function () {
         var whereString = '';
         if (first.length > 0) {
             var curValue = first[3].value.replace(/"/g, '\'');
-            console.log(curValue);
-            console.log(isNaN(parseFloat(curValue)));
-            if (isNaN(parseFloat(curValue)) == true)
-                curValue = curValue;
+            if (isNaN(parseFloat(curValue)) == true){
+                curValue = "'" +curValue + "'";
+                console.log(curValue);
+            }
             else {
                 curValue = parseFloat(curValue);
                 console.log(curValue);
+               
             }
+            
             whereString = " WHERE " + first[1].value + " " + first[2].value + " " + curValue;
         }
 
