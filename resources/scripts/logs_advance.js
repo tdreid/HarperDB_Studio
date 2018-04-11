@@ -20,9 +20,9 @@ $(document).ready(function () {
         "hideMethod": "fadeOut"
     }
 
-    $('input[name="daterange"]').daterangepicker({
+    $('#reportrange').daterangepicker({
             timePicker: false,
-            autoApply: true,
+            autoApply: true,            
             locale: {
                 format: 'YYYY-MM-DD'
             }
@@ -31,8 +31,10 @@ $(document).ready(function () {
             startDate = start.format('YYYY-MM-DD');
             endDate = end.format('YYYY-MM-DD');
             // alert("A new date range was chosen: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        }
+            $('#showRangeDate').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));            
+        }        
     );
+
 
     $('#searchLogs, .fa.fa-refresh').click(function () {
 
@@ -111,8 +113,8 @@ $(document).ready(function () {
                     if ($.fn.DataTable.isDataTable('#logsAdvance')) {
                         sTable.destroy();
                         $('#logsAdvance').empty();
-                    }
-                    alert('data is empty');
+                    }                    
+                    toastr.info('data is empty');
                 }
 
                 $(document.body).css({
