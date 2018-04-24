@@ -39,7 +39,8 @@ var main = require('./routes/main'),
     user_detail = require('./routes/user_detail'),
     schema = require('./routes/schema'),
     health = require('./routes/health'),
-    help = require('./routes/help');
+    help = require('./routes/help'),
+    live_link = require('./routes/live_link');
 
 app.use('/main', main);
 app.use('/login', login);
@@ -51,6 +52,7 @@ app.use('/user_detail', user_detail);
 app.use('/schema', schema);
 app.use('/health', health);
 app.use('/help', help);
+app.use('/live_link', live_link);
 app.use('/', main);
 
 //authen

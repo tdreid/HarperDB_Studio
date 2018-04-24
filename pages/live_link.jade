@@ -1,0 +1,12 @@
+extends ./layout
+block link 
+    -var selected = 'Explore';
+block content
+    script(src="../../scripts/live_link.js")
+    .row
+        .col-md-12
+            .boxdisplay
+                .largetitle.pull-left Saved Name of Graph
+
+        .col-md-12
+            div#chart_div

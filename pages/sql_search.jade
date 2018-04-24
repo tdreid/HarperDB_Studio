@@ -5,6 +5,7 @@ block link
 block content
     script(src="../../textcomplete/package/dist/textcomplete.js")
     script(src="../../scripts/sql_search.js")
+    script(src="../../scripts/chart_sql_search.js")
     input#keywordForAuto(name="keyword", type="hidden", value="#{keywords}")
     - var thisSchemas = JSON.stringify(schemas);
     input#schemaAll(type="hidden", name="schemaAll" value="#{thisSchemas}")
@@ -86,6 +87,23 @@ block content
                                         div
                                             table#resultTable.table.table-striped
 
+                        // chart
+                        #collapseResultChart.contentbackground.text-white.p-3.collapse
+                            .secondheader
+                                .midtitle
+                                    | Results
+                                    .pull-right
+                                        i.fa.fa-sign-out
+                                    .pull-right
+                                        i.fa.fa-save(data-target='#saveModalCenter', data-toggle='modal', style='margin-right:10px;')
+                                    .pull-right
+                                        i.fa.fa-refresh(style='margin-right:10px;')
+                            div
+                                .row(style='overflow:auto')
+                                    .col-md-12
+                                        div#chart_div
+
+
                     #functionbox.col-3(style='overflow:auto;')
                         .contentbackground.pb-3(style='overflow:auto;')
                             ul.nav.nav-tabs(role='tablist')
@@ -103,28 +121,29 @@ block content
                                 #buzz.tab-pane.fade(role='tabpanel')
                                     div Format your chart
                                     .btn-group
-                                        button.btn.dropdown-toggle.minwidthcombobox(data-toggle='dropdown', type='button', aria-expanded='false', aria-haspopup='true') Area
-                                        .dropdown-menu
-                                            a.dropdown-item(href='#') Line
-                                            a.dropdown-item(href='#') Bar
-                                            a.dropdown-item(href='#') Number Overlay
-                                            a.dropdown-item(href='#') Pie
-                                            a.dropdown-item(href='#') Cohot Grd
-                                            a.dropdown-item(href='#') Map
-                                            a.dropdown-item(href='#') Sparkline
-                                            a.dropdown-item(href='#') Scatter
-                                            a.dropdown-item(href='#') Bubble
-                                            a.dropdown-item(href='#') Image
+                                        select#type-chart(name="").form-controls.minwidthcombobox Area
+                                            option(value='Line') Line
+                                            option(value='Bar') Bar
+                                            option(value='Number Overlay') Number Overlay
+                                            option(value='Pie') Pie
+                                            option(value='Cohot Grd') Cohot Grd
+                                            option(value='Map') Map
+                                            option(value='Sparkline') Sparkline
+                                            option(value='Scatter') Scatter
+                                            option(value='Bubble') Bubble
+                                            option(value='Image') Image
                                     .pt-3 Chart Title
-                                    input(type='text')
+                                    input(type='text').form-controls
                                     .pt-3 Axis
                                     .pl-4
                                         .pt-3 X Axis Label
-                                        input(type='text')
+                                        input(type='text').form-controls
                                         .pt-3 Y Axis Label
-                                        input(type='text')
+                                        input(type='text').form-controls
                                     .pt-3 Footer
-                                    input(type='text')
+                                    input(type='text').form-controls
+                                    .pt-3(style="text-align: center")
+                                        button.btn.btn-main.w-100.btn-b-10#clickGenerateChart Generate
             // Modal
             #saveModalCenter.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
                 .modal-dialog.modal-dialog-centered(role='document')
