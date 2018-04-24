@@ -96,3 +96,6 @@ var lineChart = () => {
         chart.draw(data, options);
     }
 }
+var createDataArray = (data) => {
+    
+}
