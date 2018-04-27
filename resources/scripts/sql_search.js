@@ -53,56 +53,56 @@ $(document).ready(function () {
     }
 
     textcomplete.register([{
-            wordsBegin: reserveWords,
-            match: /\b(\w+)$/,
-            search: function (term, callback) {
-                callback($.map(this.wordsBegin, function (word) {
-                    return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
-                }));
-            },
-            index: 1,
-            replace: function (word) {
-                curDotName = word;
-                return word;
-            },
-            context: (text) => {
-                return checkIsGetChild(text);
-            }
+        wordsBegin: reserveWords,
+        match: /\b(\w+)$/,
+        search: function (term, callback) {
+            callback($.map(this.wordsBegin, function (word) {
+                return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
+            }));
         },
-        {
-            keywordAndChild: schemaAndChilds,
-            match: /\b(\.\w*)$/,
-            search: function (term, callback) {
-                var dot = term.indexOf('.');
-                var fontTerm = term.substring(0, dot - 1);
-                var useWordArray = this.keywordAndChild[curDotName];
-                callback($.map(useWordArray, function (word) {
-
-                    var subTerm = term.substring(dot + 1, term.length + 1);
-                    if (subTerm.length > 0)
-                        return word.toLowerCase().indexOf(subTerm.toLowerCase()) === 0 ? word : null;
-                    else return word;
-
-                }));
-            },
-            index: 1,
-            replace: function (word, term) {
-
-                return '.' + word;
-            }
+        index: 1,
+        replace: function (word) {
+            curDotName = word;
+            return word;
         },
+        context: (text) => {
+            return checkIsGetChild(text);
+        }
+    },
+    {
+        keywordAndChild: schemaAndChilds,
+        match: /\b(\.\w*)$/,
+        search: function (term, callback) {
+            var dot = term.indexOf('.');
+            var fontTerm = term.substring(0, dot - 1);
+            var useWordArray = this.keywordAndChild[curDotName];
+            callback($.map(useWordArray, function (word) {
+
+                var subTerm = term.substring(dot + 1, term.length + 1);
+                if (subTerm.length > 0)
+                    return word.toLowerCase().indexOf(subTerm.toLowerCase()) === 0 ? word : null;
+                else return word;
+
+            }));
+        },
+        index: 1,
+        replace: function (word, term) {
+
+            return '.' + word;
+        }
+    },
 
     ]);
 
     $('#runSQL, .fa-refresh').click(() => {
-
+        $("#collapseResultChart").hide();
         runDatatable();
     })
 
     //export
-    $('.fa-sign-out').click(() => {
-        sTable.button(0).trigger();
-    });
+    // $('.fa-sign-out').click(() => {
+    //     sTable.button(0).trigger();
+    // });
 
     var schemas = $('#schemaAll').val()
     schemas = JSON.parse(schemas);
@@ -141,7 +141,11 @@ $(document).ready(function () {
 
     $('li .doubleclick').dblclick((e) => {
         // console.log($(e.currentTarget).attr('value'));
-        document.getElementById("exampleTextarea").value += $(e.currentTarget).attr('value')
+        var curValue = document.getElementById("exampleTextarea").value;
+
+        var curSelectCusror = document.getElementById('exampleTextarea').selectionStart
+        document.getElementById("exampleTextarea").value = curValue.substring(0, curSelectCusror) + $(e.currentTarget).attr('value') + curValue.substring(curSelectCusror, curValue.length);
+
     })
 });
 

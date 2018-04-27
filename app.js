@@ -52,7 +52,7 @@ app.use('/user_detail', user_detail);
 app.use('/schema', schema);
 app.use('/health', health);
 app.use('/help', help);
-app.use('/live_link', live_link);
+app.use('/livelink', live_link);
 app.use('/', main);
 
 //authen

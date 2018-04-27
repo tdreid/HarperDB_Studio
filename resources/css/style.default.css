@@ -2715,7 +2715,7 @@ mark,
   cursor: pointer;
 }
 
-.fa-download:hover, .fa-sign-out:hover, .fa-save:hover, .fa-refresh:hover {
+.fa-download:hover, .fa-sign-out:hover, .fa-save:hover, .fa-refresh:hover, .fa-cog:hover {
   color:#00925F;
   cursor: pointer;
 }
