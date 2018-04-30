@@ -33,7 +33,11 @@ $(document).ready(function () {
                 setDataTable();
             }
         }),
-        dataType: 'json'
+        dataType: 'json',
+        error: function (err) {
+            console.log(err);
+            document.location.href = '/logout';
+        }
     });
 
     $.ajax({
@@ -48,7 +52,11 @@ $(document).ready(function () {
             });
 
         }),
-        dataType: 'json'
+        dataType: 'json',
+        error: (err) => {
+            console.log(err)
+            document.location.href = '/logout';
+        }
     });
 
 
@@ -130,11 +138,19 @@ addnewUser = function (newUser) {
                         }
 
                     }),
-                    dataType: 'json'
+                    dataType: 'json',
+                    error: function (err) {
+                        console.log(err)
+                        document.location.href = '/logout';
+                    }
                 });
             }
         }),
-        dataType: 'json'
+        dataType: 'json',
+        error: function (err) {
+            console.log(err)
+            document.location.href = '/logout';
+        }
     });
 }
 
@@ -226,6 +242,7 @@ function toggleActive(username) {
                     console.log('updated successfully');
                 },
                 error: function (err) {
+                    document.location.href = '/logout';
                     console.log(err);
                 }
             });
@@ -281,6 +298,7 @@ dropUser = function (username) {
             console.log('deleted successfully');
         },
         error: function (err) {
+            document.location.href = '/logout';
             console.log(err);
         }
     });

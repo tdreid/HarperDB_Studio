@@ -5,8 +5,11 @@ var isAuthenticated = function (req, res, next) {
     } else {
         req.logout();
         ref = req.originalUrl.substr(1, req.originalUrl.length);
-
-        return res.redirect('/login?ref=' + ref);
+        var isAjaxRequest = req.xhr;
+        if (isAjaxRequest)
+            return res.status(401).send();
+        else
+            return res.redirect('/login?ref=' + ref);
     }
 
 }

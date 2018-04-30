@@ -127,6 +127,7 @@ $(document).ready(function () {
                     'cursor': 'default'
                 });
                 console.log(err);
+                document.location.href = '/logout';
             }
         });
     })

@@ -169,6 +169,7 @@ var getData = (sql) => {
             },
             error: function (error) {
                 console.log(error);
+                document.location.href = '/logout';
             }
         })
     })

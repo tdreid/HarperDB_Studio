@@ -62,6 +62,7 @@ $(document).ready(function () {
                 $('#liveLinkUrl').val(liveLink);
             },
             error: function (error) {
+                document.location.href = '/logout';
                 console.log(error);
             }
         })
@@ -73,7 +74,10 @@ $(document).ready(function () {
             url: '/livelink/livelinklist',
             success: function (result) {
                 console.log(result);
+                $('#livelinkList')
+                    .empty()
                 result.forEach(element => {
+
                     $('#livelinkList')
                         .append($("<option></option>")
                             .attr("value", element.en_url)
@@ -84,6 +88,7 @@ $(document).ready(function () {
 
             },
             error: function (error) {
+                document.location.href = '/logout';
                 console.log(error);
             }
         })
@@ -151,6 +156,9 @@ function saveLivelink() {
             success: function (result) {
                 toastr.success(JSON.stringify(result));
                 resolve(true);
+            }, error: function (err) {
+                document.location.href = '/logout';
+                console.log(err);
             }
         })
     })

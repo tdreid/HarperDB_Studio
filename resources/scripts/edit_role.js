@@ -221,6 +221,7 @@ var editingRole = function (roleId, roleName) {
         },
         error: function (err) {
             console.log(err);
+            document.location.href = '/logout';
         }
     });
 }
@@ -231,7 +232,7 @@ var setEditble = (roleNameArray) => {
             trigger: $("#clickToChange_" + roleName),
             action: "click"
         };
-        $("#showName_" + roleName).editable(option, function (e) {});
+        $("#showName_" + roleName).editable(option, function (e) { });
     });
 }
 
@@ -256,6 +257,10 @@ var deleteRole = (roleId, roleName) => {
                 $("#" + roleName).empty();
             }
 
+        },
+        error: function (err) {
+            console.log(err);
+            document.location.href = '/logout';
         }
     })
 }

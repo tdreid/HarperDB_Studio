@@ -37,6 +37,7 @@ function toggleActive(username) {
         },
         error: function (err) {
             console.log(err);
+            document.location.href = '/logout';
         }
     });
 
@@ -76,6 +77,7 @@ dropUser = function (username) {
         },
         error: function (err) {
             console.log(err);
+            document.location.href = '/logout';
         }
     });
 }
@@ -114,6 +116,7 @@ resetPassword = () => {
         },
         error: function (err) {
             console.log(err);
+            document.location.href = '/logout';
         }
     });
 }

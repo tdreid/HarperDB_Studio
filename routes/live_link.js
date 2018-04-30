@@ -8,11 +8,6 @@ const express = require('express'),
 
 const secretkey = 'gettingLiveLinkOnly123!!!';
 
-router.get('/', isAuthenticated, function (req, res) {
-    res.render('live_link', {
-        nameOfUser: req.user.username
-    });
-})
 
 router.post('/save', isAuthenticated, function (req, res) {
     var en_url = encryptLivelink(req);

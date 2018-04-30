@@ -129,6 +129,7 @@ getNumOfRecords = () => {
             },
             error: function (err) {
                 console.log(err);
+                document.location.href = '/logout';
             }
         });
       });

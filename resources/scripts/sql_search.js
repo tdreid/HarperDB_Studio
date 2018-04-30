@@ -162,6 +162,10 @@ function saveFavorite() {
             success: function (result) {
                 toastr.success(JSON.stringify(result));
                 resolve(true);
+            },
+            error: function (res) {
+                console.log(res);
+                document.location.href = '/logout';
             }
         })
     })
@@ -262,6 +266,7 @@ runDatatable = function () {
                 'cursor': 'default'
             });
             console.log(err);
+            document.location.href = '/logout';
         }
     });
 }
