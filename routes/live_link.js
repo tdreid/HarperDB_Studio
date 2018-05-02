@@ -11,13 +11,13 @@ const secretkey = 'gettingLiveLinkOnly123!!!';
 
 router.post('/save', isAuthenticated, function (req, res) {
     var en_url = encryptLivelink(req);
-    favorite.setLiveLink(req, res, en_url, req.body.livelinkName).then((result) => {
+    favorite.setLiveLink(req, en_url).then((result) => {
         return res.status(200).send(result);
     })
 })
 
 router.get('/livelinklist', isAuthenticated, function (req, res) {
-    favorite.getLivelink(req, res).then(recents => {
+    favorite.getLivelink(req).then(recents => {
         return res.status(200).send(recents);
     })
 })

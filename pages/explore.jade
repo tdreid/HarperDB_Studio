@@ -41,10 +41,10 @@ block content
                 - var str = value.sql
                 - var encode = Buffer.from(""+str+"").toString('base64')
                 if index % 2 == 0
-                  a.list-group-item.list-group-item-action.list-group-item-dark(href='/explore/sql_search/#{encode}') #{value.name}
+                  a.list-group-item.list-group-item-action.list-group-item-dark(href='/explore/sql_search/#{encode}') #{value.livelinkName}
                 else
-                  if value.name != undefined
-                    a.list-group-item.list-group-item-action(href='/explore/sql_search/#{encode}') #{value.name}
+                  if value.livelinkName != undefined
+                    a.list-group-item.list-group-item-action(href='/explore/sql_search/#{encode}') #{value.livelinkName}
                   else
                     a.list-group-item.list-group-item-action.list-group-item-dark(href='#') No favorite
     header

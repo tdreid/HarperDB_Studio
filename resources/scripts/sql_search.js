@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     ]);
 
-    $('#runSQL, .fa-refresh').click(() => {
+    $('#runSQL').click(() => {
         $("#collapseResultChart").hide();
         runDatatable();
     })
@@ -136,7 +136,11 @@ $(document).ready(function () {
     });
 
     $('.dragablebtn.doubleclick').dblclick((e) => {
-        document.getElementById("exampleTextarea").value += e.target.attributes['value'].value;
+
+        var curValue = document.getElementById("exampleTextarea").value;
+
+        var curSelectCusror = document.getElementById('exampleTextarea').selectionStart
+        document.getElementById("exampleTextarea").value = curValue.substring(0, curSelectCusror) + e.target.attributes['value'].value + " " + curValue.substring(curSelectCusror, curValue.length);
     })
 
     $('li .doubleclick').dblclick((e) => {
@@ -144,7 +148,7 @@ $(document).ready(function () {
         var curValue = document.getElementById("exampleTextarea").value;
 
         var curSelectCusror = document.getElementById('exampleTextarea').selectionStart
-        document.getElementById("exampleTextarea").value = curValue.substring(0, curSelectCusror) + $(e.currentTarget).attr('value') + curValue.substring(curSelectCusror, curValue.length);
+        document.getElementById("exampleTextarea").value = curValue.substring(0, curSelectCusror) + $(e.currentTarget).attr('value') + " " + curValue.substring(curSelectCusror, curValue.length);
 
     })
 });
@@ -185,7 +189,8 @@ function copySqlLink() {
     document.execCommand("copy");
 
     /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
+    // alert("Copied the text: " + copyText.value);
+    toastr.success("Copied the text: " + copyText.value);
 }
 
 runDatatable = function () {

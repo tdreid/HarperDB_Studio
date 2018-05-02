@@ -39,7 +39,7 @@ var setFavorites = function (req, res, favoriteObj) {
     })
 }
 
-var setLiveLink = function (req, res, en_url, livelinkName) {
+var setLiveLink = function (req, en_url) {
     return new Promise(function (resolve) {
         var call_object = {
             username: req.user.username,
@@ -53,7 +53,8 @@ var setLiveLink = function (req, res, en_url, livelinkName) {
             date: new Date(),
             id: guid.create(),
             username: req.user.username,
-            livelinkName: livelinkName
+            livelinkName: req.body.livelinkName,
+            sql: req.body.sql,
             
         }
 
@@ -108,7 +109,7 @@ var getFavorites = function (req, res) {
 
 }
 
-var getLivelink = function (req, res) {
+var getLivelink = function (req) {
     return new Promise(function (resolve) {
         var call_object = {
             username: req.user.username,

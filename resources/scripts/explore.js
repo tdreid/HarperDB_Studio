@@ -12,7 +12,7 @@ $(document).ready(function () {
                 $("<a class='list-group-item list-group-item-action' href='" + url + "'>" + recents[i].sql + "</a>").appendTo('#listRecent');
         }
     }
-    else{
+    else {
         $("<a class='list-group-item list-group-item-action list-group-item-dark' href='#'>no recent query</a>").appendTo('#listRecent');
     }
 

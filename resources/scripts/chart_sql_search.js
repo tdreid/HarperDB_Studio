@@ -2,10 +2,10 @@
 var globalOptions = {};
 var gGraphType = null;
 $(document).ready(function () {
-    google.charts.load('current', { packages: ['corechart', 'line', 'bar', 'map', 'scatter', 'gauge', 'treemap'] });
+    google.charts.load('current', { packages: ['corechart', 'line', 'bar', 'map', 'scatter', 'gauge', 'treemap', 'geochart'], 'mapsApiKey': 'AIzaSyAP0UYqFCuSOOIMOQ6Ltmrx1B79XUw4Tmw' });
 
 
-    $("#clickGenerateChart").click(function () {
+    $("#clickGenerateChart, .fa-refresh").click(function () {
         var sqlQuery = $("#exampleTextarea").val();
 
         var options = {
@@ -36,6 +36,8 @@ $(document).ready(function () {
                 1: { color: '#009455' }
             },
             legend: { textStyle: { color: '#FFF' } }
+            , showTooltip: true,
+            showInfoWindow: true
         };
         globalOptions = options;
         var gType = $("#type-chart").val()
@@ -120,7 +122,8 @@ function copyLiveLink() {
     document.execCommand("copy");
 
     /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
+    // alert("Copied the text: " + copyText.value);
+    toastr.success("Copied the text: " + copyText.value);
 }
 
 function copyLiveLinkShare() {
@@ -136,7 +139,8 @@ function copyLiveLinkShare() {
     document.execCommand("copy");
 
     /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
+    // alert("Copied the text: " + copyText.value);
+    toastr.success("Copied the text: " + copyText.value);
 }
 
 

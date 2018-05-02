@@ -76,12 +76,12 @@ block content
                             .secondheader
                                 .midtitle
                                     | Results
-                                    .pull-right
-                                        i.fa.fa-sign-out
-                                    .pull-right
-                                        i.fa.fa-save(data-target='#saveModalCenter', data-toggle='modal', style='margin-right:10px;')
-                                    .pull-right
-                                        i.fa.fa-refresh(style='margin-right:10px;')
+                                    //- .pull-right
+                                    //-     i.fa.fa-sign-out(data-target='#shareLivelinkModal', data-toggle='modal', style='margin-right:10px;')
+                                    //- .pull-right
+                                    //-     i.fa.fa-save(data-target='#saveModalCenter', data-toggle='modal', style='margin-right:10px;')
+                                    //- .pull-right
+                                    //-     i.fa.fa-refresh(style='margin-right:10px;')
                             div
                                 .row(style='overflow:auto')
                                     .col-md-12
@@ -151,7 +151,7 @@ block content
                                         input#vTitle(type='text').form-controls
                                     .pt-3(style="text-align: center")
                                         button.btn.btn-main.w-100.btn-b-10#clickGenerateChart Generate
-            // Modal
+            // Modal save SQL
             #saveModalCenter.modal.fade(role='dialog', aria-hidden='true', aria-labelledby='exampleModalCenterTitle', tabindex='-1')
                 .modal-dialog.modal-dialog-centered(role='document')
                     .modal-content
@@ -275,6 +275,6 @@ block content
                     console.log(this);
                     var dragValue = $(button.draggable).attr('value');
                     var curSelectCusror = document.getElementById('exampleTextarea').selectionStart
-                    this.value = this.value.substring(0, curSelectCusror) + dragValue + this.value.substring(curSelectCusror, this.value.length);
+                    this.value = this.value.substring(0, curSelectCusror) + dragValue + this.value.substring(curSelectCusror, this.value.length) + " ";
                 }
                 });

@@ -6,7 +6,7 @@ const express = require('express'),
     favorite = require('../utility/favoritesQuery');
 
 router.get('/', isAuthenticated, function (req, res) {
-    favorite.getFavorites(req, res).then(recents => {
+    favorite.getLivelink(req).then(recents => {        
         res.render('explore', {
             recents: recents,
             nameOfUser: req.user.username
