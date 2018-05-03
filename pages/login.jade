@@ -39,12 +39,12 @@ html
                                 .form-group
                                     label.control-label(for='username') Username
                                     input#username.form-control(name='username' type='text',
-                                    placeholder='example@gmail.com', title='Please enter you username', required='' value='')
+                                    placeholder='', title='Please enter your username', required='' value='')
 
                                 .form-group
                                     label.control-label(for='password') Password
                                     input#password.form-control(name='password' type='password'
-                                    title='Please enter your password' placeholder='******'  required='' value='')
+                                    title='Please enter your password' placeholder=''  required='' value='')
 
                                 .panel.panel-filled.panel-c-accent.panel-collapse(style="margin-bottom: 10px")
                                     .panel-heading(style="padding: 7px")
@@ -53,15 +53,15 @@ html
                                                 i.fa.fa-chevron-down
 
                                         |                            Connection
-                                    .panel-body(style='display: none;')
+                                    .panel-body
                                         .form-group
                                             label.control-label(for='endpoint_url') Endpoint URL
                                             input#endpoint_url.form-control(name='endpoint_url' type='ip',
-                                            title='Please enter the ip or url HarperDB', value='', placeholder='localhost', required='')
+                                            title='Please enter the ip or url HarperDB', value='#{default_host}', placeholder='localhost', required='')
                                         .form-group
                                             label.control-label(for='endpoint_port') Endpoint Port
                                             input#endpoint_port.form-control(name='endpoint_port' type='text',
-                                            title='Please enter the port for HarperDB',value='', placeholder='', required='')
+                                            title='Please enter the port for HarperDB',value='#{default_port}', placeholder='', required='')
 
 
 

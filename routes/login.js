@@ -1,12 +1,21 @@
-var passport = require('passport');
+"use strict";
 
-const express = require('express')
-const router = express.Router()
+const passport = require('passport');
+const express = require('express');
+const router = express.Router();
+const config = require('../config/config');
 
+const DEFAULT_HOST = 'localhost';
+const DEFAULT_PORT = 9925;
 
 router.get('/', function (req, res) {
-
-    res.render('login', {title: 'Hey', ref: req.query.ref})
+    let login_object = {
+        title: 'Hey',
+        ref: req.query.ref,
+        default_host: config.default_host ? config.default_host : DEFAULT_HOST,
+        default_port: config.default_port ? config.default_port : DEFAULT_PORT
+    };
+    res.render('login', login_object);
     return;
 });
 
