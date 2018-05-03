@@ -163,7 +163,7 @@ var transformDataArray = (data) => {
             transform.push(Object.values(element))
         });
         return transform;
-    } catch {
+    } catch(err) {
         return transform;
     }
 }
