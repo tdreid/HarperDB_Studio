@@ -10,32 +10,38 @@ $(document).ready(function () {
 
         var options = {
             // 'width': 800,
-            'height': 350,
+            'height': 300,
             // chartArea: { width: '80%' },
             title: $('#chartTitle').val(),
             titleTextStyle: {
-                color: '#FFF',
+                color: '#333',
                 bold: true,
-            },
-            subtitle: $('#chartSubtitle').val(),
+            },            
+            // subtitle: $('#chartSubtitle').val(),
             hAxis: {
                 title: $('#hTitle').val(),
-                textStyle: { color: '#FFF' },
-                titleTextStyle: { color: '#FFF' }
+                textStyle: { color: '#333' },
+                titleTextStyle: { color: '#333' },
+                gridlines: {color: '#1E4D6B'}
             },
             vAxis: {
                 title: $('#vTitle').val(),
-                textStyle: { color: '#FFF' },
-                titleTextStyle: { color: '#FFF' }
+                textStyle: { color: '#333' },
+                titleTextStyle: { color: '#333' },
+                gridlines: {color: '#1E4D6B'}
             },
             bars: 'horizontal' // Required for Material Bar Charts.
             ,
-            backgroundColor: '#48494B',
+            backgroundColor: '#C6C8CA',
             series: {
                 0: { color: '#403B8A' },
                 1: { color: '#009455' }
             },
-            legend: { textStyle: { color: '#FFF' } }
+            legend: {
+                textStyle: {
+                    color: '#333'
+                }
+            }
             , showTooltip: true,
             showInfoWindow: true
         };

@@ -61,25 +61,27 @@ html
             .navbar-brand(style="color: white") HarperDB
             button.navbar-toggler(data-target='#navbarText', data-toggle='collapse', type='button', aria-controls='navbarText', aria-expanded='false', aria-label='Toggle navigation')
                 span.navbar-toggler-icon        
-    
+
         section.content
             .container
                 .row
-                    .col-md-12.mt-5
+                    .col-md-12.mt-3
                         .boxdisplay
                             .largetitle.pull-left #{livelinkName}
 
                     .col-md-12
-                        #chart_div
-                    .col-md-12.mt-5.mb-5
+                        .chart_div
+                    .col-md-12.mt-3.mb-3
                     .col-md-5
-                        div(style="height: 200px; background-color: #48494B;")
-                            h4.pt-2.pl-2(style="color: white") Notes
-                            p.pt-2.pl-2(style="color: white") #{notes}
-                    .col-md-2
-                    .col-md-5
-                        div(style="height: 200px; background-color: #48494B;") 
-                            h4.pt-2.pl-2(style="color: white") Another Graph Result
+                        div(style="height: 335px; background-color: #C6C8CA;")
+                            h4.pt-2.pl-2(style="color: #333") Notes
+                            p.pt-2.pl-2(style="color: #333") #{notes}
+                    .col-md-1
+                    .col-md-6.mb-5
+                        div(style="height: 300px; background-color: #C6C8CA;") 
+                            h4.pt-2.pl-2(style="color: #333") Another Graph Result
+                            .chart_div
+                        
 
         // Javascript files
         script(src='../../vendor/popper.js/umd/popper.min.js')

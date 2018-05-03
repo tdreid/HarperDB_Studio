@@ -1,82 +1,83 @@
 
 
-var barChart = function (datas, options) {
+var barChart = function (datas, options, element) {
     google.charts.setOnLoadCallback(drawAxisTickColors);
 
     function drawAxisTickColors() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        var chart = new google.charts.Bar(element);
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 }
 
-var lineChart = (datas, options) => {
+var lineChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.charts.Line(document.getElementById('chart_div'));
+        var chart = new google.charts.Line(element);
 
         chart.draw(data, google.charts.Line.convertOptions(options));
     }
 }
 
-var pieChart = (datas, options) => {
+var pieChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.PieChart(element);
         chart.draw(data, google.charts.Line.convertOptions(options));
     }
 }
 
-var scatterChart = (datas, options) => {
+var scatterChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.charts.Scatter(document.getElementById('chart_div'));
+        var chart = new google.charts.Scatter(element);
         chart.draw(data, google.charts.Scatter.convertOptions(options));
     }
 }
 
-var areaChart = (datas, options) => {
+var areaChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        console.log(element);
+        var chart = new google.visualization.AreaChart(element);
         chart.draw(data, google.charts.Scatter.convertOptions(options));
     }
 }
-var steppedAreaChart = (datas, options) => {
+var steppedAreaChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     options.isStacked = true;
     function drawChart() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.SteppedAreaChart(element);
         chart.draw(data, google.charts.Scatter.convertOptions(options));
     }
 }
 
-var bubbleChart = (datas, options) => {
+var bubbleChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.BubbleChart(element);
         chart.draw(data, google.charts.Scatter.convertOptions(options));
     }
 }
 
-var columnChart = function (datas, options) {
+var columnChart = function (datas, options, element) {
     google.charts.setOnLoadCallback(drawAxisTickColors);
 
     function drawAxisTickColors() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        var chart = new google.charts.Bar(element);
         options.bars = 'vertical';
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 }
 
-var gaugeChart = function (datas, options) {
+var gaugeChart = function (datas, options, element) {
 
     options = {
         width: 400, height: 120,
@@ -89,13 +90,13 @@ var gaugeChart = function (datas, options) {
 
     function drawAxisTickColors() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        var chart = new google.visualization.Gauge(element);
         options.bars = 'vertical';
         chart.draw(data, options);
     }
 }
 
-var treemapChart = function (datas, options) {
+var treemapChart = function (datas, options, element) {
     Object.assign(options, {
         minColor: '#f00',
         midColor: '#ddd',
@@ -107,12 +108,12 @@ var treemapChart = function (datas, options) {
     google.charts.setOnLoadCallback(drawAxisTickColors);
     function drawAxisTickColors() {
         var data = google.visualization.arrayToDataTable(datas);
-        var chart = new google.visualization.TreeMap(document.getElementById('chart_div'));
+        var chart = new google.visualization.TreeMap(element);
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 }
 
-var mapChart = (datas, options) => {
+var mapChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(datas);
@@ -129,12 +130,12 @@ var mapChart = (datas, options) => {
         //     ['Russia', 'Russia: 146,019,512'],
         //     ['Japan', 'Japan: 127,120,000']
         // ]);
-        var chart = new google.visualization.Map(document.getElementById('chart_div'));
+        var chart = new google.visualization.Map(element);
         chart.draw(data, google.charts.Line.convertOptions(options));
     }
 }
 
-var geoChartChart = (datas, options) => {
+var geoChartChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawRegionsMap);
 
     function drawRegionsMap() {
@@ -149,7 +150,7 @@ var geoChartChart = (datas, options) => {
         // ]);
         var data = google.visualization.arrayToDataTable(datas);
 
-        var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.GeoChart(element);
 
         chart.draw(data, options);
     }
@@ -200,50 +201,52 @@ var generateChart = (graphType, sqlQuery, options) => {
     getData(sqlQuery).then(res => {
         $("#collapseResultChart").show();
         $("#collapseResult").hide()
-        selectChart(graphType, res, options);
+        selectChart(graphType, res, options, document.getElementById('chart_div'));
 
     })
 }
 
-var selectChart = (graphType, data, options) => {
+var selectChart = (graphType, data, options, element) => {
+    console.log(element);
     var data = transformDataArray(data);
     switch (graphType) {
         case "Line":
-            lineChart(data, options)
+            lineChart(data, options, element)
             break;
         case "Bar":
-            barChart(data, options)
+            barChart(data, options, element)
             break;
         case "Pie":
-            pieChart(data, options)
+            pieChart(data, options, element)
             break;
         case "Map":
-            mapChart(data, options)
+            mapChart(data, options, element)
             break;
         case "Scatter":
-            scatterChart(data, options)
+            scatterChart(data, options, element)
             break;
         case "Area":
-            areaChart(data, options)
+            areaChart(data, options, element)
             break;
         case "Bubble":
-            bubbleChart(data, options)
+            bubbleChart(data, options, element)
             break;
         case "Column":
-            columnChart(data, options)
+            columnChart(data, options, element)
             break;
         case "Gauge":
-            gaugeChart(data, options)
+            gaugeChart(data, options, element)
             break;
         case "SteppedArea":
-            steppedAreaChart(data, options)
+            steppedAreaChart(data, options, element)
             break;
         case "Treemap":
-            treemapChart(data, options)
+            treemapChart(data, options, element)
             break;
         case "GeoChart":
-            geoChartChart(data, options)
+            geoChartChart(data, options, element)
             break;
 
     }
 }
+// document.getElementById('chart_div')
