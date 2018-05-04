@@ -126,7 +126,7 @@ var getLivelink = function (req) {
         hdb_callout.callHarperDB(call_object, operation, function (err, result) {
             if (err || result.error) {
                 console.log(err)
-                createLivelinkTable(req, res).then(() => {
+                createLivelinkTable(req).then(() => {
                     hdb_callout.callHarperDB(call_object, operation, function (err2, result2) {
                         resolve(result2);
                     });
@@ -172,7 +172,7 @@ var createUserFavoriteTable = function (req, res) {
     });
 }
 
-var createLivelinkTable = function (req, res) {
+var createLivelinkTable = function (req) {
     return new Promise(function (resolve) {
         var call_object = {
             username: req.user.username,
@@ -189,7 +189,7 @@ var createLivelinkTable = function (req, res) {
             "hash_attribute": "id",
 
         };
-        createFavoriteSearchSchema(req, res).then(() => {
+        createFavoriteSearchSchema(req).then(() => {
             hdb_callout.callHarperDB(call_object, operation, function (err, result) {
                 if (err || result.error) {
                     resolve(result);
@@ -202,7 +202,7 @@ var createLivelinkTable = function (req, res) {
     });
 }
 
-var createFavoriteSearchSchema = function (req, res) {
+var createFavoriteSearchSchema = function (req) {
     return new Promise(function (resolve) {
         var call_object = {
             username: req.user.username,

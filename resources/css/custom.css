@@ -101,8 +101,18 @@
 
 a.btn-main:focus, a.btn-main:active{
     color: #ffffff;
-    background-color: #00935A !important;;
+    background-color: #00935A !important;
     /* border-color: #403B8A; */
     outline: 0;
     box-shadow: none;
+}
+
+/* a.whitelink:hover, a.whitelink:focus, a.whitelink:active {
+    background-color: #00935A !important;
+} */
+a.whitelink .helpmenumiddle:hover, a.whitelink .helpmenumiddle:focus { 
+    color: #00935A !important;    
+}
+a.whitelink .helpmenucircle:hover, a.whitelink .helpmenucircle:focus {
+    border: solid 3px #00935A !important;
 }
