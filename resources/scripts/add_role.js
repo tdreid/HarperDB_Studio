@@ -16,6 +16,8 @@ $(document).ready(function () {
             size: 'small'
         });
     });
+    
+    $('.trees > li label').parent().find('ul').toggle();
 
     var changeAllSchemas = document.querySelector('#all-schema');
     var specials = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
