@@ -35,21 +35,21 @@
 .btn-accent:focus,
 .btn-accent.focus {
   color: #ffffff;
-  background-color: rgba(246, 168, 33, 0.1);
+  background-color: #403B8A;
   border-color: #403B8A;
   outline: 0;
   box-shadow: none;
 }
 .btn-accent:hover {
   color: #ffffff;
-  background-color: rgba(246, 168, 33, 0.1);
+  background-color:#403B8A;
   border-color: #403B8A;
 }
 .btn-accent:active,
 .btn-accent.active,
 .open > .dropdown-toggle.btn-accent {
   color: #ffffff;
-  background-color: rgba(246, 168, 33, 0.1);
+  background-color: #403B8A;
   border-color: #403B8A;
 }
 .btn-accent:active:hover,
@@ -62,8 +62,8 @@
 .btn-accent.active.focus,
 .open > .dropdown-toggle.btn-accent.focus {
   color: #ffffff;
-  background-color: rgba(246, 168, 33, 0.1);
-  border-color: #f8bb52;
+  background-color: #403B8A;
+  border-color: #403B8A;
   outline: 0;
   box-shadow: none;
 }
