@@ -23,7 +23,8 @@ block content
                     .col-md-4
                         button.btn-main-big( data-toggle='modal', data-target='#addtableModal')
                             i.fa.fa-plus(aria-hidden='true')
-                            |  Schema/Tables
+                            |   
+                            span(style="font-size: 1.2rem")     Schema/Tables
                     // Modal Add schema
                     #addtableModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
                         .modal-dialog.modal-dialog-centered(role='document')
@@ -50,9 +51,12 @@ block content
                     .col-md-4
                         button#importCSV.btn-main-big(type="button", data-toggle='modal', data-target='#uploadCSVModal')
                             i.fa.fa-plus(aria-hidden='true')
-                            |  CSV
+                            |  
+                            span(style="font-size: 1.2rem")  CSV
                     .col-md-4
-                        button#goToViewDataModel.btn-main-big(href='/explore/sql_search') View Data Model
+                        button#goToViewDataModel.btn-main-big(href='/explore/sql_search') 
+                            | 
+                            span(style="font-size: 1.2rem") View Data Model
                 .boxdisplay.form-group.clear
                     .midtitle
                         | Data Model
@@ -62,7 +66,7 @@ block content
                             ul.tree(id = "#{schemaProp}")
                                 li
                                     input(type='checkbox', id = 'c#{schemaIndex}')
-                                    label.tree_label(for='c#{schemaIndex}')
+                                    label.tree_label(for='c#{schemaIndex}' style="font-size: 1.4rem;")
                                         i.fa.fa-caret-down
                                         a(href='/schema/#{schemaProp}')= schemaProp
                                         - var cId = 'c' + schemaIndex
@@ -74,7 +78,7 @@ block content
                                             ul
                                                 li
                                                     input(id='#{cId}t#{tableIndex}', type='checkbox')
-                                                    label.tree_label(for='#{cId}t#{tableIndex}')
+                                                    label.tree_label(for='#{cId}t#{tableIndex}' style="font-size: 1.25rem;")
                                                         i.fa.fa-caret-down
                                                         |  #{tableProp}
                                                     ul
