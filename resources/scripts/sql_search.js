@@ -178,8 +178,7 @@ function saveFavorite() {
 
 function copySqlLink() {
     /* Get the text field */
-    var copyText = document.getElementById("liveLinkSQL");
-    console.log(copyText);
+    var copyText = document.getElementById("liveLinkSQL");    
 
     /* Select the text field */
     copyText.focus();

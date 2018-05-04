@@ -27,12 +27,10 @@ $(document).ready(function () {
 
     $('#deleteUserModal').on('show.bs.modal', function (e) {
         var curUsername = $(e.relatedTarget).data('id');
-        usernameForDelete = curUsername;
-        console.log(usernameForDelete);
+        usernameForDelete = curUsername;        
     });
 
-    $("#DeleteUserBtn").click(function () {
-        console.log(usernameForDelete);
+    $("#DeleteUserBtn").click(function () {        
         dropUser(usernameForDelete);
     });    
 

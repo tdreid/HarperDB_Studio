@@ -56,16 +56,14 @@ $(document).ready(function () {
 
         if (_opearation["limit"] == "")
             delete _opearation["limit"];
-
-        console.log(_opearation);
+        
         $.ajax({
             type: "POST",
             url: '/logs/search',
             data: {
                 operation: JSON.stringify(_opearation)
             },
-            success: function (obj) {
-                console.log(obj)
+            success: function (obj) {                
                 $("#collapseResult").show()
                 toastr.success('get logs successfully');
                 saveSQL = obj.sql;

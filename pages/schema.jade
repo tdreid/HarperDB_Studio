@@ -89,7 +89,7 @@ block content
                     // Modal Import CSV
                     #uploadCSVModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
                         .modal-dialog.modal-dialog-centered(role='document')
-                            form(action="/schema/csv", method="post")
+                            form#addCSVForm(action="/schema/csv", method="post")
                                 .modal-content
                                     .modal-header
                                         .modal-title.text-white CSV

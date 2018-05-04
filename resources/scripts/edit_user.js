@@ -44,8 +44,7 @@ function toggleActive(username) {
 }
 
 dropUser = function (username) {
-
-    console.log(username);
+    
     var sTable = $('#usersTable').DataTable();
     $.ajax({
         type: "POST",

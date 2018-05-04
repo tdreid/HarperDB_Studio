@@ -41,8 +41,7 @@ var scatterChart = (datas, options, element) => {
 var areaChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
-        var data = google.visualization.arrayToDataTable(datas);
-        console.log(element);
+        var data = google.visualization.arrayToDataTable(datas);        
         var chart = new google.visualization.AreaChart(element);
         chart.draw(data, google.charts.Scatter.convertOptions(options));
     }
@@ -177,8 +176,7 @@ var getData = (sql) => {
             data: {
                 sql: sql
             },
-            success: function (obj) {
-                console.log(obj);
+            success: function (obj) {                
 
                 if (obj.result.error != undefined) {
                     toastr.error(obj.result.error);
@@ -206,8 +204,7 @@ var generateChart = (graphType, sqlQuery, options) => {
     })
 }
 
-var selectChart = (graphType, data, options, element) => {
-    console.log(element);
+var selectChart = (graphType, data, options, element) => {    
     var data = transformDataArray(data);
     switch (graphType) {
         case "Line":

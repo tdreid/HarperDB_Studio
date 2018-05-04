@@ -7,9 +7,7 @@ $(document).ready(function () {
 
     var schemas = document.getElementById('schemaAll').value
 
-    schemas = JSON.parse(schemas);
-
-    // console.log(schemas);
+    schemas = JSON.parse(schemas);    
 
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
@@ -23,8 +21,7 @@ $(document).ready(function () {
     var specials = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
     specials.shift();
     specials.shift();
-    changeAllSchemas.onchange = function () {
-        console.log(changeAllSchemas.checked);
+    changeAllSchemas.onchange = function () {        
         if (changeAllSchemas.checked) {
             //true            
             specials.forEach(special => {
@@ -212,16 +209,13 @@ var addingRole = function () {
             }
         });
     }
-    
-    console.log(JSON.stringify(objAddRole));
+        
 
     $.ajax({
         type: "POST",
         url: '/security/add_role',
         data: {"operationAddRole": JSON.stringify(objAddRole)},
-        success: function (res) {
-            console.log('add ' + res.role + ' role successfully');
-            console.log(res)
+        success: function (res) {            
             toastr.options = {
                 "closeButton": false,
                 "debug": false,
@@ -241,8 +235,7 @@ var addingRole = function () {
             }
             toastr.info('add ' + res.role + ' role successfully');
         },
-        error: function (err) {
-            console.log(err);
+        error: function (err) {            
             document.location.href = '/logout';
         }
     });

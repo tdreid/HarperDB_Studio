@@ -80,8 +80,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: '/livelink/livelinklist',
-            success: function (result) {
-                console.log(result);
+            success: function (result) {                
                 $('#livelinkList')
                     .empty()
                 result.forEach(element => {
@@ -117,8 +116,7 @@ $(document).ready(function () {
 
 function copyLiveLink() {
     /* Get the text field */
-    var copyText = document.getElementById("liveLinkUrl");
-    console.log(copyText);
+    var copyText = document.getElementById("liveLinkUrl");    
 
     /* Select the text field */
     // copyText.focus();
@@ -134,8 +132,7 @@ function copyLiveLink() {
 
 function copyLiveLinkShare() {
     /* Get the text field */
-    var copyText = document.getElementById("liveLinkShareUrl");
-    console.log(copyText);
+    var copyText = document.getElementById("liveLinkShareUrl");    
 
     /* Select the text field */
     // copyText.focus();

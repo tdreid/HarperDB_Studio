@@ -126,7 +126,6 @@ var getLivelink = function (req) {
         hdb_callout.callHarperDB(call_object, operation, function (err, result) {
             if (err || result.error) {
                 console.log(err)
-                console.log(result)
                 createLivelinkTable(req, res).then(() => {
                     hdb_callout.callHarperDB(call_object, operation, function (err2, result2) {
                         resolve(result2);

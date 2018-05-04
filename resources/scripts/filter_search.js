@@ -58,12 +58,10 @@ $(document).ready(function () {
         if (first.length > 0) {
             var curValue = first[3].value.replace(/"/g, '\'');
             if (isNaN(parseFloat(curValue)) == true) {
-                curValue = "'" + curValue + "'";
-                console.log(curValue);
+                curValue = "'" + curValue + "'";                
             }
             else {
-                curValue = parseFloat(curValue);
-                console.log(curValue);
+                curValue = parseFloat(curValue);                
 
             }
 
@@ -80,8 +78,7 @@ $(document).ready(function () {
                     if (i % 5 == 1)
                         curValue = "\"" + others[i].value + "\""
                     else if (i % 5 == 3) {
-                        curValue = others[i].value.replace(/"/g, '\'');
-                        console.log(curValue);
+                        curValue = others[i].value.replace(/"/g, '\'');                        
                         if (isNaN(curValue) == true)
                             curValue = "'" + curValue + "'";
                         else

@@ -33,8 +33,7 @@ router.get('/public/:key', function (req, res) {
     try {
         var decode64 = Buffer.from(req.params.key, 'base64').toString('ascii');
         var bytes = CryptoJS.RC4.decrypt(decode64, secretkey);
-        var decryptedObject = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        console.log(decryptedObject);
+        var decryptedObject = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));        
 
         var call_object = {
             username: decryptedObject.username,

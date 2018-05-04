@@ -47,8 +47,7 @@ router.post('/search', isAuthenticated, function (req, res) {
         endpoint_url: req.user.endpoint_url,
         endpoint_port: req.user.endpoint_port
     };
-
-    console.log(req.body);
+    
     hdb_callout.callHarperDB(connection, JSON.parse(req.body.operation), function (err, result) {
         if (err) {
             return res.status(400).send(result);

@@ -66,7 +66,7 @@ router.get('/sql_search/:sqllink', isAuthenticated, function (req, res) {
             return err;
         }
 
-        console.log(Buffer.from(req.params.sqllink, 'base64').toString());
+        // console.log(Buffer.from(req.params.sqllink, 'base64').toString());
         var keywords = reduceDescribeAllObject(result);
         res.render('sql_search', {
             keywords: JSON.stringify(keywords),
@@ -115,8 +115,7 @@ router.post('/filter_search', isAuthenticated, function (req, res) {
     var operation = {
         operation: 'sql',
         sql: req.body.sql
-    };
-    console.log(req.body);
+    };    
     hdb_callout.callHarperDB(connection, operation, function (err, result) {
         if (err) {
             return res.status(400).send(err);

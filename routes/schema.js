@@ -112,8 +112,7 @@ router.post('/addtable/:schemaName', isAuthenticated, function (req, res) {
 
     hdb_callout.callHarperDB(call_object, operationAdd, function (err, success) {
 
-        hdb_callout.callHarperDB(call_object, operation, function (error, schema) {
-            console.log(req.params.schemaName, ' ', schema);
+        hdb_callout.callHarperDB(call_object, operation, function (error, schema) {            
             res.render('schema_name', {
                 schemaName: req.params.schemaName,
                 schema: schema,
@@ -126,8 +125,7 @@ router.post('/addtable/:schemaName', isAuthenticated, function (req, res) {
 
 })
 
-router.post('/upload_csv/:schemaName', isAuthenticated, function (req, res) {
-    console.log(req.body);
+router.post('/upload_csv/:schemaName', isAuthenticated, function (req, res) {    
     var call_object = {
         username: req.user.username,
         password: req.user.password,

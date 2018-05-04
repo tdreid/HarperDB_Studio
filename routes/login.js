@@ -40,8 +40,7 @@ router.post('/',
             ref = req.body.ref;
 
 
-        passport.authenticate('local', function (err, user, info) {
-            console.log(user);
+        passport.authenticate('local', function (err, user, info) {            
             if (err) {
                 return next(err);
             }

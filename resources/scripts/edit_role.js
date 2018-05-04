@@ -120,8 +120,7 @@ $(document).ready(function () {
         }
     });
 
-    jQuery(document).ready(function () {
-        console.log('eieieiei load');
+    jQuery(document).ready(function () {        
         document.body.style.cursor = 'default';
     });
 });
@@ -163,8 +162,7 @@ var editingRole = function (roleId, roleName) {
     objEditRole.operation = operation;
     objEditRole.id = roleId;
     objEditRole.role = $("#showName_" + roleName).text();
-    objEditRole.permission = {}
-    console.log('#' + roleName + '_superadmin');
+    objEditRole.permission = {}    
     objEditRole.permission.super_user = document.querySelector('#' + roleName + '_superadmin').checked
     var flatenSchema = document.getElementById('flatenSchema').value;
     flatenSchema = JSON.parse(flatenSchema);
@@ -205,8 +203,7 @@ var editingRole = function (roleId, roleName) {
             }
         });
     }
-
-    console.log(JSON.stringify(objEditRole));
+    
 
     $.ajax({
         type: "POST",
@@ -214,8 +211,7 @@ var editingRole = function (roleId, roleName) {
         data: {
             "operationEditRole": JSON.stringify(objEditRole)
         },
-        success: function (res) {
-            console.log(res)
+        success: function (res) {            
             toastr.info(JSON.stringify(res));
             $('#' + roleName).attr('id', objEditRole.role);
         },

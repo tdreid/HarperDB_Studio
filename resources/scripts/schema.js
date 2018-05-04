@@ -2,8 +2,7 @@ var schemaForSearch = [];
 $(document).ready(function () {
     createAddTableType();
     createuploadFileType();
-    var schemaName = document.getElementById('selectSchemaName').value;
-    console.log(schemaName);
+    var schemaName = document.getElementById('selectSchemaName').value;    
     getTable(schemaName);
     $("#addType").change(function () {
         var type = document.getElementById('addType').value;
@@ -13,9 +12,14 @@ $(document).ready(function () {
             createAddSchemaType();
     })
 
-    $('#addCSVBtn').click(() => {
+    // $('#addCSVBtn').click(() => {
+    //     $('#addCSVBtn').attr('disabled', true)
+    // })
+
+    $('#addCSVForm').submit(function (ev) {                
+        this.submit(); 
         $('#addCSVBtn').attr('disabled', true)
-    })
+    });
 
     $("#csvType").change(function () {
         var type = document.getElementById('csvType').value;
@@ -44,10 +48,8 @@ $(document).ready(function () {
     schemaForSearch = Object.keys(schemas);
 
     $('#searchSchema').keyup(function () {
-        var valueSearch = $('#searchSchema').val();
-        console.log(valueSearch);
-        if (valueSearch == '') {
-            console.log('all');
+        var valueSearch = $('#searchSchema').val();        
+        if (valueSearch == '') {            
             schemaForSearch.forEach(element => {
                 $('#' + element).show();
             });

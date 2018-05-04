@@ -6,8 +6,6 @@ $(document).ready(function () {
         var type = $(e.relatedTarget).data('type');
         document.getElementById('deleteName').value = name;
         document.getElementById('deleteType').value = type;
-        console.log(document.getElementById('deleteName'))
-        console.log( document.getElementById('deleteType'))
 
         document.getElementById('comfirmMessage').innerHTML = 'Are you sure for delete ' + name + ' ?';
     });
@@ -110,8 +108,7 @@ createDataCSVType = () => {
 getNumOfRecords = () => {
     var schemaName = document.getElementById('schemaName').value;
     $( "span.numOfRecords" ).each(function( index ) {
-        var tableName = $( this )[0].id;
-        console.log( schemaName + '.'  + tableName );
+        var tableName = $( this )[0].id;        
         $.ajax({
             type: "POST",
             url: '/schema/records',
@@ -120,8 +117,6 @@ getNumOfRecords = () => {
                 tableName: tableName
             },
             success: function (res) {
-                console.log(res[0]);
-                console.log( tableName );
                 if (res[0] != undefined)                    
                     $( 'span.numOfRecords#' + tableName).html(res[0].num.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' records / datasize');
                 else                     
