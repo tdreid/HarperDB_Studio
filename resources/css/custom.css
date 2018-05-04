@@ -98,3 +98,11 @@
     /* max-width: 1000px;     */
     text-align: center;
 }
+
+a.btn-main:focus, a.btn-main:active{
+    color: #ffffff;
+    background-color: #00935A !important;;
+    /* border-color: #403B8A; */
+    outline: 0;
+    box-shadow: none;
+}
