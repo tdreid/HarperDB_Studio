@@ -9,22 +9,22 @@ block content
             ul.breadcrumb
                 li.breadcrumb-item
                     a(href='/logs') Log Home
-                li.breadcrumb-item.active Log 1
+                li.breadcrumb-item.active Log individual
     // Counts Section
     .pagebox
         section.dashboard-counts
             header
                 .boxdisplay
                     .pull-left
-                        .midtitle.pull-left(style='margin-top:-8px') Log 1
+                        .midtitle.pull-left(style='margin-top:-8px') level: #{log.level}
                         .ml-5.pull-left
-                            | Type
+                            | Type: #{log.type}
                         .ml-5.pull-left
-                            | 03.12.17/12:55pm
+                            | #{log.timestamp}
                         .pull-right
                     .wrapper.text-white.midtitle.pull-right
                         i.fa.fa-download
-                        i.fa.fa-trash.ml-2(data-toggle='modal', data-target='#deleteLogModal')
+                        //- i.fa.fa-trash.ml-2(data-toggle='modal', data-target='#deleteLogModal')
             // Modal
             #deleteLogModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
                 .modal-dialog.modal-dialog-centered(role='document')
@@ -50,4 +50,4 @@ block content
                 .row.p-3
                     .col-md-12.messagebox.p-3
                         p
-                            | This is a message...test test test this can be very very long......
+                            | #{log.message}

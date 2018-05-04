@@ -61,9 +61,11 @@ router.post('/search', isAuthenticated, function (req, res) {
 
 })
 
-router.get('/individual', isAuthenticated, function (req, res) {
+router.get('/individual/:logDetail', isAuthenticated, function (req, res) {    
+    var decoded = new Buffer(req.params.logDetail, 'base64').toString('ascii');
     res.render('log_individual', {
-        nameOfUser: req.user.username
+        nameOfUser: req.user.username,
+        log: JSON.parse(decoded)
     });
 });
 

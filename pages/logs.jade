@@ -38,11 +38,12 @@ block content
                                     th(scope='col')
                             tbody
                                 each log in JSON.parse(logs)
-                                    tr.trclick(onclick="window.location='/logs/individual';")
+                                    - var encode = Buffer.from(JSON.stringify(log)).toString('base64')
+                                    tr.trclick(onclick="window.location='/logs/individual/#{encode}';")
                                         td Log 
                                         td #{log.type}
                                         td #{log.message}
                                         td #{log.timestamp}
                                         td.midtitle2
-                                            i.fa.fa-download
-                                            i.fa.fa-trash.ml-2
+                                            //- i.fa.fa-download
+                                            //- i.fa.fa-trash.ml-2
