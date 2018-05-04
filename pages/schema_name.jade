@@ -17,7 +17,7 @@ block content
         section.dashboard-counts
             header
                 .boxdisplay
-                    .pull-right.text-red.largetitle
+                    .pull-right.largetitle
                         i.fa.fa-trash(data-toggle='modal', data-target='#deleteModal', style='margin-right:10px;' data-id="#{schemaName}", data-type="schema")
                     .largetitle.pull-left #{schemaName}
                     .clear.mt-2 Number of records  / Data Size
@@ -66,7 +66,7 @@ block content
                                         a.ml-5.btn-main-small.text-center(href="#", data-toggle='modal', data-target='#uploadCSVModal', data-id="#{tableVal.name}")
                                             i.fa.fa-plus(aria-hidden='true')
                                             |  CSV
-                                        i.fa.fa-trash.text-red.midtitle2(data-toggle='modal', data-target='#deleteModal', style='margin-right:10px;' data-id="#{tableVal.name}" data-type="table")
+                                        i.fa.fa-trash.midtitle2(data-toggle='modal', data-target='#deleteModal', style='margin-right:10px;' data-id="#{tableVal.name}" data-type="table")
                                     hr                            
                                 ul
                                     if tableVal['attributes'] != undefined
