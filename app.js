@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
@@ -6,7 +8,13 @@ const express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     session = require('express-session'),
-    hdb_callout = require('./utility/harperDBCallout');
+    hdb_callout = require('./utility/harperDBCallout'),
+    http = require('http'),
+    https = require('https'),
+    fs = require('fs');
+
+const config = require('./config/config.json');
+const DEFAULT_HTTP_PORT = 61183;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -103,7 +111,31 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-var port = process.env.PORT || 61183;
-app.listen(port, function () {
-    console.log('Example app listening on port 61183!')
-})
+runServer();
+
+function runServer(){
+    let http_port = config.http_port;
+    if(!http_port && !config.https_port){
+        http_port = DEFAULT_HTTP_PORT;
+    }
+
+    if(http_port){
+        http.createServer(app).listen(http_port, ()=>{
+            console.log('HarperDB Studio running on port ' + http_port);
+        });
+    }
+
+    if(config.https_port && config.https_key_path && config.https_cert_path){
+        let credentials = {
+            key: fs.readFileSync(config.https_key_path),
+            cert: fs.readFileSync(config.https_cert_path)
+        };
+
+        https.createServer(credentials, app)
+            .listen(config.https_port, function () {
+                console.log('HarperDB Studio running on port ' + config.https_port);
+            });
+    }
+}
+
+
