@@ -218,11 +218,12 @@ router.post('/records', isAuthenticated, function (req, res) {
         endpoint_port: req.user.endpoint_port
     };
     var tableName = req.body.schemaName + '.' + req.body.tableName;
-    var dotIndex = tableName.indexOf('.');
-    var sql = tableName.substr(0, dotIndex + 1) + "\"" + tableName.substr(dotIndex + 1) + "\"";
+    // var dotIndex = tableName.indexOf('.');
+    // var sql = tableName.substr(0, dotIndex + 1) + "\"" + tableName.substr(dotIndex + 1) + "\"";
+    
     var operation = {
         operation: 'sql',
-        "sql": "SELECT COUNT(*) AS num FROM " + sql
+        "sql": "SELECT COUNT(*) AS num FROM " + tableName
     };
 
     hdb_callout.callHarperDB(call_object, operation, function (err, message) {
