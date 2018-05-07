@@ -38,7 +38,7 @@ var mapDynamicToStableObject = function (arrayObject) {
         })
         newArrayObject.push(curobject);
     })
-    console.log(newArrayObject);
+        
     return newArrayObject;
 }
 
