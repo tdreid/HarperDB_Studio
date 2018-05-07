@@ -58,7 +58,7 @@ block content
                                                                     if schemas[schemaProp][tableProp]["attributes"] != undefined
                                                                         each attributesValue, attributesProp in schemas[schemaProp][tableProp]['attributes']
                                                                             li.lidragable(value="#{attributesValue['attribute']}")
-                                                                                span.tree_label.doubleclick(value="#{attributesValue['attribute']}")= attributesValue['attribute']
+                                                                                span.tree_label.doubleclick(value="#{attributesValue['attribute']}" style="cursor: context-menu;")= attributesValue['attribute']
                                                         - tableIndex ++;
                                         - schemaIndex ++
 
