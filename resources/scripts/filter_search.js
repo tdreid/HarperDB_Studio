@@ -49,8 +49,8 @@ $(document).ready(function () {
         });
         var table = document.getElementById('selectTable').value
         var schema = document.getElementById('selectSchema').value
-        table = "\"" + table + "\"";
-        schema = "\"" + schema + "\"";
+        // table = "\"" + table + "\"";
+        // schema = "\"" + schema + "\"";
         var tableName = schema + '.' + table;
         let queryString = "SELECT * FROM " + tableName;
         var first = $('#firstFilterColumn .col-md-12').children().children();
@@ -58,10 +58,10 @@ $(document).ready(function () {
         if (first.length > 0) {
             var curValue = first[3].value.replace(/"/g, '\'');
             if (isNaN(parseFloat(curValue)) == true) {
-                curValue = "'" + curValue + "'";                
+                curValue = "'" + curValue + "'";
             }
             else {
-                curValue = parseFloat(curValue);                
+                curValue = parseFloat(curValue);
 
             }
 
@@ -78,7 +78,7 @@ $(document).ready(function () {
                     if (i % 5 == 1)
                         curValue = "\"" + others[i].value + "\""
                     else if (i % 5 == 3) {
-                        curValue = others[i].value.replace(/"/g, '\'');                        
+                        curValue = others[i].value.replace(/"/g, '\'');
                         if (isNaN(curValue) == true)
                             curValue = "'" + curValue + "'";
                         else

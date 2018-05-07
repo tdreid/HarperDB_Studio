@@ -3,7 +3,8 @@ const express = require('express'),
     hdb_callout = require('./../utility/harperDBCallout'),
     reduceDescribeAllObject = require('./../utility/reduceDescribeAllObject'),
     isAuthenticated = require('../utility/checkAuthenticate'),
-    favorite = require('../utility/favoritesQuery');
+    favorite = require('../utility/favoritesQuery'),
+    mapDynamicToStableObject = require('../utility/mapDynamicToStableObject');
 
 router.get('/', isAuthenticated, function (req, res) {
     favorite.getLivelink(req).then(recents => {        
@@ -121,7 +122,7 @@ router.post('/filter_search', isAuthenticated, function (req, res) {
             return res.status(400).send(err);
         }
         var obj = {
-            result: result,
+            result: mapDynamicToStableObject(result),
             sql: req.body.sql
         }
 
