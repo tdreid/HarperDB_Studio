@@ -1,9 +1,11 @@
 const express = require('express'),
     router = express.Router(),
     hdb_callout = require('../utility/harperDBCallout'),
-    isAuthenticated = require('../utility/checkAuthenticate');
+    isAuthenticated = require('../utility/checkAuthenticate'),
+    breadcrumb = require('../utility/breadcrumb');
 
-router.get('/', isAuthenticated, function (req, res) {
+router.get('/', [isAuthenticated, breadcrumb], function (req, res) {    
+    req.session.preUrl = '/schema';
     var operation = {
         operation: 'describe_all'
     };
@@ -112,7 +114,7 @@ router.post('/addtable/:schemaName', isAuthenticated, function (req, res) {
 
     hdb_callout.callHarperDB(call_object, operationAdd, function (err, success) {
 
-        hdb_callout.callHarperDB(call_object, operation, function (error, schema) {            
+        hdb_callout.callHarperDB(call_object, operation, function (error, schema) {
             res.render('schema_name', {
                 schemaName: req.params.schemaName,
                 schema: schema,
@@ -125,7 +127,7 @@ router.post('/addtable/:schemaName', isAuthenticated, function (req, res) {
 
 })
 
-router.post('/upload_csv/:schemaName', isAuthenticated, function (req, res) {    
+router.post('/upload_csv/:schemaName', isAuthenticated, function (req, res) {
     var call_object = {
         username: req.user.username,
         password: req.user.password,
@@ -220,7 +222,7 @@ router.post('/records', isAuthenticated, function (req, res) {
     var tableName = req.body.schemaName + '.' + req.body.tableName;
     // var dotIndex = tableName.indexOf('.');
     // var sql = tableName.substr(0, dotIndex + 1) + "\"" + tableName.substr(dotIndex + 1) + "\"";
-    
+
     var operation = {
         operation: 'sql',
         "sql": "SELECT COUNT(*) AS num FROM " + tableName
@@ -266,7 +268,7 @@ router.post('/csv', isAuthenticated, function (req, res) {
     };
 
     hdb_callout.callHarperDB(call_object, operationCSV, function (err, success) {
-        
+
         hdb_callout.callHarperDB(call_object, operation, function (error, allSchema) {
             return res.render('schema', {
                 message: JSON.stringify(success),

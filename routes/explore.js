@@ -4,10 +4,12 @@ const express = require('express'),
     reduceDescribeAllObject = require('./../utility/reduceDescribeAllObject'),
     isAuthenticated = require('../utility/checkAuthenticate'),
     favorite = require('../utility/favoritesQuery'),
-    mapDynamicToStableObject = require('../utility/mapDynamicToStableObject');
+    mapDynamicToStableObject = require('../utility/mapDynamicToStableObject'),
+    breadcrumb = require('../utility/breadcrumb');
 
-router.get('/', isAuthenticated, function (req, res) {
-    favorite.getLivelink(req).then(recents => {        
+router.get('/', [isAuthenticated, breadcrumb], function (req, res) {
+    
+    favorite.getLivelink(req).then(recents => {
         res.render('explore', {
             recents: recents,
             nameOfUser: req.user.username
@@ -16,8 +18,7 @@ router.get('/', isAuthenticated, function (req, res) {
 
 });
 
-router.get('/sql_search', isAuthenticated, function (req, res) {
-
+router.get('/sql_search', isAuthenticated, function (req, res) {    
     var call_object = {
         username: req.user.username,
         password: req.user.password,
@@ -34,14 +35,17 @@ router.get('/sql_search', isAuthenticated, function (req, res) {
         if (err || result.error) {
             console.log(err);
             return err;
-        }
-
+        }        
 
         var keywords = reduceDescribeAllObject(result);
         res.render('sql_search', {
             keywords: JSON.stringify(keywords),
             schemas: result,
-            nameOfUser: req.user.username
+            nameOfUser: req.user.username,
+            breadcrumb: {
+                name: req.session.cur_url_name,
+                path: req.session.cur_url_path
+            }
         });
     });
 

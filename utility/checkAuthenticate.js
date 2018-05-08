@@ -1,5 +1,5 @@
 var isAuthenticated = function (req, res, next) {
-
+    console.log('eieie' , req.originalUrl);
     if (req.isAuthenticated()) {
         return next();
     } else {
