@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var recents = localStorage.getItem('recentSql');
+    $('[data-toggle="tooltip"]').tooltip();  
     recents = JSON.parse(recents);
     if (recents != null) {
         for (var i = recents.length - 1; i >= 0; i--) {
