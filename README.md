@@ -8,11 +8,14 @@ Visit [http://products.harperdb.io](http://products.harperdb.io) for download an
 ## Setup
 By default, HarperDB Studio runs on port 8080, and assumes you will be connecting to an instance of HarperDB with host localhost on port 9925.
 To change any of these settings edit the file /config/config.json. A sample config.json looks like:
-`{
+
+```json
+{
    "default_host":"localhost",
    "default_port":9925,
    "http_port":8080
- }`
+ }
+ ```
 
  * default_host - Default host used to connect to HarperDB on the login screen
  * default_port - Default port used to connect to HarperDB on the login screen
