@@ -168,8 +168,7 @@ createUsersTable = function (allUser) {
             tr.appendChild(td);
 
             //Username
-            var td = document.createElement('td');
-            // console.log()
+            var td = document.createElement('td');            
             td.appendChild(document.createTextNode(user['username']));
             tr.appendChild(td);
 
