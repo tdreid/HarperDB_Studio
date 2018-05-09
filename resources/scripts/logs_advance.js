@@ -22,9 +22,11 @@ $(document).ready(function () {
 
     $('#reportrange').daterangepicker({
             timePicker: false,
+            // timePicker: true,
             autoApply: true,            
             locale: {
-                format: 'YYYY-MM-DD'
+                format: 'YYYY-MM-DD',
+                // format: 'YYYY-MM-DD hh:mm:ss'
             }
         },
         function (start, end, label) {
@@ -32,6 +34,11 @@ $(document).ready(function () {
             endDate = end.format('YYYY-MM-DD');
             // alert("A new date range was chosen: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
             $('#showRangeDate').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));            
+            // startDate = start.format('YYYY-MM-DD hh:mm:ss');
+            // endDate = end.format('YYYY-MM-DD hh:mm:ss');
+            // console.log(start);
+            // // alert("A new date range was chosen: " + start.format('YYYY-MM-DD hh:mm:ss') + ' to ' + end.format('YYYY-MM-DD hh:mm:ss'));
+            // $('#showRangeDate').html(start.format('YYYY-MM-DD hh:mm:ss') + ' - ' + end.format('YYYY-MM-DD hh:mm:ss'));            
         }        
     );
 
@@ -71,7 +78,8 @@ $(document).ready(function () {
                 if (obj.result.length > 0) {
                     Object.keys(obj.result[0]).forEach(element => {
                         useColumns.push({
-                            title: element
+                            title: element,
+                            "defaultContent": "null"
                         })
                     });
 
