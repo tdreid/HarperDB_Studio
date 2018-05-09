@@ -337,7 +337,7 @@ createOtherFilterColumn = () => {
 
     var valueInput = document.createElement('input')
     valueInput.setAttribute('name', 'value' + curNum)
-    valueInput.setAttribute('class', 'form-control minwidthtextbox')
+    valueInput.setAttribute('class', 'form-controls minwidthtextbox')
     valueInput.setAttribute('style', 'float:left; margin-left:10px; max-width:200px; margin-right:5px;')
     valueInput.setAttribute('placeholder', 'Enter Value')
     valueDiv.appendChild(valueInput);
