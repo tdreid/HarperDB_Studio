@@ -116,3 +116,7 @@ a.whitelink .helpmenumiddle:hover, a.whitelink .helpmenumiddle:focus {
 a.whitelink .helpmenucircle:hover, a.whitelink .helpmenucircle:focus {
     border: solid 3px #00935A !important;
 }
+
+ul.tree .tree_label a:hover {
+    text-decoration: none !important;
+}
