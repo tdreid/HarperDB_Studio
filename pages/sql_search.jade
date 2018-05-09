@@ -15,9 +15,13 @@ block content
     .breadcrumb-holder
         .container-fluid
             ul.breadcrumb
-                if breadcrumb.path != undefined
-                    li.breadcrumb-item 
-                        a(href='#{breadcrumb.path}') #{breadcrumb.name}
+                if breadcrumb != undefined
+                    if breadcrumb.path != undefined
+                        li.breadcrumb-item 
+                            a(href='#{breadcrumb.path}') #{breadcrumb.name}
+                    else
+                        li.breadcrumb-item 
+                            a(href='/explore') Explore Home
                 else
                     li.breadcrumb-item 
                         a(href='/explore') Explore Home
