@@ -425,12 +425,18 @@ a.whitelink{
   text-align: left;
 }
 
+option.puple-text{
+  color: #403b8a;
+}
+
 .numberofnode{
   font-size: 4rem;
   width:100%;
-line-height: 40px;
-padding:30px 0px;
-text-align: center;
+  line-height: 40px;
+  padding:30px 0px;
+  text-align: center;
+  color: #403b8a;
+  background-color: white;
 }
 .helpmenumiddle {display: table-cell; vertical-align: middle;}
 
