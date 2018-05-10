@@ -5,7 +5,7 @@ $(document).ready(function () {
     google.charts.load('current', { packages: ['corechart', 'line', 'bar', 'map', 'scatter', 'gauge', 'treemap', 'geochart'], 'mapsApiKey': 'AIzaSyAP0UYqFCuSOOIMOQ6Ltmrx1B79XUw4Tmw' });
 
 
-    $("#clickGenerateChart, .fa-refresh").click(function () {
+    $("#clickGenerateChart, .fa-refresh-search").click(function () {
         var sqlQuery = $("#exampleTextarea").val();
 
         var options = {
@@ -16,19 +16,19 @@ $(document).ready(function () {
             titleTextStyle: {
                 color: '#333',
                 bold: true,
-            },            
+            },
             // subtitle: $('#chartSubtitle').val(),
             hAxis: {
                 title: $('#hTitle').val(),
                 textStyle: { color: '#333' },
                 titleTextStyle: { color: '#333' },
-                gridlines: {color: '#1E4D6B'}
+                gridlines: { color: '#1E4D6B' }
             },
             vAxis: {
                 title: $('#vTitle').val(),
                 textStyle: { color: '#333' },
                 titleTextStyle: { color: '#333' },
-                gridlines: {color: '#1E4D6B'}
+                gridlines: { color: '#1E4D6B' }
             },
             bars: 'horizontal' // Required for Material Bar Charts.
             ,
@@ -54,6 +54,10 @@ $(document).ready(function () {
 
     $('#saveLivelinkCenter').on('shown.bs.modal', function (e) {
         var sqlQuery = $("#exampleTextarea").val();
+        if (sqlQuery == undefined) {
+            console.log('eieieiieieie')
+            sqlQuery = buildSqlQuery();
+        }
         $.ajax({
             type: "POST",
             url: '/livelink/getlivelink',
@@ -80,7 +84,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: '/livelink/livelinklist',
-            success: function (result) {                
+            success: function (result) {
                 $('#livelinkList')
                     .empty()
                 result.forEach(element => {
@@ -106,7 +110,7 @@ $(document).ready(function () {
     })
 
     $("#livelinkForm").submit(function (event) {
-
+        console.log('eieieie');
         saveLivelink().then(() => {
             $('#saveLivelinkCenter').modal('toggle');
         });
@@ -114,9 +118,11 @@ $(document).ready(function () {
     });
 })
 
+
+
 function copyLiveLink() {
     /* Get the text field */
-    var copyText = document.getElementById("liveLinkUrl");    
+    var copyText = document.getElementById("liveLinkUrl");
 
     /* Select the text field */
     // copyText.focus();
@@ -132,7 +138,7 @@ function copyLiveLink() {
 
 function copyLiveLinkShare() {
     /* Get the text field */
-    var copyText = document.getElementById("liveLinkShareUrl");    
+    var copyText = document.getElementById("liveLinkShareUrl");
 
     /* Select the text field */
     // copyText.focus();
@@ -149,6 +155,9 @@ function copyLiveLinkShare() {
 
 function saveLivelink() {
     var sqlQuery = $("#exampleTextarea").val();
+
+    if (sqlQuery == undefined)
+        sqlQuery = buildSqlQuery()
     return new Promise(resolve => {
         $.ajax({
             type: "POST",

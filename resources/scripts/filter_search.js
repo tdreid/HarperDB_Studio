@@ -42,61 +42,18 @@ $(document).ready(function () {
 
     selectToggle();
 
-    $('#searchSqlBtn, .fa-refresh').click(function (e) {
 
+    $('#searchSqlBtn').click(function (e) {
+        $('#collapseResultChart').hide()
         $(document.body).css({
             'cursor': 'wait'
         });
-        var table = document.getElementById('selectTable').value
-        var schema = document.getElementById('selectSchema').value
-        // table = "\"" + table + "\"";
-        // schema = "\"" + schema + "\"";
-        var tableName = schema + '.' + table;
-        let queryString = "SELECT * FROM " + tableName;
-        var first = $('#firstFilterColumn .col-md-12').children().children();
-        var whereString = '';
-        if (first.length > 0) {
-            var curValue = first[3].value.replace(/"/g, '\'');
-            if (isNaN(parseFloat(curValue)) == true) {
-                curValue = "'" + curValue + "'";
-            }
-            else {
-                curValue = parseFloat(curValue);
-
-            }
-
-            whereString = " WHERE " + first[1].value + " " + first[2].value + " " + curValue;
-        }
-
-        var others = $('#otherFilterColumn .col-md-12').children().children();
-        var moreQuery = '';
-        if (others.length > 0) {
-            moreQuery = ' ';
-            for (var i = 0; i < others.length; i++) {
-                var curValue = null;
-                if (i % 5 != 4) {
-                    if (i % 5 == 1)
-                        curValue = "\"" + others[i].value + "\""
-                    else if (i % 5 == 3) {
-                        curValue = others[i].value.replace(/"/g, '\'');
-                        if (isNaN(curValue) == true)
-                            curValue = "'" + curValue + "'";
-                        else
-                            curValue = parseInt(curValue);
-                    } else
-                        curValue = others[i].value.replace(/"/g, '\'');
-
-                    moreQuery += curValue + ' ';
-                }
-            }
-
-        }
 
         $.ajax({
             type: "POST",
             url: '/explore/filter_search',
             data: {
-                sql: queryString + whereString + moreQuery
+                sql: buildSqlQuery()
             },
             success: function (obj) {
                 console.log(obj)
@@ -168,10 +125,10 @@ $(document).ready(function () {
         });
     })
 
-    //export
-    $('.fa-sign-out').click(() => {
-        sTable.button(0).trigger();
-    })
+    // //export
+    // $('.fa-sign-out').click(() => {
+    //     sTable.button(0).trigger();
+    // })
 
     //reset
     $('#resetSqlBtn').click(() => {
@@ -192,6 +149,55 @@ $(document).ready(function () {
         });
         event.preventDefault();
     });
+
+    $("#filterGenerateChart, .fa-refresh-filter").click(function () {
+        $("#collapseResult").hide()
+        var sqlQuery = buildSqlQuery();
+        console.log(sqlQuery)
+        var options = {
+            // 'width': 800,
+            'height': 300,
+            // chartArea: { width: '80%' },
+            title: $('#chartTitle').val(),
+            titleTextStyle: {
+                color: '#333',
+                bold: true,
+            },
+            // subtitle: $('#chartSubtitle').val(),
+            hAxis: {
+                title: $('#hTitle').val(),
+                textStyle: { color: '#333' },
+                titleTextStyle: { color: '#333' },
+                gridlines: { color: '#1E4D6B' }
+            },
+            vAxis: {
+                title: $('#vTitle').val(),
+                textStyle: { color: '#333' },
+                titleTextStyle: { color: '#333' },
+                gridlines: { color: '#1E4D6B' }
+            },
+            bars: 'horizontal' // Required for Material Bar Charts.
+            ,
+            backgroundColor: '#C6C8CA',
+            series: {
+                0: { color: '#403B8A' },
+                1: { color: '#009455' }
+            },
+            legend: {
+                textStyle: {
+                    color: '#333'
+                }
+            }
+            , showTooltip: true,
+            showInfoWindow: true
+        };
+        globalOptions = options;
+        var gType = $("#type-chart").val()
+        gGraphType = gType;
+
+        generateChart(gType, sqlQuery, options);
+    })
+
 
 });
 
@@ -411,4 +417,52 @@ var saveRecent = (sql) => {
     array.push(object);
     document.getElementById("liveLinkSQL").value = liveLink;
     localStorage.setItem('recentSql', JSON.stringify(array));
+}
+
+var buildSqlQuery = function () {
+    var table = document.getElementById('selectTable').value
+    var schema = document.getElementById('selectSchema').value
+    // table = "\"" + table + "\"";
+    // schema = "\"" + schema + "\"";
+    var tableName = schema + '.' + table;
+    let queryString = "SELECT * FROM " + tableName;
+    var first = $('#firstFilterColumn .col-md-12').children().children();
+    var whereString = '';
+    if (first.length > 0) {
+        var curValue = first[3].value.replace(/"/g, '\'');
+        if (isNaN(parseFloat(curValue)) == true) {
+            curValue = "'" + curValue + "'";
+        }
+        else {
+            curValue = parseFloat(curValue);
+
+        }
+
+        whereString = " WHERE " + first[1].value + " " + first[2].value + " " + curValue;
+    }
+
+    var others = $('#otherFilterColumn .col-md-12').children().children();
+    var moreQuery = '';
+    if (others.length > 0) {
+        moreQuery = ' ';
+        for (var i = 0; i < others.length; i++) {
+            var curValue = null;
+            if (i % 5 != 4) {
+                if (i % 5 == 1)
+                    curValue = "\"" + others[i].value + "\""
+                else if (i % 5 == 3) {
+                    curValue = others[i].value.replace(/"/g, '\'');
+                    if (isNaN(curValue) == true)
+                        curValue = "'" + curValue + "'";
+                    else
+                        curValue = parseInt(curValue);
+                } else
+                    curValue = others[i].value.replace(/"/g, '\'');
+
+                moreQuery += curValue + ' ';
+            }
+        }
+
+    }
+    return queryString + whereString + moreQuery;
 }
