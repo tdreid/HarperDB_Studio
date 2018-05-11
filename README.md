@@ -20,6 +20,8 @@ To change any of these settings edit the file /config/config.json. A sample conf
  * default_host - Default host used to connect to HarperDB on the login screen
  * default_port - Default port used to connect to HarperDB on the login screen
  * http_port - Port that HarperDB studio will run on
+ 
+ To add the package dependencies execute the command `npm install`
 
 ## Run
 Launching the HarperDB studio is easy execute the command `node app.js`
