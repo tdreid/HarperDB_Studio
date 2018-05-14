@@ -207,61 +207,59 @@ setDataTable = () => {
     });
 }
 
-createUsersTable = function (allUser) {
+var createUsersTable = function (allUser) {
     var tbody = $('#usersTable tbody');
     allUser.forEach(user => {
-        if (user.username != 'nook') {
-            var tr = document.createElement('tr');
+        var tr = document.createElement('tr');
 
-            //Picture
-            // var td = document.createElement('td');
-            var i = document.createElement('i');
-            // i.setAttribute('class', 'fa fa-user-circle usericon');
-            // td.appendChild(i);
-            // tr.appendChild(td);
+        //Picture
+        // var td = document.createElement('td');
+        var i = document.createElement('i');
+        // i.setAttribute('class', 'fa fa-user-circle usericon');
+        // td.appendChild(i);
+        // tr.appendChild(td);
 
-            //Username
-            var td = document.createElement('td');
-            td.appendChild(document.createTextNode(user['username']));
-            tr.appendChild(td);
+        //Username
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(user['username']));
+        tr.appendChild(td);
 
-            // Role
-            td = document.createElement('td');
-            td.appendChild(document.createTextNode(user.role != undefined ? user.role.role : 'no role'))
-            tr.appendChild(td);
+        // Role
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(user.role != undefined ? user.role.role : 'no role'))
+        tr.appendChild(td);
 
-            //Active
-            td = document.createElement('td');
-            var input = document.createElement('input');
-            input.setAttribute('type', 'checkbox');
-            input.setAttribute('onchange', 'toggleActive("' + user.username + '");');
-            if (user.username == currentUsername)
-                input.setAttribute('class', 'js-switch-disable');
-            else
+        //Active
+        td = document.createElement('td');
+        var input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        input.setAttribute('onchange', 'toggleActive("' + user.username + '");');
+        if (user.username == currentUsername)
+            input.setAttribute('class', 'js-switch-disable');
+        else
             input.setAttribute('class', 'js-switch');
-            if (user.active)
-                input.setAttribute('checked', true);
-            td.appendChild(input)
-            tr.appendChild(td);
+        if (user.active)
+            input.setAttribute('checked', true);
+        td.appendChild(input)
+        tr.appendChild(td);
 
-            //Failed Login Attempts
-            td = document.createElement('td');
-            td.appendChild(document.createTextNode(' - '))
-            tr.appendChild(td);
-            //delete icon
-            td = document.createElement('td');
-            td.setAttribute('class', 'midtitle2');
-            i.setAttribute('class', 'fa fa-trash ml-2');
-            // i.setAttribute('onclick', 'dropUser("' + user.username + '")');
-            i.setAttribute('href', '#deleteUserModal')
-            i.setAttribute('data-toggle', 'modal')
-            i.setAttribute('data-target', '#deleteUserModal')
-            i.setAttribute('data-id', user.username)
+        //Failed Login Attempts
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(' - '))
+        tr.appendChild(td);
+        //delete icon
+        td = document.createElement('td');
+        td.setAttribute('class', 'midtitle2');
+        i.setAttribute('class', 'fa fa-trash ml-2');
+        // i.setAttribute('onclick', 'dropUser("' + user.username + '")');
+        i.setAttribute('href', '#deleteUserModal')
+        i.setAttribute('data-toggle', 'modal')
+        i.setAttribute('data-target', '#deleteUserModal')
+        i.setAttribute('data-id', user.username)
 
-            td.appendChild(i);
-            tr.appendChild(td);
-            tbody.append(tr);
-        }
+        td.appendChild(i);
+        tr.appendChild(td);
+        tbody.append(tr);
     });
 
 }
@@ -318,7 +316,7 @@ setSwitch = () => {
             size: 'small'
         });
     });
-    
+
     var disb = document.querySelector('.js-switch-disable');
     var init = new Switchery(disb, { size: 'small' })
     init.disable();
