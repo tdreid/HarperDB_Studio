@@ -91,7 +91,12 @@ passport.use(new LocalStrategy({
                 user.endpoint_url = req.body.endpoint_url;
                 user.endpoint_port = req.body.endpoint_port;
                 return done(null, user);
-            } else {
+            } else if (user) {
+                return done(null, false, {
+                    message: JSON.stringify(user)
+                });
+            }
+            else {
                 return done(null, false, {
                     message: 'Invalid credentials'
                 });

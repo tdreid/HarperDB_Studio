@@ -23,14 +23,14 @@ html
             // Main content
             section.content
                 .back-link
-
+                input#error(type="hidden", name="error" value="#{error}")
                 .container-center.animated.slideInDown
                     .view-header
                         .header-icon
                             i.pe.page-header-icon.pe-7s-unlock
                         .header-title
                             img(src="images/white_300x100.png" style="width:200px; margin-top:-8px;")
-                            #{error}
+                            p #{error}
 
                     .panel.panel-filled
                         .panel-body
@@ -80,7 +80,7 @@ html
         script(src='scripts/luna.js')
         script.
             $(document).ready(function () {
-                let errMsg = '#{error}';
+                let errMsg = document.getElementById('error').value;                
                 if(errMsg){
                     toastr.error(errMsg);
 
