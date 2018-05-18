@@ -4,10 +4,10 @@ $(document).ready(function () {
     var graphDetail = document.getElementById('graphDetail').value;
     graphDetail = JSON.parse(graphDetail);    
     var g = $('.chart_div').get();    
-    selectChart(graphDetail.graphType, graphDetail.data, JSON.parse(graphDetail.options), g[0]);
+    selectChart(graphDetail.graphType, graphDetail.data, graphDetail.options, g[0]);
     if (graphDetail.graphType != 'Bar')
-        selectChart('Bar', graphDetail.data, JSON.parse(graphDetail.options), g[1]);
+        selectChart('Bar', graphDetail.data, graphDetail.options, g[1]);
     else
-        selectChart('Pie', graphDetail.data, JSON.parse(graphDetail.options), g[1]);
+        selectChart('Pie', graphDetail.data, graphDetail.options, g[1]);
 
 })

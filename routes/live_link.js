@@ -4,14 +4,16 @@ const express = require('express'),
     reduceTypeLogs = require('../utility/reduceTypeLogs'),
     isAuthenticated = require('../utility/checkAuthenticate'),
     CryptoJS = require("crypto-js"),
-    favorite = require('../utility/favoritesQuery');
+    favorite = require('../utility/favoritesQuery'),
+    guid = require('guid');
 
 const secretkey = 'gettingLiveLinkOnly123!!!';
 
 
 router.post('/save', isAuthenticated, function (req, res) {
-    var en_url = encryptLivelink(req);
-    favorite.setLiveLink(req, en_url).then((result) => {
+    var new_id = guid.create();
+    var en_url = encryptLivelink(req, new_id);
+    favorite.setLiveLink(req, en_url, new_id).then((result) => {
         return res.status(200).send(result);
     })
 })
@@ -32,30 +34,37 @@ router.post('/getlivelink', isAuthenticated, function (req, res) {
 router.get('/public/:key', function (req, res) {
     try {
         var decode64 = Buffer.from(req.params.key, 'base64').toString('ascii');
-        var bytes = CryptoJS.RC4.decrypt(decode64, secretkey);
-        var decryptedObject = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));        
+        var bytes = CryptoJS.AES.decrypt(decode64, secretkey);
+        var decryptedObject = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
         var call_object = {
-            username: decryptedObject.username,
-            password: decryptedObject.password,
-            endpoint_url: decryptedObject.endpoint_url,
-            endpoint_port: decryptedObject.endpoint_port
+            username: decryptedObject.un,
+            password: decryptedObject.pw,
+            endpoint_url: decryptedObject.eurl,
+            endpoint_port: decryptedObject.epp
         };
 
         var operation = {
             operation: 'sql',
-            sql: decryptedObject.sql
+            sql: "SELECT * FROM harperdb_studio.livelink WHERE id ='" + decryptedObject.id + "' "
         };
 
-        hdb_callout.callHarperDB(call_object, operation, function (error, data) {
-            res.render('live_link', {
-                graphDetail: JSON.stringify({
-                    data: data,
-                    options: decryptedObject.options,
-                    graphType: decryptedObject.graphType,
-                }),
-                notes: decryptedObject.notes,
-                livelinkName: decryptedObject.livelinkName
+        hdb_callout.callHarperDB(call_object, operation, function (error, sqlLivelink) {
+            var operation2 = {
+                operation: 'sql',
+                sql: sqlLivelink[0].sql
+            }
+
+            hdb_callout.callHarperDB(call_object, operation2, function (error2, sqlData) {
+                res.render('live_link', {
+                    graphDetail: JSON.stringify({
+                        data: sqlData,
+                        options: sqlLivelink[0].options,
+                        graphType: sqlLivelink[0].graphType,
+                    }),
+                    notes: sqlLivelink[0].notes,
+                    livelinkName: sqlLivelink[0].livelinkName
+                });
             });
         });
     } catch (err) {
@@ -66,20 +75,40 @@ router.get('/public/:key', function (req, res) {
 
 })
 
-var encryptLivelink = (req) => {
-    var obj = {
+router.get('/delete/:id', isAuthenticated, function (req, res) {    
+    var call_object = {
         username: req.user.username,
         password: req.user.password,
         endpoint_url: req.user.endpoint_url,
-        endpoint_port: req.user.endpoint_port,
-        sql: req.body.sql,
-        options: req.body.options,
-        livelinkName: req.body.livelinkName,
-        notes: req.body.notes,
-        graphType: req.body.graphType
+        endpoint_port: req.user.endpoint_port
+
+    };
+    var operation = {
+        "operation": "delete",
+        "schema": "harperdb_studio",
+        "table": "livelink",
+        "hash_values": [req.params.id]
+
+    }
+    hdb_callout.callHarperDB(call_object, operation, function (error, result) {                
+        return res.status(200).send(result);
+
+
+    });
+
+
+})
+
+var encryptLivelink = (req, id) => {
+    var obj = {
+        un: req.user.username,
+        pw: req.user.password,
+        eurl: req.user.endpoint_url,
+        epp: req.user.endpoint_port,
+        id: id
     }
 
-    var ciphertext = CryptoJS.RC4.encrypt(JSON.stringify(obj), secretkey);
+    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(obj), secretkey);
     var en_url = Buffer.from(ciphertext.toString()).toString('base64');
     return en_url;
 }

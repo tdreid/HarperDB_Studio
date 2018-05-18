@@ -39,7 +39,7 @@ var setFavorites = function (req, res, favoriteObj) {
     })
 }
 
-var setLiveLink = function (req, en_url) {
+var setLiveLink = function (req, en_url, id) {
     return new Promise(function (resolve) {
         var call_object = {
             username: req.user.username,
@@ -51,11 +51,15 @@ var setLiveLink = function (req, en_url) {
         var record = {
             en_url: en_url,
             date: new Date(),
-            id: guid.create(),
+            id: id,
             username: req.user.username,
             livelinkName: req.body.livelinkName,
             sql: req.body.sql,
-            
+            options: req.body.options,
+            livelinkName: req.body.livelinkName,
+            notes: req.body.notes,
+            graphType: req.body.graphType
+
         }
 
         var operation = {
@@ -72,7 +76,7 @@ var setLiveLink = function (req, en_url) {
                     });
 
                 })
-            }else 
+            } else
                 resolve(result);
         });
     })

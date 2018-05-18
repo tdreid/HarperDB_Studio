@@ -41,12 +41,20 @@ block content
                 - var str = value.sql
                 - var encode = Buffer.from(""+str+"").toString('base64')
                 if index % 2 == 0
-                  a.list-group-item.list-group-item-action.list-group-item-dark(href='/explore/sql_search/#{encode}') #{value.livelinkName}
+                  div
+                    .list-group-item.list-group-item-action.list-group-item-dark
+                      a(href='/explore/sql_search/#{encode}' style="width: 90%") #{value.livelinkName}
+                      button.close(type='button', aria-label='Close' data-toggle="modal" data-target="#deleteLivelinkModal" data-id="#{value.id}")
+                        i.fa.fa-times.text-red
                 else
                   if value.livelinkName != undefined
-                    a.list-group-item.list-group-item-action(href='/explore/sql_search/#{encode}') #{value.livelinkName}
+                    .list-group-item.list-group-item-action 
+                      a(href='/explore/sql_search/#{encode}' style="width: 90%") #{value.livelinkName}
+                      button.close(type='button', aria-label='Close' data-toggle="modal" data-target="#deleteLivelinkModal" data-id="#{value.id}")
+                        i.fa.fa-times.text-red
                   else
                     a.list-group-item.list-group-item-action.list-group-item-dark(href='#') No favorite
+
     header
       .boxdisplay.subheader Dashboard
     // Statistics Section
@@ -58,3 +66,20 @@ block content
             .card.income.text-center.dashboardplusbox
               .icon.iconplus
                 i.fa.fa-plus(aria-hidden='true')
+        // Modal
+    #deleteLivelinkModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+        .modal-dialog.modal-dialog-centered(role='document')
+            .modal-content
+                .modal-header
+                    #exampleModalLongTitle.modal-title.text-white Are you sure?
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        i.fa.fa-times.text-red
+                .modal-body.text-white
+                    p
+                        | Deleting this user is a permanent action and cannot be undone.
+                .modal-footer
+                    .col-md-12.p-0
+                        button#DeleteLivelinkBtn.btn.btn-maindelete.pull-right(type='button', style='min-width:150px;', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
+                            | Delete
+                        button.btn.btn-mainexit.pull-left(type='button', style='min-width:150px;', data-dismiss='modal', aria-haspopup='true', aria-expanded='false')
+                            | Exit

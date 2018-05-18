@@ -120,7 +120,7 @@ $(document).ready(function () {
 
 
 
-function copyLiveLink() {
+function copyLiveLinkNotSave() {
     /* Get the text field */
     var copyText = document.getElementById("liveLinkUrl");
 
@@ -133,7 +133,7 @@ function copyLiveLink() {
 
     /* Alert the copied text */
     // alert("Copied the text: " + copyText.value);
-    toastr.success("Copied the text: " + copyText.value);
+    toastr.warning("Live link need to be saved before sharing");
 }
 
 function copyLiveLinkShare() {
@@ -149,7 +149,7 @@ function copyLiveLinkShare() {
 
     /* Alert the copied text */
     // alert("Copied the text: " + copyText.value);
-    toastr.success("Copied the text: " + copyText.value);
+    toastr.success("Copied !" );
 }
 
 
