@@ -40,11 +40,11 @@ html
                                     label.control-label(for='username') Username
                                     input#username.form-control(name='username' type='text',
 
-                                    placeholder='', title='Please enter your username', required='' value='admin')
+                                    placeholder='', title='Please enter your username', required='' value='')
                                 .form-group
                                     label.control-label(for='password') Password
                                     input#password.form-control(name='password' type='password'
-                                    title='Please enter your password' placeholder=''  required='' value='admin!')
+                                    title='Please enter your password' placeholder=''  required='' value='')
 
                                 .panel.panel-filled.panel-c-accent.panel-collapse(style="margin-bottom: 10px")
                                     .panel-heading(style="padding: 7px")
@@ -57,7 +57,7 @@ html
                                         .form-group
                                             label.control-label(for='endpoint_url') Endpoint URL
                                             input#endpoint_url.form-control(name='endpoint_url' type='ip',
-                                            title='Please enter the ip or url HarperDB', value='52.187.109.242', placeholder='localhost', required='')
+                                            title='Please enter the ip or url HarperDB', value='#{default_host}', placeholder='localhost', required='')
                                         .form-group
                                             label.control-label(for='endpoint_port') Endpoint Port
                                             input#endpoint_port.form-control(name='endpoint_port' type='text',
@@ -70,21 +70,21 @@ html
                                 div
                                     button(type="submit").btn.btn-accent Login
             // End main content
-        // End wrapper
-        // Vendor scripts
-        script(src='vendor/pacejs/pace.min.js')
-        script(src='vendor/jquery/dist/jquery.min.js')
-        script(src='vendor/bootstrap/js/bootstrap.min.js')
-        script(src='vendor/toastr/toastr.min.js')
-        // App scripts
-        script(src='scripts/luna.js')
-        script.
-            $(document).ready(function () {
-                let errMsg = document.getElementById('error').value;                
-                if(errMsg){
-                    toastr.error(errMsg);
+            // End wrapper
+            // Vendor scripts
+            script(src='vendor/pacejs/pace.min.js')
+            script(src='vendor/jquery/dist/jquery.min.js')
+            script(src='vendor/bootstrap/js/bootstrap.min.js')
+            script(src='vendor/toastr/toastr.min.js')
+            // App scripts
+            script(src='scripts/luna.js')
+            script.
+                $(document).ready(function () {
+                    let errMsg = document.getElementById('error').value;                
+                    if(errMsg){
+                        toastr.error(errMsg);
 
-                }
+                    }
 
-            });
+                });
 
