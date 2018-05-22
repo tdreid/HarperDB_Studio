@@ -50,22 +50,28 @@ router.get('/public/:key', function (req, res) {
         };
 
         hdb_callout.callHarperDB(call_object, operation, function (error, sqlLivelink) {
-            var operation2 = {
-                operation: 'sql',
-                sql: sqlLivelink[0].sql
-            }
+            if (sqlLivelink.length > 0) {
+                var operation2 = {
+                    operation: 'sql',
+                    sql: sqlLivelink[0].sql
+                }
 
-            hdb_callout.callHarperDB(call_object, operation2, function (error2, sqlData) {
-                res.render('live_link', {
-                    graphDetail: JSON.stringify({
-                        data: sqlData,
-                        options: sqlLivelink[0].options,
-                        graphType: sqlLivelink[0].graphType,
-                    }),
-                    notes: sqlLivelink[0].notes,
-                    livelinkName: sqlLivelink[0].livelinkName
+                hdb_callout.callHarperDB(call_object, operation2, function (error2, sqlData) {
+                    res.render('live_link', {
+                        graphDetail: JSON.stringify({
+                            data: sqlData,
+                            options: sqlLivelink[0].options,
+                            graphType: sqlLivelink[0].graphType,
+                        }),
+                        notes: sqlLivelink[0].notes,
+                        livelinkName: sqlLivelink[0].livelinkName
+                    });
                 });
-            });
+            } else {
+                res.render('live_link', {
+                    error: 'live link is not found'
+                });
+            }
         });
     } catch (err) {
         res.render('live_link', {
@@ -75,7 +81,7 @@ router.get('/public/:key', function (req, res) {
 
 })
 
-router.get('/delete/:id', isAuthenticated, function (req, res) {    
+router.get('/delete/:id', isAuthenticated, function (req, res) {
     var call_object = {
         username: req.user.username,
         password: req.user.password,
@@ -90,7 +96,7 @@ router.get('/delete/:id', isAuthenticated, function (req, res) {
         "hash_values": [req.params.id]
 
     }
-    hdb_callout.callHarperDB(call_object, operation, function (error, result) {                
+    hdb_callout.callHarperDB(call_object, operation, function (error, result) {
         return res.status(200).send(result);
 
 
