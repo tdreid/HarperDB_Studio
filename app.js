@@ -65,8 +65,8 @@ app.use('/', main);
 
 //authen
 passport.use(new LocalStrategy({
-        passReqToCallback: true
-    },
+    passReqToCallback: true
+},
     function (req, username, password, done) {
         var call_object = {
             username: username,
@@ -118,29 +118,33 @@ passport.deserializeUser(function (user, done) {
 
 runServer();
 
-function runServer(){
-    let http_port = config.http_port;
-    if(!http_port && !config.https_port){
-        http_port = DEFAULT_HTTP_PORT;
-    }
+function runServer() {
+    if (process.version >= 'v8.11.0') {
+        let http_port = config.http_port;
+        if (!http_port && !config.https_port) {
+            http_port = DEFAULT_HTTP_PORT;
+        }
 
-    if(http_port){
-        http.createServer(app).listen(http_port, ()=>{
-            console.log('HarperDB Studio running on port ' + http_port);
-        });
-    }
-
-    if(config.https_port && config.https_key_path && config.https_cert_path){
-        let credentials = {
-            key: fs.readFileSync(config.https_key_path),
-            cert: fs.readFileSync(config.https_cert_path)
-        };
-
-        https.createServer(credentials, app)
-            .listen(config.https_port, function () {
-                console.log('HarperDB Studio running on port ' + config.https_port);
+        if (http_port) {
+            http.createServer(app).listen(http_port, () => {                
+                console.log('HarperDB Studio running on port ' + http_port);
             });
+        }
+
+        if (config.https_port && config.https_key_path && config.https_cert_path) {
+            let credentials = {
+                key: fs.readFileSync(config.https_key_path),
+                cert: fs.readFileSync(config.https_cert_path)
+            };
+
+            https.createServer(credentials, app)
+                .listen(config.https_port, function () {
+                    console.log('HarperDB Studio running on port ' + config.https_port);
+                });
+        }
     }
+    else
+        console.log(" HarperDB Studio requires Node.js version 8.11 or higher");
 }
 
 
