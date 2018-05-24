@@ -81,7 +81,7 @@ html
             script.
                 $(document).ready(function () {
                     let errMsg = document.getElementById('error').value;                
-                    if(errMsg){
+                    if(errMsg != 'undefined'){
                         toastr.error(errMsg);
 
                     }
