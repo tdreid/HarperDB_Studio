@@ -6,6 +6,8 @@ Prior to downloading and installing HarperDB Studio you will need an install of 
 Visit [http://products.harperdb.io](http://products.harperdb.io) for download and install instructions of HarperDB if you do not have an instance of HarperDB.
 
 ## Setup
+We recommend installing Node v8.11 or higher.
+
 By default, HarperDB Studio runs on port 8080, and assumes you will be connecting to an instance of HarperDB with host localhost on port 9925.
 To change any of these settings edit the file /config/config.json. A sample config.json looks like:
 
