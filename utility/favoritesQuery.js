@@ -51,17 +51,18 @@ var setLiveLink = function (req, en_url, id) {
         var record = {
             en_url: en_url,
             date: new Date(),
-            id: id,
+            id: id.value,
             username: req.user.username,
             livelinkName: req.body.livelinkName,
             sql: req.body.sql,
             options: req.body.options,
             livelinkName: req.body.livelinkName,
             notes: req.body.notes,
-            graphType: req.body.graphType
+            graphType: req.body.graphType,
+            isFavorited: true
 
         }
-
+        
         var operation = {
             operation: 'insert',
             schema: 'harperdb_studio',
@@ -70,7 +71,7 @@ var setLiveLink = function (req, en_url, id) {
         };
         hdb_callout.callHarperDB(call_object, operation, function (err, result) {
             if (err || result.error) {
-                createLivelinkTable(req, res).then(() => {
+                createLivelinkTable(req).then(() => {
                     hdb_callout.callHarperDB(call_object, operation, function (err2, result2) {
                         resolve(result2);
                     });

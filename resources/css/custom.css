@@ -120,3 +120,56 @@ a.whitelink .helpmenucircle:hover, a.whitelink .helpmenucircle:focus {
 ul.tree .tree_label a:hover {
     text-decoration: none !important;
 }
+
+.favorite-td {
+    width: 80%;
+    cursor: pointer;
+      
+}
+
+.favorite-td:hover{
+    color: #949ba2 !important;
+    background-color: transparent !important;
+    border-color: #4a4f5d !important;
+}
+.add-pointer {
+    cursor: pointer;
+}
+
+.add-pointer:hover {
+    cursor: pointer;
+    color: #949ba2 !important;
+    background-color: transparent !important;
+    border-color: #4a4f5d !important;
+}
+
+.star-favor {
+    visibility: hidden;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.star-favor:before {
+    content: "\2605";
+    position: absolute;
+    color: white;
+    opacity: 0.1;
+    visibility: visible;
+    margin-top: -15px;
+}
+.star-favor:hover::before {
+    content: "\2605";
+    position: absolute;
+    color: yellow;
+    opacity: 0.5;
+    visibility: visible;
+    margin-top: -15px;
+}
+
+.star-favor:checked:before {
+    content: "\2605";
+    color: yellow;
+    position: absolute;
+    margin-top: -15px;
+    opacity: 1;
+}

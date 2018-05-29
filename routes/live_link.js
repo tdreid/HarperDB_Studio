@@ -31,6 +31,33 @@ router.post('/getlivelink', isAuthenticated, function (req, res) {
 
 })
 
+router.put('/unfavorite/:id/:isFavorited', isAuthenticated, function (req, res) {
+    var call_object = {
+        username: req.user.username,
+        password: req.user.password,
+        endpoint_url: req.user.endpoint_url,
+        endpoint_port: req.user.endpoint_port
+    };
+    var operation = {
+        "operation": "update",
+        "schema": "harperdb_studio",
+        "table": "livelink",
+        "records": [
+            {
+                "id": req.params.id,
+                "isFavorited": req.params.isFavorited
+            }
+
+        ]
+
+    }
+
+    hdb_callout.callHarperDB(call_object, operation, function (error, result) {        
+        return res.status(200).send(result);
+    })
+
+})
+
 router.get('/public/:key', function (req, res) {
     try {
         var decode64 = Buffer.from(req.params.key, 'base64').toString('ascii');
