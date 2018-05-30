@@ -71,7 +71,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             url: '/livelink/delete/' + gDeleteLivelinkId,
-            success: function (obj) {                
+            success: function (obj) {
                 GetFavorite().then(res => {
                     globalLiveLink = res;
                     destroyDataTable('#favorTable');
@@ -123,8 +123,8 @@ var createFovoriteDataTable = function (obj) {
             {
                 "targets": 1, className: "favorite-td",
                 "render": function (data, type, row, meta) {
-                    
-                    return "<span style='width: 100%' onClick='goToLiveLink(`" + row[0] + "`)'>" + data + "</span>"                    
+
+                    return "<span style='width: 100%' onClick='goToLiveLink(`" + row[0] + "`)'>" + data + "</span>"
                 }
             },
             {
@@ -152,14 +152,14 @@ var createFovoriteDataTable = function (obj) {
 
 }
 
-var goToSqlSearch = function (liveLinkId) {    
-    var currentRecent = globalLiveLink.filter(f => f.id == liveLinkId)[0];    
+var goToSqlSearch = function (liveLinkId) {
+    var currentRecent = globalLiveLink.filter(f => f.id == liveLinkId)[0];
     window.location.href = '/explore/sql_search/' + btoa(currentRecent.sql);
-    
+
 }
 
-var goToLiveLink = function (liveLinkId) {    
-    var currentRecent = globalLiveLink.filter(f => f.id == liveLinkId)[0];        
+var goToLiveLink = function (liveLinkId) {
+    var currentRecent = globalLiveLink.filter(f => f.id == liveLinkId)[0];
     window.open('/livelink/public/' + currentRecent.en_url, '_blank');
 }
 
@@ -169,32 +169,34 @@ var createLiveLinkDataTable = function (obj) {
         obj.forEach(o => {
             recentData.push([o.id, o.isFavorited, o.livelinkName, o.date, o.notes])
         })
-        var recentColumns = [
-            {
-                title: 'id',
 
-            },
-            {
-                title: ' '                
-            },
-            {
-                title: 'Name'
-            },
-            {
-                title: 'Date Created',
-            },
-            {
-                title: 'Notes',
-                "defaultContent": "-"
-            }
-        ];        
-        recentColumns.push({
-            "data": "manage",
-            "render": function (data, type, row, meta) {
-                return "<i class='fa fa-pencil midtitle2 add-pointer' style='color: green' onClick='goToSqlSearch(`" + row[0] + "`)'></i> / <i class='fa fa-trash  midtitle2' data-toggle='modal' data-target='#deleteLivelinkModal' data-id='" + row[0] + "'> </i>"
-            },            
-        })
     }
+    var recentColumns = [
+        {
+            title: 'id',
+
+        },
+        {
+            title: ' '
+        },
+        {
+            title: 'Name'
+        },
+        {
+            title: 'Date Created',
+        },
+        {
+            title: 'Notes',
+            "defaultContent": "-"
+        }
+    ];
+    recentColumns.push({
+        "data": "manage",
+        "render": function (data, type, row, meta) {
+            return "<i class='fa fa-pencil midtitle2 add-pointer' style='color: green' onClick='goToSqlSearch(`" + row[0] + "`)'></i> / <i class='fa fa-trash  midtitle2' data-toggle='modal' data-target='#deleteLivelinkModal' data-id='" + row[0] + "'> </i>"
+        },
+    })
+
     livelinkTable = $('#livelinkTable').DataTable({
         data: recentData,
         columns: recentColumns,
@@ -236,7 +238,7 @@ var createLiveLinkDataTable = function (obj) {
         "order": [[3, "desc"]],
         "iDisplayLength": 5,
         "language": {
-            "emptyTable": "No recents"
+            "emptyTable": "No live link saved"
         },
     });
 
@@ -284,7 +286,7 @@ var createChartElement = function (chartObj) {
 
 var generateCharts = async function (chartObj) {
     if (chartObj.length > 0) {
-        var g = $('.chart_div').get();                
+        var g = $('.chart_div').get();
         for (var i = 0; i < chartObj.length; i++) {
             if (i == 6) break;
             var obj = await executeSql(chartObj[i].sql);
