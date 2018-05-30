@@ -105,7 +105,7 @@ var createFovoriteDataTable = function (obj) {
     columnss.push({
         "data": "manage",
         "render": function (data, type, row, meta) {
-            return "<i class='fa fa-pencil midtitle2 add-pointer' style='color: green' onClick='goToSqlSearch(`" + row[0] + "`)'></i> / <i class='fa fa-times text-red midtitle2 add-pointer' onClick='changeStarFavor(`" + row[0] + "`, true)'> </i>"
+            return "<i class='fa fa-pencil midtitle2 add-pointer' style='color: green' onClick='goToSqlSearchForEdit(`" + row[0] + "`)'></i> / <i class='fa fa-times text-red midtitle2 add-pointer' onClick='changeStarFavor(`" + row[0] + "`, true)'> </i>"
         }
     })
     if (obj.length > 0) {
@@ -158,6 +158,10 @@ var goToSqlSearch = function (liveLinkId) {
 
 }
 
+var goToSqlSearchForEdit = function (liveLinkId) {
+    window.location.href = '/explore/sql_search_edit/' + liveLinkId;
+}
+
 var goToLiveLink = function (liveLinkId) {
     var currentRecent = globalLiveLink.filter(f => f.id == liveLinkId)[0];
     window.open('/livelink/public/' + currentRecent.en_url, '_blank');
@@ -193,7 +197,7 @@ var createLiveLinkDataTable = function (obj) {
     recentColumns.push({
         "data": "manage",
         "render": function (data, type, row, meta) {
-            return "<i class='fa fa-pencil midtitle2 add-pointer' style='color: green' onClick='goToSqlSearch(`" + row[0] + "`)'></i> / <i class='fa fa-trash  midtitle2' data-toggle='modal' data-target='#deleteLivelinkModal' data-id='" + row[0] + "'> </i>"
+            return "<i class='fa fa-pencil midtitle2 add-pointer' style='color: green' onClick='goToSqlSearchForEdit(`" + row[0] + "`)'></i> / <i class='fa fa-trash  midtitle2' data-toggle='modal' data-target='#deleteLivelinkModal' data-id='" + row[0] + "'> </i>"
         },
     })
 
@@ -217,8 +221,19 @@ var createLiveLinkDataTable = function (obj) {
                 }
             },
             {
+                "targets": [2],
+                className: "add-pointer",
+                "render": function (data, type, row, meta) {
+                    return "<span style='width: 100%' onClick='goToLiveLink(`" + row[0] + "`)'>" + data + "</span>"
+                }
+
+            },
+            {
                 "targets": [3],
                 className: "add-pointer",
+                "render": function (data, type, row, meta) {
+                    return "<span style='width: 100%' onClick='goToLiveLink(`" + row[0] + "`)'>" + data + "</span>"
+                }
             },
             {
                 "targets": [4],
@@ -227,9 +242,9 @@ var createLiveLinkDataTable = function (obj) {
                     if (data == null)
                         return data
                     else if (type === 'display' && (data.length > 60))
-                        return '<span title="' + data + '">' + data.substr(0, 58) + '...</span>'
+                        return '<span title="' + data + '" onClick="goToLiveLink(`' + row[0] + '`)">' + data.substr(0, 58) + '...</span>'
                     else
-                        return data
+                        return "<span style='width: 100%' onClick='goToLiveLink(`" + row[0] + "`)'>" + data + "</span>"
                 }
             },
 

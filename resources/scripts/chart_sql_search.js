@@ -1,9 +1,23 @@
 
 var globalOptions = {};
 var gGraphType = null;
+var gLiveLinkId = null;
 $(document).ready(function () {
     google.charts.load('current', { packages: ['corechart', 'line', 'bar', 'map', 'scatter', 'gauge', 'treemap', 'geochart'], 'mapsApiKey': 'AIzaSyAP0UYqFCuSOOIMOQ6Ltmrx1B79XUw4Tmw' });
 
+    var livelinkObjectEdit = document.getElementById('livelinkObjectEdit').value
+    $('#updateExistingBtn').hide()
+    if (livelinkObjectEdit != 'undefined') {
+        livelinkObjectEdit = JSON.parse(livelinkObjectEdit);        
+        globalOptions = livelinkObjectEdit.options;
+        gLiveLinkId = livelinkObjectEdit.id;
+        gGraphType = livelinkObjectEdit.graphType;
+        $("#exampleTextarea").val(livelinkObjectEdit.sql);
+        generateChart(livelinkObjectEdit.graphType, livelinkObjectEdit.sql, livelinkObjectEdit.options);
+        $('#livelinkNote').val(livelinkObjectEdit.notes)
+        $('#livelinkName').val(livelinkObjectEdit.livelinkName)
+        $('#updateExistingBtn').show()
+    }
 
     $("#clickGenerateChart, .fa-refresh-search").click(function () {
         var sqlQuery = $("#exampleTextarea").val();
@@ -55,7 +69,6 @@ $(document).ready(function () {
     $('#saveLivelinkCenter').on('shown.bs.modal', function (e) {
         var sqlQuery = $("#exampleTextarea").val();
         if (sqlQuery == undefined) {
-            console.log('eieieiieieie')
             sqlQuery = buildSqlQuery();
         }
         $.ajax({
@@ -109,11 +122,17 @@ $(document).ready(function () {
         $('#liveLinkShareUrl').val(window.location.host + '/livelink/public/' + this.value)
     })
 
-    $("#livelinkForm").submit(function (event) {
-        console.log('eieieie');
-        saveLivelink().then(() => {
-            $('#saveLivelinkCenter').modal('toggle');
-        });
+    $("#livelinkForm").submit(function (event) {        
+        if ($(document.activeElement).val() == 'save') {
+            saveLivelink().then(() => {
+                $('#saveLivelinkCenter').modal('toggle');
+            });
+        }
+        else {
+            updateLivelink(gLiveLinkId).then(() => {
+                $('#saveLivelinkCenter').modal('toggle');
+            });
+        }
         event.preventDefault();
     });
 })
@@ -149,7 +168,7 @@ function copyLiveLinkShare() {
 
     /* Alert the copied text */
     // alert("Copied the text: " + copyText.value);
-    toastr.success("Copied !" );
+    toastr.success("Copied !");
 }
 
 
@@ -179,4 +198,31 @@ function saveLivelink() {
         })
     })
 
+}
+
+function updateLivelink(id) {
+    var sqlQuery = $("#exampleTextarea").val();
+
+    if (sqlQuery == undefined)
+        sqlQuery = buildSqlQuery()
+    return new Promise(resolve => {
+        $.ajax({
+            type: "PUT",
+            url: '/livelink/update/' + id,
+            data: {
+                sql: sqlQuery,
+                options: JSON.stringify(globalOptions),
+                livelinkName: $('#livelinkName').val(),
+                notes: $('#livelinkNote').val(),
+                graphType: gGraphType
+            },
+            success: function (result) {
+                toastr.success(JSON.stringify(result));
+                resolve(true);
+            }, error: function (err) {
+                document.location.href = '/logout';
+                console.log(err);
+            }
+        })
+    })
 }

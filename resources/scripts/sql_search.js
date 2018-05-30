@@ -1,6 +1,6 @@
 let saveSQL = '';
 $(document).ready(function () {
-    var sqlValue = document.getElementById('sqlLink').value;
+    var sqlValue = document.getElementById('sqlLink').value;    
     if (sqlValue != null && sqlValue != '' && sqlValue != undefined && sqlValue != 'undefined') {
         document.getElementById('exampleTextarea').value = sqlValue;
         runDatatable();
@@ -178,7 +178,7 @@ function saveFavorite() {
 
 function copySqlLink() {
     /* Get the text field */
-    var copyText = document.getElementById("liveLinkSQL");    
+    var copyText = document.getElementById("liveLinkSQL");
 
     /* Select the text field */
     copyText.focus();

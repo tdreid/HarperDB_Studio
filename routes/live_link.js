@@ -18,6 +18,12 @@ router.post('/save', isAuthenticated, function (req, res) {
     })
 })
 
+router.put('/update/:id', isAuthenticated, function (req, res) {        
+    favorite.updateLiveLink(req , req.params.id).then((result) => {
+        return res.status(200).send(result);
+    })
+})
+
 router.get('/livelinklist', isAuthenticated, function (req, res) {
     favorite.getLivelink(req).then(recents => {
         return res.status(200).send(recents);

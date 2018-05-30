@@ -62,7 +62,7 @@ var setLiveLink = function (req, en_url, id) {
             isFavorited: true
 
         }
-        
+
         var operation = {
             operation: 'insert',
             schema: 'harperdb_studio',
@@ -79,6 +79,40 @@ var setLiveLink = function (req, en_url, id) {
                 })
             } else
                 resolve(result);
+        });
+    })
+}
+
+var updateLiveLink = function (req, id) {
+    return new Promise(function (resolve) {
+        var call_object = {
+            username: req.user.username,
+            password: req.user.password,
+            endpoint_url: req.user.endpoint_url,
+            endpoint_port: req.user.endpoint_port
+        };
+
+        var record = {
+            id: id,
+            date: new Date(),
+            username: req.user.username,
+            livelinkName: req.body.livelinkName,
+            sql: req.body.sql,
+            options: req.body.options,
+            livelinkName: req.body.livelinkName,
+            notes: req.body.notes,
+            graphType: req.body.graphType,
+            isFavorited: true
+        }
+
+        var operation = {
+            operation: 'update',
+            schema: 'harperdb_studio',
+            table: 'livelink',
+            records: [record]
+        };
+        hdb_callout.callHarperDB(call_object, operation, function (err, result) {
+            resolve(result);
         });
     })
 }
@@ -146,6 +180,31 @@ var getLivelink = function (req) {
         });
     })
 
+}
+
+var getLivelinkById = function (req, id) {
+    return new Promise(function (resolve) {
+        var call_object = {
+            username: req.user.username,
+            password: req.user.password,
+            endpoint_url: req.user.endpoint_url,
+            endpoint_port: req.user.endpoint_port
+        };
+
+        var operation = {
+            operation: 'sql',
+            sql: "SELECT * FROM harperdb_studio.livelink WHERE id = '" + id + "'"
+        };
+        hdb_callout.callHarperDB(call_object, operation, function (err, result) {
+            if (err || result.error)
+                resolve(result);
+            else if (result.length > 0)
+                resolve(result[0])
+            else
+                resolve(result)
+
+        });
+    });
 }
 
 
@@ -241,5 +300,7 @@ module.exports = {
     createUserFavoriteTable: createUserFavoriteTable,
     getFavorites: getFavorites,
     setLiveLink: setLiveLink,
-    getLivelink: getLivelink
+    getLivelink: getLivelink,
+    getLivelinkById: getLivelinkById,
+    updateLiveLink: updateLiveLink
 }
