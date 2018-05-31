@@ -41,7 +41,7 @@ var scatterChart = (datas, options, element) => {
 var areaChart = (datas, options, element) => {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
-        var data = google.visualization.arrayToDataTable(datas);        
+        var data = google.visualization.arrayToDataTable(datas);
         var chart = new google.visualization.AreaChart(element);
         chart.draw(data, google.charts.Scatter.convertOptions(options));
     }
@@ -163,12 +163,26 @@ var transformDataArray = (data) => {
             transform.push(Object.values(element))
         });
         return transform;
-    } catch(err) {
+    } catch (err) {
         return transform;
     }
 }
 
 var getData = (sql) => {
+
+    // option X Y Axis Charts 
+    $('#hTitle')
+        .find('option')
+        .remove().end()
+        .append('<option value="">none</option>')
+        .val('')
+
+    $('#vTitle')
+        .find('option')
+        .remove().end()
+        .append('<option value="">none</option>')
+        .val('')
+
     return new Promise(resolve => {
         $.ajax({
             type: "POST",
@@ -176,13 +190,25 @@ var getData = (sql) => {
             data: {
                 sql: sql
             },
-            success: function (obj) {                
+            success: function (obj) {
 
                 if (obj.result.error != undefined) {
                     toastr.error(obj.result.error);
                 } else if (typeof obj.result == 'string') {
                     toastr.error(obj.result);
                 } else {
+                    if ($('#hTitle').length > 0) {
+                        Object.keys(obj.result[0]).forEach(element => {                            
+                            $('#hTitle')
+                                .append($("<option></option>")
+                                    .attr("value", element)
+                                    .text(element));
+                            $('#vTitle')
+                                .append($("<option></option>")
+                                    .attr("value", element)
+                                    .text(element));
+                        });
+                    }
                     resolve(obj.result)
                 }
                 resolve(false)
@@ -204,7 +230,7 @@ var generateChart = (graphType, sqlQuery, options) => {
     })
 }
 
-var selectChart = (graphType, data, options, element) => {    
+var selectChart = (graphType, data, options, element) => {
     var data = transformDataArray(data);
     switch (graphType) {
         case "Line":

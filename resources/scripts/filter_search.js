@@ -48,6 +48,18 @@ $(document).ready(function () {
         $(document.body).css({
             'cursor': 'wait'
         });
+        // option X Y Axis Charts 
+        $('#hTitle')
+            .find('option')
+            .remove().end()
+            .append('<option value="">none</option>')
+            .val('')
+
+        $('#vTitle')
+            .find('option')
+            .remove().end()
+            .append('<option value="">none</option>')
+            .val('')
 
         $.ajax({
             type: "POST",
@@ -75,7 +87,17 @@ $(document).ready(function () {
                             columnssss.push({
                                 title: element
                             })
+                            
+                            $('#hTitle')
+                                .append($("<option></option>")
+                                    .attr("value", element)
+                                    .text(element));
+                            $('#vTitle')
+                                .append($("<option></option>")
+                                    .attr("value", element)
+                                    .text(element));
                         });
+
 
                         var data = [];
                         obj.result.forEach(element => {

@@ -1,6 +1,6 @@
 let saveSQL = '';
 $(document).ready(function () {
-    var sqlValue = document.getElementById('sqlLink').value;    
+    var sqlValue = document.getElementById('sqlLink').value;
     if (sqlValue != null && sqlValue != '' && sqlValue != undefined && sqlValue != 'undefined') {
         document.getElementById('exampleTextarea').value = sqlValue;
         runDatatable();
@@ -195,6 +195,19 @@ function copySqlLink() {
 runDatatable = function () {
     var sql = document.getElementById('exampleTextarea').value;
 
+    // option X Y Axis Charts 
+    $('#hTitle')
+        .find('option')
+        .remove().end()
+        .append('<option value="">none</option>')
+        .val('')
+
+    $('#vTitle')
+        .find('option')
+        .remove().end()
+        .append('<option value="">none</option>')
+        .val('')
+
     $(document.body).css({
         'cursor': 'wait'
     });
@@ -221,6 +234,14 @@ runDatatable = function () {
                         columnssss.push({
                             title: element
                         })
+                        $('#hTitle')
+                            .append($("<option></option>")
+                                .attr("value", element)
+                                .text(element));
+                        $('#vTitle')
+                            .append($("<option></option>")
+                                .attr("value", element)
+                                .text(element));
                     });
 
                     var data = [];
