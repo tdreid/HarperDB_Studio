@@ -67,7 +67,7 @@ block content
                                 li
                                     input(type='checkbox', id = 'c#{schemaIndex}')
                                     label.tree_label(for='c#{schemaIndex}' style="font-size: 1.4rem;")
-                                        i.fa.fa-caret-down
+                                        i.fa.fa-caret-down.mr-2
                                         a(href='/schema/#{schemaProp}')= schemaProp
                                         - var cId = 'c' + schemaIndex
                                         - schemaIndex++;                                        
@@ -79,7 +79,7 @@ block content
                                                 li
                                                     input(id='#{cId}t#{tableIndex}', type='checkbox')
                                                     label.tree_label(for='#{cId}t#{tableIndex}' style="font-size: 1.25rem;")
-                                                        i.fa.fa-caret-down
+                                                        i.fa.fa-caret-down.mr-1
                                                         |  #{tableProp}
                                                     ul
                                                         if schemas[schemaProp][tableProp] != undefined
