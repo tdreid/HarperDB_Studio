@@ -173,3 +173,8 @@ ul.tree .tree_label a:hover {
     margin-top: -15px;
     opacity: 1;
 }
+
+.boxdisplay-sub {
+    color: #fff;
+    font-size: 1.5rem;
+}
