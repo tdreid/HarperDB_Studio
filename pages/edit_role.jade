@@ -24,7 +24,7 @@ block content
                 .boxdisplay
                     | Search Roles  
                     input#searchRole.ml-3(type='text')
-                    a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='/security/add_role') Add New
+                    a.btn.btn-main.dropdown-toggle.minwidthcombobox.pull-right(href='/security/add_role') Add Role
         each role in roles                        
             section(id="#{role.role}")
                 hr
