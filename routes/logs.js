@@ -2,7 +2,8 @@ const express = require('express'),
     router = express.Router(),
     hdb_callout = require('../utility/harperDBCallout'),
     reduceTypeLogs = require('../utility/reduceTypeLogs'),
-    isAuthenticated = require('../utility/checkAuthenticate');
+    isAuthenticated = require('../utility/checkAuthenticate'),
+    mapDynamicToStableObject = require('../utility/mapDynamicToStableObject');
 
 
 router.get('/', function (req, res) {
@@ -31,7 +32,7 @@ router.get('/', function (req, res) {
 
         return res.render('logs', {
             user: req.user,
-            logs: JSON.stringify(reduceTypeLogs(logs)),
+            logs: JSON.stringify(mapDynamicToStableObject(reduceTypeLogs(logs))),
             error: err,
             nameOfUser: req.user.username
         });
@@ -53,9 +54,8 @@ router.post('/search', isAuthenticated, function (req, res) {
             return res.status(400).send(result);
         }
         var obj = {
-            result: reduceTypeLogs(result)
-        }
-
+            result: mapDynamicToStableObject(reduceTypeLogs(result))
+        }        
         return res.status(200).send(obj);
     });
 
