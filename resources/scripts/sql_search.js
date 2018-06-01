@@ -255,6 +255,7 @@ runDatatable = function () {
                     sTable = $('#resultTable').DataTable({
                         data: data,
                         columns: columnssss,
+                        "order": [],
                         "dom": "<'col-md-12 datatable-over't><'col-md-4'<'pull-left'l>><'col-md-8 right-pagging'p>",
                         "lengthMenu": [
                             [10, 50, 100, -1],
