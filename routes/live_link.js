@@ -97,7 +97,9 @@ router.get('/public/:key', function (req, res) {
                             graphType: sqlLivelink[0].graphType,
                         }),
                         notes: sqlLivelink[0].notes,
-                        livelinkName: sqlLivelink[0].livelinkName
+                        livelinkName: sqlLivelink[0].livelinkName,
+                        isFavorited: sqlLivelink[0].isFavorited
+                        
                     });
                 });
             } else {
