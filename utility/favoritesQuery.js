@@ -59,7 +59,7 @@ var setLiveLink = function (req, en_url, id) {
             livelinkName: req.body.livelinkName,
             notes: req.body.notes,
             graphType: req.body.graphType,
-            isFavorited: true
+            isFavorited: req.body.isFavorited
 
         }
 

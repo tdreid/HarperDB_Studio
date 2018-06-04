@@ -186,7 +186,8 @@ function saveLivelink() {
                 options: JSON.stringify(globalOptions),
                 livelinkName: $('#livelinkName').val(),
                 notes: $('#livelinkNote').val(),
-                graphType: gGraphType
+                graphType: gGraphType,
+                isFavorited: $('#set-favor-star').is(":checked")
             },
             success: function (result) {
                 toastr.success(JSON.stringify(result));

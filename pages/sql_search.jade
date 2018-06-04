@@ -101,13 +101,15 @@ block content
                         #collapseResultChart.contentbackground.text-white.p-3.collapse
                             .secondheader
                                 .midtitle
-                                    | Results
+                                    | Results                                    
                                     .pull-right 
                                         i.fa.fa-sign-out(data-target='#shareLivelinkModal', data-toggle='modal', style='margin-right:10px;')
                                     .pull-right
                                         i.fa.fa-save(data-target='#saveLivelinkCenter', data-toggle='modal', style='margin-right:10px;')
                                     .pull-right
                                         i.fa.fa-refresh.fa-refresh-search(style='margin-right:10px;')
+                                    .pull-right 
+                                        input.star-favor.mr-3#set-favor-star(style="margin-top: -20px" type='checkbox', title='bookmark', checked)
                                     //- .pull-right
                                         i.fa.fa-cog(data-target='#saveModalCenter', data-toggle='modal', style='margin-right:10px;')
 

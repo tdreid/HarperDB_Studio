@@ -155,7 +155,7 @@ ul.tree .tree_label a:hover {
     color: white;
     opacity: 0.1;
     visibility: visible;
-    margin-top: -15px;
+    margin-top: -18px;
 }
 .star-favor:hover::before {
     content: "\2605";
@@ -163,14 +163,14 @@ ul.tree .tree_label a:hover {
     color: yellow;
     opacity: 0.5;
     visibility: visible;
-    margin-top: -15px;
+    margin-top: -18px;
 }
 
 .star-favor:checked:before {
     content: "\2605";
     color: yellow;
     position: absolute;
-    margin-top: -15px;
+    margin-top: -18px;
     opacity: 1;
 }
 
