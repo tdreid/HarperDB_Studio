@@ -2,7 +2,8 @@ const express = require('express'),
     router = express.Router(),
     hdb_callout = require('../utility/harperDBCallout'),
     isAuthenticated = require('../utility/checkAuthenticate'),
-    breadcrumb = require('../utility/breadcrumb');
+    breadcrumb = require('../utility/breadcrumb'),
+    sortSchemas = require('../utility/sortSchemas');
 
 router.get('/', [isAuthenticated, breadcrumb], function (req, res) {    
     req.session.preUrl = '/schema';
@@ -20,7 +21,7 @@ router.get('/', [isAuthenticated, breadcrumb], function (req, res) {
     hdb_callout.callHarperDB(call_object, operation, function (err, allSchema) {
 
         return res.render('schema', {
-            schemas: allSchema,
+            schemas: sortSchemas(allSchema),
             nameOfUser: req.user.username
         });
     });

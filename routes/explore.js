@@ -5,7 +5,8 @@ const express = require('express'),
     isAuthenticated = require('../utility/checkAuthenticate'),
     favorite = require('../utility/favoritesQuery'),
     mapDynamicToStableObject = require('../utility/mapDynamicToStableObject'),
-    breadcrumb = require('../utility/breadcrumb');
+    breadcrumb = require('../utility/breadcrumb'),
+    sortSchemas = require('../utility/sortSchemas');
 
 router.get('/', [isAuthenticated, breadcrumb], function (req, res) {
 
@@ -40,7 +41,7 @@ router.get('/sql_search', isAuthenticated, function (req, res) {
         var keywords = reduceDescribeAllObject(result);
         res.render('sql_search', {
             keywords: JSON.stringify(keywords),
-            schemas: result,
+            schemas: sortSchemas(result),
             nameOfUser: req.user.username,
             breadcrumb: {
                 name: req.session.cur_url_name,
