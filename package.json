@@ -1,7 +1,7 @@
 {
   "name": "harperdb_studio",
   "version": "1.0.0",
-  "description": "",
+  "description": "HarperDB Studio is a web based UI for managing users, roles, and your schema.",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
