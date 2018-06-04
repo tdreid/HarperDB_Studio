@@ -132,13 +132,27 @@ ul.tree .tree_label a:hover {
     background-color: transparent !important;
     border-color: #4a4f5d !important;
 }
-.add-pointer {
+.add-pointer, .add-pointer-times, .add-pointer-pencil {
     cursor: pointer;
 }
 
 .add-pointer:hover {
     cursor: pointer;
     color: #949ba2 !important;
+    background-color: transparent !important;
+    border-color: #4a4f5d !important;
+}
+
+.add-pointer-times:hover {
+    cursor: pointer;
+    color: red !important;
+    background-color: transparent !important;
+    border-color: #4a4f5d !important;
+}
+
+.add-pointer-pencil:hover {
+    cursor: pointer;
+    color: green !important;
     background-color: transparent !important;
     border-color: #4a4f5d !important;
 }

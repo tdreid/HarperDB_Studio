@@ -105,7 +105,7 @@ var createFovoriteDataTable = function (obj) {
     columnss.push({
         "data": "manage",
         "render": function (data, type, row, meta) {
-            return "<i class='fa fa-pencil midtitle add-pointer mr-2' style='color: green' onClick='goToSqlSearchForEdit(`" + row[0] + "`)'></i>  <i class='fa fa-times text-red midtitle add-pointer' onClick='changeStarFavor(`" + row[0] + "`, true)'> </i>"
+            return "<i class='fa fa-pencil midtitle add-pointer-pencil mr-2' style='color: white' onClick='goToSqlSearchForEdit(`" + row[0] + "`)'></i>  <i class='fa fa-times midtitle add-pointer-times' style='color: white' onClick='changeStarFavor(`" + row[0] + "`, true)'> </i>"
         }
     })
     if (obj.length > 0) {
@@ -197,7 +197,7 @@ var createLiveLinkDataTable = function (obj) {
     recentColumns.push({
         "data": "manage",
         "render": function (data, type, row, meta) {
-            return "<i class='fa fa-pencil midtitle add-pointer mr-2' style='color: green' onClick='goToSqlSearchForEdit(`" + row[0] + "`)'></i>  <i class='fa fa-trash  midtitle' data-toggle='modal' data-target='#deleteLivelinkModal' data-id='" + row[0] + "'> </i>"
+            return "<i class='fa fa-pencil midtitle add-pointer-pencil mr-2' style='color: white' onClick='goToSqlSearchForEdit(`" + row[0] + "`)'></i>  <i class='fa fa-trash  midtitle' data-toggle='modal' data-target='#deleteLivelinkModal' data-id='" + row[0] + "'> </i>"
         },
     })
 
