@@ -305,6 +305,7 @@ var generateCharts = async function (chartObj) {
         for (var i = 0; i < chartObj.length; i++) {
             if (i == 6) break;
             var obj = await executeSql(chartObj[i].sql);
+            chartObj[i].options.backgroundColor = 'white';
             selectChart(chartObj[i].graphType, obj.result, chartObj[i].options, g[i]);
         }
     }
