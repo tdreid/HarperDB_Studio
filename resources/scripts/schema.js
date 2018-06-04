@@ -2,7 +2,7 @@ var schemaForSearch = [];
 $(document).ready(function () {
     createAddTableType();
     createuploadFileType();
-    var schemaName = document.getElementById('selectSchemaName').value;    
+    var schemaName = document.getElementById('selectSchemaName').value;
     getTable(schemaName);
     $("#addType").change(function () {
         var type = document.getElementById('addType').value;
@@ -16,8 +16,8 @@ $(document).ready(function () {
     //     $('#addCSVBtn').attr('disabled', true)
     // })
 
-    $('#addCSVForm').submit(function (ev) {                
-        this.submit(); 
+    $('#addCSVForm').submit(function (ev) {
+        this.submit();
         $('#addCSVBtn').attr('disabled', true)
     });
 
@@ -48,20 +48,31 @@ $(document).ready(function () {
     schemaForSearch = Object.keys(schemas);
 
     $('#searchSchema').keyup(function () {
-        var valueSearch = $('#searchSchema').val();        
-        if (valueSearch == '') {            
-            schemaForSearch.forEach(element => {
-                $('#' + element).show();
-            });
-        } else {
-            schemaForSearch.forEach(element => {
-                $('#' + element).hide();
-            });
-            let results = [];
-            valueSearch = valueSearch.toLowerCase();
-            results = schemaForSearch.filter(x => x.toLowerCase().includes(valueSearch));
-            results.forEach(element => {
-                $('#' + element).show();
+        var valueSearch = $('#searchSchema').val();
+        if (valueSearch == '') {
+            $("[class*='forsearch_']").show()
+        } else {            
+            $("[class*='forsearch_']").hide()
+            var schemaForSearch = Object.keys(schemas);
+            schemaForSearch.forEach(schemaName => {                
+                if (schemaName.match(valueSearch) != null)
+                    $(".forsearch_" + schemaName + "").show()
+                var tableForSearch = Object.keys(schemas[schemaName]);
+                tableForSearch.forEach(tableName => {
+                    if (tableName.match(valueSearch) != null) {
+                        $(".forsearch_" + schemaName).show();
+                        $(".forsearch_" + schemaName + "_" + tableName).show();
+                    }
+                    var attributeForSearch = schemas[schemaName][tableName].attributes.map(a => a.attribute)
+                    attributeForSearch.forEach(eachAttribute => {
+                        if (eachAttribute.match(valueSearch) != null) {
+                            $(".forsearch_" + schemaName).show();
+                            $(".forsearch_" + schemaName + "_" + tableName).show();
+                            $(".forsearch_" + schemaName + "_" + tableName + "_" + eachAttribute).show();
+                        }
+                    })
+
+                })
             });
         }
     });

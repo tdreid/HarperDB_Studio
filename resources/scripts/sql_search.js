@@ -105,24 +105,34 @@ $(document).ready(function () {
     // });
 
     var schemas = $('#schemaAll').val()
-    schemas = JSON.parse(schemas);
-    schemaForSearch = Object.keys(schemas);
+    schemas = JSON.parse(schemas);    
 
     $('#searchSchema').keyup(function () {
         var valueSearch = $('#searchSchema').val();
         if (valueSearch == '') {
-            schemaForSearch.forEach(element => {
-                $('#' + element).show();
-            });
+            $("[class*='forsearch_']").show()
         } else {
-            schemaForSearch.forEach(element => {
-                $('#' + element).hide();
-            });
-            let results = [];
-            valueSearch = valueSearch.toLowerCase();
-            results = schemaForSearch.filter(x => x.toLowerCase().includes(valueSearch));
-            results.forEach(element => {
-                $('#' + element).show();
+            $("[class*='forsearch_']").hide()
+            var schemaForSearch = Object.keys(schemas);
+            schemaForSearch.forEach(schemaName => {
+                if (schemaName.match(valueSearch) != null)
+                    $(".forsearch_" + schemaName + "").show()
+                var tableForSearch = Object.keys(schemas[schemaName]);
+                tableForSearch.forEach(tableName => {
+                    if (tableName.match(valueSearch) != null) {
+                        $(".forsearch_" + schemaName).show();
+                        $(".forsearch_" + schemaName + "_" + tableName).show();
+                    }
+                    var attributeForSearch = schemas[schemaName][tableName].attributes.map(a => a.attribute)
+                    attributeForSearch.forEach(eachAttribute => {
+                        if (eachAttribute.match(valueSearch) != null) {
+                            $(".forsearch_" + schemaName).show();
+                            $(".forsearch_" + schemaName + "_" + tableName).show();
+                            $(".forsearch_" + schemaName + "_" + tableName + "_" + eachAttribute).show();
+                        }
+                    })
+
+                })
             });
         }
     });

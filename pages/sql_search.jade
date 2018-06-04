@@ -47,7 +47,7 @@ block content
                                     - var schemaIndex = 1;
                                     each schemaVal, schemaProp in schemas
                                         - var cId = 'c' + schemaIndex; 
-                                        li.lidragable(id="#{schemaProp}", value='#{schemaProp}')
+                                        li.lidragable(id="#{schemaProp}", value='#{schemaProp}' class="forsearch_#{schemaProp}")
                                             input(id="#{cId}", type='checkbox', checked='checked')
                                             label.tree_label.doubleclick(for='#{cId}', value='#{schemaProp}')
                                                 i.fa.fa-caret-down
@@ -57,7 +57,7 @@ block content
                                                     - var tableIndex = 1;
                                                     each tableVal, tableProp in schemas[schemaProp]
                                                         - var tId = cId + 't' + tableIndex;
-                                                        li.lidragable(value='#{schemaProp}.#{tableProp}')
+                                                        li.lidragable(value='#{schemaProp}.#{tableProp}', class="forsearch_#{schemaProp}_#{tableProp}")
                                                             input(id="#{tId}", type='checkbox', checked='checked')
                                                             label.tree_label.doubleclick(for='#{tId}', value='#{schemaProp}.#{tableProp}')
                                                                 i.fa.fa-caret-down
@@ -66,7 +66,7 @@ block content
                                                                 if schemas[schemaProp][tableProp] != undefined
                                                                     if schemas[schemaProp][tableProp]["attributes"] != undefined
                                                                         each attributesValue, attributesProp in schemas[schemaProp][tableProp]['attributes']
-                                                                            li.lidragable(value="#{attributesValue['attribute']}")
+                                                                            li.lidragable(value="#{attributesValue['attribute']}" class="forsearch_#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}")
                                                                                 span.tree_label.doubleclick(value="#{attributesValue['attribute']}" style="cursor: context-menu;")= attributesValue['attribute']
                                                         - tableIndex ++;
                                         - schemaIndex ++

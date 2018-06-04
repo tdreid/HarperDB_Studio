@@ -63,7 +63,7 @@ block content
 
                     - var schemaIndex = 1;
                         each schemaVal, schemaProp in schemas              
-                            ul.tree(id = "#{schemaProp}")
+                            ul.tree(id = "#{schemaProp}" class="forsearch_#{schemaProp}")
                                 li
                                     input(type='checkbox', id = 'c#{schemaIndex}')
                                     label.tree_label(for='c#{schemaIndex}' style="font-size: 1.4rem;")
@@ -76,7 +76,7 @@ block content
                                         - var tableIndex = 1;
                                         each tableVal, tableProp in schemas[schemaProp]
                                             ul
-                                                li
+                                                li(class="forsearch_#{schemaProp}_#{tableProp}")
                                                     input(id='#{cId}t#{tableIndex}', type='checkbox')
                                                     label.tree_label(for='#{cId}t#{tableIndex}' style="font-size: 1.25rem;")
                                                         i.fa.fa-caret-down.mr-1
@@ -85,7 +85,7 @@ block content
                                                         if schemas[schemaProp][tableProp] != undefined
                                                             if schemas[schemaProp][tableProp]["attributes"] != undefined
                                                                 each attributesValue, attributesProp in schemas[schemaProp][tableProp]['attributes']
-                                                                    li
+                                                                    li(class="forsearch_#{schemaProp}_#{tableProp}_#{attributesValue['attribute']}")
                                                                         input#int4(type='checkbox', checked='checked')
                                                                         label.tree_label
                                                                             | #{attributesValue['attribute']}
