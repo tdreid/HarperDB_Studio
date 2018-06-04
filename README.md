@@ -26,4 +26,4 @@ To change any of these settings edit the file /config/config.json. A sample conf
  To add the package dependencies execute the command `npm install`
 
 ## Run
-Launching the HarperDB studio is easy execute the command `node app.js`
+Launching the HarperDB studio is easy execute the command `node hdb_studio.js`
