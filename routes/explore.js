@@ -73,7 +73,7 @@ router.get('/sql_search_edit/:livelinkId', isAuthenticated, function (req, res) 
             var keywords = reduceDescribeAllObject(result);
             res.render('sql_search', {
                 keywords: JSON.stringify(keywords),
-                schemas: result,
+                schemas: sortSchemas(result),
                 nameOfUser: req.user.username,
                 breadcrumb: {
                     name: req.session.cur_url_name,
@@ -110,7 +110,7 @@ router.get('/sql_search/:sqllink', isAuthenticated, function (req, res) {
         var keywords = reduceDescribeAllObject(result);
         res.render('sql_search', {
             keywords: JSON.stringify(keywords),
-            schemas: result,
+            schemas: sortSchemas(result),
             sqlLink: Buffer.from(req.params.sqllink, 'base64').toString(),
             nameOfUser: req.user.username
         });
@@ -137,7 +137,7 @@ router.get('/filter_search', isAuthenticated, function (req, res) {
             return err;
         }
         res.render('filter_search', {
-            schemas: JSON.stringify(result),
+            schemas: JSON.stringify(sortSchemas(result)),
             nameOfUser: req.user.username
         });
     });
