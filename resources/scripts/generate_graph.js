@@ -155,13 +155,36 @@ var geoChartChart = (datas, options, element) => {
     }
 }
 
-var transformDataArray = (data) => {
+var transformDataArray = (data, hAxis, vAxis) => {
     var transform = [];
     try {
-        transform.push(Object.keys(data[0]))
-        data.forEach(element => {
-            transform.push(Object.values(element))
-        });
+        if (hAxis == '' && vAxis == '') {
+            transform.push(Object.keys(data[0]))
+            data.forEach(element => {
+                transform.push(Object.values(element))
+            });
+        } else {
+            var allColumn = Object.keys(data[0]);
+            var ColumnForUse = [hAxis, vAxis]
+            allColumn.forEach(eachColum => {
+                if (hAxis != eachColum && vAxis != eachColum)
+                    ColumnForUse.push(eachColum)
+            })
+            transform.push(ColumnForUse)
+            data.forEach(eachData => {
+                var useData = [];
+                useData.push(eachData[hAxis])
+                useData.push(eachData[vAxis])
+
+                allColumn.forEach(eachColumn => {
+                    if (hAxis != eachColumn && vAxis != eachColumn)
+                        useData.push(eachData[eachColumn])
+
+                });
+                transform.push(useData)
+            })
+
+        }
         return transform;
     } catch (err) {
         return transform;
@@ -198,7 +221,7 @@ var getData = (sql) => {
                     toastr.error(obj.result);
                 } else {
                     if ($('#hTitle').length > 0) {
-                        Object.keys(obj.result[0]).forEach(element => {                            
+                        Object.keys(obj.result[0]).forEach(element => {
                             $('#hTitle')
                                 .append($("<option></option>")
                                     .attr("value", element)
@@ -231,7 +254,7 @@ var generateChart = (graphType, sqlQuery, options) => {
 }
 
 var selectChart = (graphType, data, options, element) => {
-    var data = transformDataArray(data);
+    var data = transformDataArray(data, options.hAxis.title, options.vAxis.title);
     switch (graphType) {
         case "Line":
             lineChart(data, options, element)
