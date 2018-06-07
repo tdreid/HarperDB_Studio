@@ -285,8 +285,9 @@ block content
                 });
                 $("#exampleTextarea").droppable({
                 drop: function (event, button) {                    
-                    var dragValue = $(button.draggable).attr('value');
+                    var dragValue = $(button.draggable).attr('value') + " ";
                     var curSelectCusror = document.getElementById('exampleTextarea').selectionStart
-                    this.value = this.value.substring(0, curSelectCusror) + dragValue + this.value.substring(curSelectCusror, this.value.length) + " ";
+                    this.value = this.value.substring(0, curSelectCusror) + dragValue + this.value.substring(curSelectCusror, this.value.length) + " ";                    
+                    document.getElementById('exampleTextarea').selectionEnd  = curSelectCusror +  dragValue.length;
                 }
                 });

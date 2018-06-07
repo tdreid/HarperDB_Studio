@@ -145,22 +145,16 @@ $(document).ready(function () {
         event.preventDefault();
     });
 
-    $('.dragablebtn.doubleclick').dblclick((e) => {
+    $('.dragablebtn.doubleclick, li .doubleclick').dblclick((e) => {
 
         var curValue = document.getElementById("exampleTextarea").value;
 
         var curSelectCusror = document.getElementById('exampleTextarea').selectionStart
-        document.getElementById("exampleTextarea").value = curValue.substring(0, curSelectCusror) + e.target.attributes['value'].value + " " + curValue.substring(curSelectCusror, curValue.length);
+        var dbClickValue = $(e.currentTarget).attr('value') + " "
+        document.getElementById("exampleTextarea").value = curValue.substring(0, curSelectCusror) + dbClickValue + curValue.substring(curSelectCusror, curValue.length);
+        document.getElementById('exampleTextarea').selectionEnd  = curSelectCusror + dbClickValue.length
     })
-
-    $('li .doubleclick').dblclick((e) => {
-        // console.log($(e.currentTarget).attr('value'));
-        var curValue = document.getElementById("exampleTextarea").value;
-
-        var curSelectCusror = document.getElementById('exampleTextarea').selectionStart
-        document.getElementById("exampleTextarea").value = curValue.substring(0, curSelectCusror) + $(e.currentTarget).attr('value') + " " + curValue.substring(curSelectCusror, curValue.length);
-
-    })
+    
 });
 
 function saveFavorite() {
